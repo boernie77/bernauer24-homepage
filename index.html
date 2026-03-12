@@ -85,6 +85,23 @@
                             <strong>Hinweis zur Demo:</strong> Hier auf der Webseite kannst du eine Demoversion ausprobieren. Bitte beachte, dass in dieser Version die Anzahl der Vokabeln begrenzt ist und einige Funktionen (wie der volle Grammatik- und Infoteil) deaktiviert sind.
                         </div>
                     </div>
+                    <div class="image-gallery">
+                        <div class="gallery-item" onclick="openLightbox('assets/images/screenshot3.png')">
+                            <img src="assets/images/screenshot3.png" alt="Grammatik Übung 1">
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('assets/images/screenshot4.png')">
+                            <img src="assets/images/screenshot4.png" alt="Grammatik Übung 2">
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('assets/images/screenshot1.png')">
+                            <img src="assets/images/screenshot1.png" alt="Drag & Drop Modus">
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('assets/images/screenshot2.png')">
+                            <img src="assets/images/screenshot2.png" alt="Infobereich">
+                        </div>
+                        <div class="gallery-item" onclick="openLightbox('assets/images/screenshot5.png')">
+                            <img src="assets/images/screenshot5.png" alt="Vokabeltraining">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -112,6 +129,29 @@
         </div>
     </footer>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content">
+            <button class="close-lightbox" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="Vorschau">
+        </div>
+    </div>
+
     <script src="app.js"></script>
+    <script>
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    </script>
 </body>
 </html>
