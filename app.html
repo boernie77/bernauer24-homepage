@@ -538,7 +538,28 @@
             { id: 14, de: "Aber", it: "Ma", typ: "Sonstiges", emoji: "✋" },
             { id: 15, de: "Hier", it: "Qui", typ: "Sonstiges", emoji: "📍" },
             { id: 16, de: "Dort", it: "Lì", typ: "Sonstiges", emoji: "👉" },
-            { id: 17, de: "Sehr", it: "Molto", typ: "Sonstiges", emoji: "💯" }
+            { id: 17, de: "Sehr", it: "Molto", typ: "Sonstiges", emoji: "💯" },
+            // Neue Vokabeln (20 Stück)
+            { id: 18, de: "Tisch", it: "Tavolo", typ: "Substantiv", emoji: "🪑" },
+            { id: 19, de: "Stuhl", it: "Sedia", typ: "Substantiv", emoji: "🪑" },
+            { id: 20, de: "Auto", it: "Macchina", typ: "Substantiv", emoji: "🚗" },
+            { id: 21, de: "Buch", it: "Libro", typ: "Substantiv", emoji: "📖" },
+            { id: 22, de: "Hund", it: "Cane", typ: "Substantiv", emoji: "🐕" },
+            { id: 23, de: "Katze", it: "Gatto", typ: "Substantiv", emoji: "🐈" },
+            { id: 24, de: "Schnell", it: "Veloce", typ: "Adjektiv", emoji: "⚡" },
+            { id: 25, de: "Langsam", it: "Lento", typ: "Adjektiv", emoji: "🐢" },
+            { id: 26, de: "Alt", it: "Vecchio", typ: "Adjektiv", emoji: "👴" },
+            { id: 27, de: "Neu", it: "Nuovo", typ: "Adjektiv", emoji: "🆕" },
+            { id: 28, de: "Heiß", it: "Caldo", typ: "Adjektiv", emoji: "🌋" },
+            { id: 29, de: "Kalt", it: "Freddo", typ: "Adjektiv", emoji: "❄️" },
+            { id: 30, de: "Sprechen", it: "Parlare", typ: "Verb" },
+            { id: 31, de: "Sehen", it: "Vedere", typ: "Verb" },
+            { id: 32, de: "Hören", it: "Sentire", typ: "Verb" },
+            { id: 33, de: "Lieben", it: "Amare", typ: "Verb" },
+            { id: 34, de: "Kommen", it: "Venire", typ: "Verb" },
+            { id: 35, de: "Geben", it: "Dare", typ: "Verb" },
+            { id: 36, de: "Auch", it: "Anche", typ: "Sonstiges" },
+            { id: 37, de: "Immer", it: "Sempre", typ: "Sonstiges" }
         ].map(word => {
             if (word.typ === "Verb") {
                 const forms = generateVerbForms(word.it);
@@ -551,7 +572,7 @@
         let fullDictionary = savedDictionary ? JSON.parse(savedDictionary) : [...defaultDictionary];
 
         // --- Demo-Limitierung ---
-        const DEMO_LIMIT = 30;
+        const DEMO_LIMIT = 40;
         if (fullDictionary.length > DEMO_LIMIT) {
             fullDictionary = fullDictionary.slice(0, DEMO_LIMIT);
         }
