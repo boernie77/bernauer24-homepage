@@ -547,6 +547,13 @@
         const savedDictionary = localStorage.getItem('ita-dictionary');
         let fullDictionary = savedDictionary ? JSON.parse(savedDictionary) : [...defaultDictionary];
 
+        // --- Demo-Limitierung ---
+        const DEMO_LIMIT = 30;
+        if (fullDictionary.length > DEMO_LIMIT) {
+            fullDictionary = fullDictionary.slice(0, DEMO_LIMIT);
+        }
+        // -------------------------
+
         const ROUND_SIZE = 5;
         let currentPairs = [];
         let score = 0;
