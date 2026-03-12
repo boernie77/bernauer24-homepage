@@ -480,3 +480,22 @@ footer {
         justify-content: center;
     }
 }
+
+/* Interest Note */
+.interest-note {
+    background: #f0fdf4;
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 2rem auto 3rem;
+    text-align: left;
+    box-shadow: 0 4px 12px rgba(0, 140, 69, 0.05);
+}
+
+.interest-note a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: underline;
+}
