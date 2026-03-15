@@ -4110,8 +4110,9 @@
             if (API_TOKEN && typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
 
             if (currentMode === 'dragdrop' || currentMode === 'quiz' || currentMode === 'write') {
-                startNewRound();
+                restartCurrentMode();
             }
+            renderApp();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -4324,8 +4325,8 @@
 
             // NO TOKEN -> Demo Mode Logic
             if (!API_TOKEN) {
-                if (fullDictionary.length === 0) {
-                    console.log("Demo Mode: Initializing with offline dictionary");
+                if (fullDictionary.length === 0 || CURRENT_LANG !== (fullDictionary[0]?.language || 'it')) {
+                    console.log("Demo Mode: Initializing/Updating with offline dictionary");
                     fullDictionary = offlineDictionary.map((v, idx) => {
                         const isIt = (v.language || (v.it ? 'it' : 'en')) === 'it';
                         return {
@@ -6806,7 +6807,7 @@
         setupCustomDropdown('vocabListCatFilterBtn', 'vocabListCatFilterList', 'vocabListCatFilterLabel', 'vocabListCatFilter', renderVocabList);
 
         function restartCurrentMode() {
-            if (currentMode === 'dragDrop') startDragDropRound();
+            if (currentMode === 'dragdrop' || currentMode === 'dragDrop') startDragDropRound();
             else if (currentMode === 'quiz') startQuizRound();
             else if (currentMode === 'write') startWriteRound();
         }
