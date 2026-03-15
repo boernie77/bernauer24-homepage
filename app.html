@@ -1199,7 +1199,7 @@
 
     <!-- Login/Register Overlay -->
     <div id="authOverlay"
-        class="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        class="hidden fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
             <h2 id="authTitle" class="text-3xl font-bold text-slate-800 mb-6 text-center">Willkommen!</h2>
             <div id="authError"
@@ -3612,6 +3612,9 @@
         let API_TOKEN = localStorage.getItem('ita-token');
         let IS_ADMIN = localStorage.getItem('ita-admin') === 'true';
         let CURRENT_USER_NAME = localStorage.getItem('ita-user-name');
+        if (!API_TOKEN && !CURRENT_USER_NAME) {
+            CURRENT_USER_NAME = 'TESTUSER';
+        }
         let CURRENT_LANG = localStorage.getItem('ita-lang') || 'it';
 
         // Global UI Reference placeholders
@@ -4251,6 +4254,24 @@
                 }
             }
 
+            // NO TOKEN -> Demo Mode Logic
+            if (!API_TOKEN) {
+                if (fullDictionary.length === 0) {
+                    console.log("Demo Mode: Initializing with offline dictionary");
+                    fullDictionary = offlineDictionary.map((v, idx) => ({
+                        id: 'demo-' + idx,
+                        ...v,
+                        isActive: true,
+                        isMarked: false,
+                        language: v.language || (v.it ? 'it' : 'en'),
+                        ... (v.typ === 'Verb' ? generateVerbForms(v.it || v.en) : {})
+                    }));
+                    applyDemoLimit();
+                    renderApp();
+                }
+                return;
+            }
+
             if (window._isSyncing) return;
             window._isSyncing = true;
 
@@ -4271,20 +4292,20 @@
                 } catch (pe) { if (!isSilent) console.warn("Profile sync failed", pe); }
 
                 // Check for remote reset
-                    if (serverLastReset) {
-                        const localLastReset = localStorage.getItem('ita-local-last-reset');
-                        const serverResetTime = new Date(serverLastReset).getTime();
-                        const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
+                if (serverLastReset) {
+                    const localLastReset = localStorage.getItem('ita-local-last-reset');
+                    const serverResetTime = new Date(serverLastReset).getTime();
+                    const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
 
-                        if (serverResetTime > localResetTime || !localLastReset) {
-                            console.log("Remote statistics reset (or new account) detected. Clearing local data...");
-                            wordStats = {};
-                            dailyActivity = {};
-                            grammarActivityCount = 0;
-                            localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
-                            saveAllDataLocally();
-                        }
+                    if (serverResetTime > localResetTime || !localLastReset) {
+                        console.log("Remote statistics reset (or new account) detected. Clearing local data...");
+                        wordStats = {};
+                        dailyActivity = {};
+                        grammarActivityCount = 0;
+                        localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
+                        saveAllDataLocally();
                     }
+                }
 
                 fullDictionary = vocab.map(v => ({
                     id: v.id,
@@ -6317,7 +6338,7 @@
         const versionModal = document.getElementById('versionUpdateModal');
         const closeVersionBtn = document.getElementById('closeVersionModalBtn');
         const vKey = 'hasSeenVersion_2_0_1';
-        if (!localStorage.getItem(vKey)) {
+        if (!localStorage.getItem(vKey) && API_TOKEN) {
             versionModal.classList.remove('hidden');
             versionModal.classList.add('flex');
         }
@@ -8210,7 +8231,10 @@
         userNameEl = document.getElementById('userName');
         userNameMobileEl = document.getElementById('userNameMobile');
         
-        if (API_TOKEN) showApp();
+        if (userNameEl) userNameEl.textContent = CURRENT_USER_NAME || 'Gast';
+        if (userNameMobileEl) userNameMobileEl.textContent = CURRENT_USER_NAME || 'Gast';
+        
+        showApp();
     </script>
 </body>
 
