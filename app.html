@@ -5176,7 +5176,7 @@
             if (isNoun && pair.grammatica && CURRENT_LANG === 'it') {
                 return (getArticle(pair.it, pair.grammatica) + pair.it);
             }
-            return pair.it;
+            return pair.en || pair.it;
         }
 
         function startWriteRound() {
@@ -6650,7 +6650,8 @@
             wordsWithStats.forEach(word => {
                 const tr = document.createElement('tr'); tr.className = "hover:bg-slate-50 transition-colors";
                 const lastRevStr = word.stats.lastReviewedDate ? new Date(word.stats.lastReviewedDate).toLocaleDateString('de-DE') : '-';
-                tr.innerHTML = `<td class="p-3 text-slate-800 border-b border-slate-100">${word.de} <span class="text-slate-300 mx-1 md:mx-2">|</span> <span class="font-medium text-blue-600">${word.it}</span></td><td class="p-3 text-center text-slate-900 font-semibold border-b border-slate-100">${word.stats.presented}</td><td class="p-3 text-center text-green-600 font-bold border-b border-slate-100">${word.stats.correct}</td><td class="p-3 text-center text-red-500 font-bold border-b border-slate-100">${word.stats.incorrect}</td><td class="p-3 text-center text-slate-600 border-b border-slate-100">${lastRevStr}</td>`;
+                const targetWord = (word.language === 'en') ? word.en : word.it;
+                tr.innerHTML = `<td class="p-3 text-slate-800 border-b border-slate-100">${word.de} <span class="text-slate-300 mx-1 md:mx-2">|</span> <span class="font-medium text-blue-600">${targetWord}</span></td><td class="p-3 text-center text-slate-900 font-semibold border-b border-slate-100">${word.stats.presented}</td><td class="p-3 text-center text-green-600 font-bold border-b border-slate-100">${word.stats.correct}</td><td class="p-3 text-center text-red-500 font-bold border-b border-slate-100">${word.stats.incorrect}</td><td class="p-3 text-center text-slate-600 border-b border-slate-100">${lastRevStr}</td>`;
                 tbody.appendChild(tr);
             });
         }
@@ -6761,10 +6762,11 @@
                 const isChecked = word.isActive !== false;
 
                 // Determine display order based on sort direction
-                const primary = sortDir === 'de' ? word.de : word.it;
-                const secondary = sortDir === 'de' ? word.it : word.de;
-                const flagPri = sortDir === 'de' ? deFlagSVG : itFlagSVG;
-                const flagSec = sortDir === 'de' ? itFlagSVG : deFlagSVG;
+                const sortTarget = word.language === 'en' ? word.en : word.it;
+                const primary = sortDir === 'de' ? word.de : sortTarget;
+                const secondary = sortDir === 'de' ? sortTarget : word.de;
+                const flagPri = sortDir === 'de' ? deFlagSVG : (word.language === 'en' ? gbFlagSVG : itFlagSVG);
+                const flagSec = sortDir === 'de' ? (word.language === 'en' ? gbFlagSVG : itFlagSVG) : deFlagSVG;
 
                 li.innerHTML = `
                     <div class="flex items-center gap-2 overflow-hidden flex-1">
