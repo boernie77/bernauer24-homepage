@@ -4027,6 +4027,26 @@
             document.querySelectorAll('.vocab-btn-arrow').forEach(el => el.innerHTML = arrowSVG);
         }
 
+        async function loadGrammarSentences() {
+            if (!API_TOKEN) {
+                const cached = localStorage.getItem(`ita-grammar-sentences-${CURRENT_LANG}`);
+                if (cached) {
+                    try {
+                        grammarSentences = JSON.parse(cached);
+                        updateGrammarFocusOptions();
+                    } catch (e) { console.warn("Grammar cache parse failed", e); }
+                }
+                return;
+            }
+            try {
+                grammarSentences = await apiFetch('/grammar-sentences');
+                saveAllDataLocally();
+                updateGrammarFocusOptions();
+            } catch (err) {
+                console.warn("Grammar fetch failed", err);
+            }
+        }
+
         async function switchLanguage(lang) {
             if (CURRENT_LANG === lang) return;
             CURRENT_LANG = lang;
@@ -4039,7 +4059,7 @@
             if (lang === 'it') await loadGrammarSentences();
             
             // Refresh administration/modal stats if needed
-            if (typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
+            if (API_TOKEN && typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
 
             if (currentMode === 'dragdrop' || currentMode === 'quiz' || currentMode === 'write') {
                 startNewRound();
@@ -4427,6 +4447,7 @@
         }
 
         async function saveStatToServer(wordId) {
+            if (!API_TOKEN) return; // Skip in Demo Mode
             const s = wordStats[wordId];
             const w = fullDictionary.find(item => item.id == wordId);
             try {
@@ -5910,6 +5931,7 @@
         });
 
         async function updateAdminGrammarCount() {
+            if (!API_TOKEN) return;
             try {
                 grammarSentences = await apiFetch('/grammar-sentences');
                 saveAllDataLocally(); // Save to cache after fetch
