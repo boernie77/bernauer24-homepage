@@ -1,3 +1,36 @@
+/* outfit-300 - latin */
+@font-face {
+  font-display: swap; 
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 300;
+  src: url('assets/fonts/outfit-v15-latin-300.woff2') format('woff2'); 
+}
+/* outfit-regular - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/outfit-v15-latin-400.woff2') format('woff2');
+}
+/* outfit-600 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 600;
+  src: url('assets/fonts/outfit-v15-latin-600.woff2') format('woff2');
+}
+/* outfit-800 - latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Outfit';
+  font-style: normal;
+  font-weight: 800;
+  src: url('assets/fonts/outfit-v15-latin-800.woff2') format('woff2');
+}
+
 :root {
     --primary: #008C45; /* Italian Green */
     --secondary: #CD212A; /* Italian Red */
@@ -102,6 +135,7 @@ h1 {
     color: var(--primary);
     background: linear-gradient(to right, var(--primary), #00A352);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
