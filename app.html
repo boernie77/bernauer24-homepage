@@ -5503,7 +5503,8 @@
 
         function createDraggable(pair) {
             const isDeToIt = directionFilterEl.value === 'de-it';
-            const textContent = isDeToIt ? pair.de : getFullIt(pair);
+            const targetWord = pair.en || pair.it;
+            const textContent = isDeToIt ? pair.de : (CURRENT_LANG === 'it' ? getFullIt(pair) : targetWord);
             const el = document.createElement('div');
             const isMobile = window.innerWidth <= 640;
 
@@ -5595,7 +5596,8 @@
 
         function createDropzone(pair) {
             const isDeToIt = directionFilterEl.value === 'de-it';
-            const textContent = isDeToIt ? getFullIt(pair) : pair.de;
+            const targetWord = pair.en || pair.it;
+            const textContent = isDeToIt ? (CURRENT_LANG === 'it' ? getFullIt(pair) : targetWord) : pair.de;
             const el = document.createElement('div');
             el.className = 'relative bg-slate-100 p-2 md:p-3 rounded-xl border-2 border-dashed border-slate-300 min-h-[45px] md:min-h-[50px] flex flex-col justify-center transition-colors no-select flex-shrink-0';
             el.dataset.id = pair.id;
@@ -5818,9 +5820,9 @@
                 if (isDeToIt) {
                     quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.de}</div></div>`;
                     quizSubtext.textContent = `Was ist der Infinitiv auf ${CURRENT_LANG === 'en' ? 'Englisch' : 'Italienisch'}?`;
-                    options.forEach(opt => createQuizButton(opt.id, opt.it));
+                    options.forEach(opt => createQuizButton(opt.id, (opt.en || opt.it)));
                 } else {
-                    quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.it}</div></div>`;
+                    quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.en || currentQuizTarget.it}</div></div>`;
                     quizSubtext.textContent = 'Was bedeutet dieser Infinitiv auf Deutsch?';
                     options.forEach(opt => createQuizButton(opt.id, opt.de));
                 }
