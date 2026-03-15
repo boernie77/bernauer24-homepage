@@ -3623,6 +3623,8 @@
 
         const itToDeMap = {};
         const deToItMap = {};
+        const enToDeMap = {};
+        const deToEnMap = {};
 
         // ===================== OFFLINE-WÖRTERBUCH =====================
         const offlineDictionary = [
@@ -3785,15 +3787,60 @@
             { it: 'a volte', de: 'manchmal', typ: 'Sonstiges' }, { it: 'spesso', de: 'oft', typ: 'Sonstiges' },
             { it: 'raramente', de: 'selten', typ: 'Sonstiges' }, { it: 'di tanto in tanto', de: 'ab und zu', typ: 'Sonstiges' },
             { it: 'nel frattempo', de: 'inzwischen', typ: 'Sonstiges' }, { it: 'alla fine', de: 'am Ende', typ: 'Sonstiges' },
-            { it: 'in primo luogo', de: 'erstens', typ: 'Sonstiges' }, { it: 'in secondo luogo', de: 'zweitens', typ: 'Sonstiges' }
+            { it: 'in primo luogo', de: 'erstens', typ: 'Sonstiges' }, { it: 'in secondo luogo', de: 'zweitens', typ: 'Sonstiges' },
+            // --- English Vocabulary (Demo) ---
+            { en: 'to be', de: 'sein', typ: 'Verb', language: 'en' },
+            { en: 'to have', de: 'haben', typ: 'Verb', language: 'en' },
+            { en: 'to do', de: 'machen', typ: 'Verb', language: 'en' },
+            { en: 'to go', de: 'gehen', typ: 'Verb', language: 'en' },
+            { en: 'to come', de: 'kommen', typ: 'Verb', language: 'en' },
+            { en: 'to say', de: 'sagen', typ: 'Verb', language: 'en' },
+            { en: 'to see', de: 'sehen', typ: 'Verb', language: 'en' },
+            { en: 'to hear', de: 'hören', typ: 'Verb', language: 'en' },
+            { en: 'to think', de: 'denken', typ: 'Verb', language: 'en' },
+            { en: 'to find', de: 'finden', typ: 'Verb', language: 'en' },
+            { en: 'to speak', de: 'sprechen', typ: 'Verb', language: 'en' },
+            { en: 'to eat', de: 'essen', typ: 'Verb', language: 'en' },
+            { en: 'to drink', de: 'trinken', typ: 'Verb', language: 'en' },
+            { en: 'to sleep', de: 'schlafen', typ: 'Verb', language: 'en' },
+            { en: 'to work', de: 'arbeiten', typ: 'Verb', language: 'en' },
+            { en: 'to buy', de: 'kaufen', typ: 'Verb', language: 'en' },
+            { en: 'to take', de: 'nehmen', typ: 'Verb', language: 'en' },
+            { en: 'to open', de: 'öffnen', typ: 'Verb', language: 'en' },
+            { en: 'to close', de: 'schließen', typ: 'Verb', language: 'en' },
+            { en: 'to help', de: 'helfen', typ: 'Verb', language: 'en' },
+            { en: 'head', de: 'Kopf', typ: 'Substantiv', emoji: '🗣️', language: 'en' },
+            { en: 'eye', de: 'Auge', typ: 'Substantiv', emoji: '👁', language: 'en' },
+            { en: 'ear', de: 'Ohr', typ: 'Substantiv', emoji: '👂', language: 'en' },
+            { en: 'nose', de: 'Nase', typ: 'Substantiv', emoji: '👃', language: 'en' },
+            { en: 'mouth', de: 'Mund', typ: 'Substantiv', emoji: '👄', language: 'en' },
+            { en: 'hand', de: 'Hand', typ: 'Substantiv', emoji: '✋', language: 'en' },
+            { en: 'foot', de: 'Fuß', typ: 'Substantiv', emoji: '👣', language: 'en' },
+            { en: 'heart', de: 'Herz', typ: 'Substantiv', emoji: '❤️', language: 'en' },
+            { en: 'house', de: 'Haus', typ: 'Substantiv', emoji: '🏠', language: 'en' },
+            { en: 'room', de: 'Zimmer', typ: 'Substantiv', emoji: '🚪', language: 'en' },
+            { en: 'car', de: 'Auto', typ: 'Substantiv', emoji: '🚗', language: 'en' },
+            { en: 'book', de: 'Buch', typ: 'Substantiv', emoji: '📖', language: 'en' },
+            { en: 'water', de: 'Wasser', typ: 'Substantiv', emoji: '💧', language: 'en' },
+            { en: 'food', de: 'Essen', typ: 'Substantiv', emoji: '🍲', language: 'en' },
+            { en: 'table', de: 'Tisch', typ: 'Substantiv', emoji: '🪑', language: 'en' },
+            { en: 'chair', de: 'Stuhl', typ: 'Substantiv', emoji: '🪑', language: 'en' },
+            { en: 'sun', de: 'Sonne', typ: 'Substantiv', emoji: '☀️', language: 'en' },
+            { en: 'moon', de: 'Mond', typ: 'Substantiv', emoji: '🌙', language: 'en' },
+            { en: 'earth', de: 'Erde', typ: 'Substantiv', emoji: '🌍', language: 'en' },
+            { en: 'sky', de: 'Himmel', typ: 'Substantiv', emoji: '☁️', language: 'en' }
         ];
 
         // Bidirektionale Lookup-Maps aufbauen
         offlineDictionary.forEach(entry => {
             if (entry.it) itToDeMap[entry.it.toLowerCase()] = entry;
+            if (entry.en) enToDeMap[entry.en.toLowerCase()] = entry;
             if (entry.de) {
                 const deKeys = entry.de.toLowerCase().split('/').map(w => w.trim());
-                deKeys.forEach(dk => { if (!deToItMap[dk]) deToItMap[dk] = entry; });
+                deKeys.forEach(dk => {
+                    if (entry.it && !deToItMap[dk]) deToItMap[dk] = entry;
+                    if (entry.en && !deToEnMap[dk]) deToEnMap[dk] = entry;
+                });
             }
         });
 
@@ -3829,9 +3876,10 @@
         // --- Demo-Limitierung ---
         const DEMO_LIMIT = 40;
         function applyDemoLimit() {
-            if (fullDictionary && fullDictionary.length > DEMO_LIMIT) {
-                fullDictionary = fullDictionary.slice(0, DEMO_LIMIT);
-            }
+            if (!fullDictionary) return;
+            const itWords = fullDictionary.filter(w => (w.language || 'it') === 'it').slice(0, 40);
+            const enWords = fullDictionary.filter(w => w.language === 'en').slice(0, 40);
+            fullDictionary = [...itWords, ...enWords];
         }
         // -------------------------
         let wordStats = {};
@@ -4278,14 +4326,17 @@
             if (!API_TOKEN) {
                 if (fullDictionary.length === 0) {
                     console.log("Demo Mode: Initializing with offline dictionary");
-                    fullDictionary = offlineDictionary.map((v, idx) => ({
-                        id: 'demo-' + idx,
-                        ...v,
-                        isActive: true,
-                        isMarked: false,
-                        language: v.language || (v.it ? 'it' : 'en'),
-                        ... (v.typ === 'Verb' ? generateVerbForms(v.it || v.en) : {})
-                    }));
+                    fullDictionary = offlineDictionary.map((v, idx) => {
+                        const isIt = (v.language || (v.it ? 'it' : 'en')) === 'it';
+                        return {
+                            id: 'demo-' + idx,
+                            ...v,
+                            isActive: true,
+                            isMarked: false,
+                            language: v.language || (isIt ? 'it' : 'en'),
+                            ... (v.typ === 'Verb' && isIt ? generateVerbForms(v.it) : {})
+                        };
+                    });
                     applyDemoLimit();
                     renderApp();
                 }
@@ -7154,7 +7205,7 @@
                 // NOTE: If there are separate enToDeMap / deToEnMap, they should be used.
                 // For now, it seems itToDeMap[q] might be used or it's empty.
                 // If it's empty, it falls back to online.
-                offlineResult = vocabInputLang === 'en' ? (window.enToDeMap ? enToDeMap[q] : null) : (window.deToEnMap ? deToEnMap[q] : null);
+                offlineResult = vocabInputLang === 'en' ? enToDeMap[q] : deToEnMap[q];
             }
             
             if (offlineResult) {
