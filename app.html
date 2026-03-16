@@ -4761,51 +4761,65 @@
         }
 
         async function loadDataFromServer(isSilent = false) {
+            // Check if we are in DEMO mode by looking for offline dictionaries
+            const isDemoMode = (typeof offlineDictionary !== 'undefined' || typeof offlineDictionaryEn !== 'undefined' || typeof window.offlineDictionaryEn !== 'undefined');
+
             // Load from Cache FIRST (skip if silent background pull)
             if (!isSilent) {
                 const cachedVocab = localStorage.getItem(`ita-full-dictionary-${CURRENT_LANG}`);
-                if (cachedVocab) {
+                // BUGFIX: In Demo Mode, DO NOT load fullDictionary from cache to prevent language mixups
+                if (cachedVocab && !isDemoMode) {
                     try {
                         fullDictionary = JSON.parse(cachedVocab);
-                        const cachedStats = localStorage.getItem(`ita-word-stats-${CURRENT_LANG}`);
-                        if (cachedStats) wordStats = JSON.parse(cachedStats);
-
-                        // Load Grammar Sentences from cache
-                        const cachedGrammar = localStorage.getItem(`ita-grammar-sentences-${CURRENT_LANG}`);
-                        if (cachedGrammar) {
-                            grammarSentences = JSON.parse(cachedGrammar);
-                            updateGrammarFocusOptions();
-                        }
-
-                        renderApp();
-                    } catch (e) { console.warn("Cache parse failed", e); }
+                    } catch (e) { console.warn("Vocab cache parse failed", e); }
                 }
+                
+                // We ALWAYS want to load stats, even in Demo Mode, to preserve streaks/progress
+                try {
+                    const cachedStats = localStorage.getItem(`ita-word-stats-${CURRENT_LANG}`);
+                    if (cachedStats) wordStats = JSON.parse(cachedStats);
+
+                    // Load Grammar Sentences from cache
+                    const cachedGrammar = localStorage.getItem(`ita-grammar-sentences-${CURRENT_LANG}`);
+                    if (cachedGrammar) {
+                        grammarSentences = JSON.parse(cachedGrammar);
+                        updateGrammarFocusOptions();
+                    }
+
+                    if (!isDemoMode && fullDictionary.length > 0) {
+                        renderApp();
+                    }
+                } catch (e) { console.warn("Stats cache parse failed", e); }
             }
 
             if (window._isSyncing) return;
             window._isSyncing = true;
 
             // DEMO MODE OFFLINE FALLBACK
-            console.log("Demo Mode: Initializing offline fallback data...");
-            fullDictionary = []; // Reset to ensure clean load for CURRENT_LANG
-            
-            const itDict = (typeof offlineDictionary !== 'undefined') ? offlineDictionary : [];
-            const enDict = (typeof offlineDictionaryEn !== 'undefined') ? offlineDictionaryEn : (window.offlineDictionaryEn || []);
-            
-            let dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
-            
-            if (dictToUse && dictToUse.length > 0) {
-                // Map to ensure language property and unique IDs are present
-                fullDictionary = dictToUse.slice(0, 50).map((item, index) => ({
-                    ...item,
-                    id: `demo-${CURRENT_LANG}-${index}`,
-                    language: CURRENT_LANG
-                }));
-                console.log(`Demo Mode: Loaded ${fullDictionary.length} items for ${CURRENT_LANG}`);
-                renderApp();
+            if (isDemoMode) {
+                console.log("Demo Mode: Initializing offline fallback data...");
+                fullDictionary = []; // Reset to ensure clean load for CURRENT_LANG
+                
+                const itDict = (typeof offlineDictionary !== 'undefined') ? offlineDictionary : [];
+                const enDict = (typeof offlineDictionaryEn !== 'undefined') ? offlineDictionaryEn : (window.offlineDictionaryEn || []);
+                
+                let dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
+                
+                if (dictToUse && dictToUse.length > 0) {
+                    // Map to ensure language property and unique IDs are present
+                    fullDictionary = dictToUse.slice(0, 50).map((item, index) => ({
+                        ...item,
+                        id: `demo-${CURRENT_LANG}-${index}`,
+                        language: CURRENT_LANG
+                    }));
+                    console.log(`Demo Mode: Loaded ${fullDictionary.length} items for ${CURRENT_LANG}`);
+                    renderApp(); // Render immediately purely from the defined maps
+                }
+                
+                // BUGFIX: Allow future language switches to work by resetting the sync flag
+                window._isSyncing = false; 
+                return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
             }
-
-            return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
 
             try {
                 if (isCapacitor) console.log("Fetching vocab...");
