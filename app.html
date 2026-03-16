@@ -1218,7 +1218,7 @@
 
     <!-- Login/Register Overlay -->
     <div id="authOverlay"
-        class="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        class="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
             <h2 id="authTitle" class="text-3xl font-bold text-slate-800 mb-6 text-center">Willkommen!</h2>
             <div id="authError"
@@ -4557,7 +4557,7 @@
                 clearTimeout(timeoutId);
 
                 if (res.status === 401 || res.status === 403) {
-                    logout();
+                    // logout(); // Disabled for Demo Mode to prevent login window triggering
                     throw new Error('Unauthorized');
                 }
                 if (!res.ok) {
@@ -4584,7 +4584,7 @@
                 switchMode('dragdrop');
             }
             if (fullDictionary.length >= 1) {
-                checkDailyStreakPopup();
+                // checkDailyStreakPopup(); // Disabled for Demo Mode
             }
         }
 
@@ -4612,6 +4612,8 @@
 
             if (window._isSyncing) return;
             window._isSyncing = true;
+            
+            return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
 
             try {
                 if (isCapacitor) console.log("Fetching vocab...");
@@ -5212,14 +5214,15 @@
             if (userDisplay) {
                 userDisplay.classList.remove('hidden');
                 userDisplay.style.setProperty('display', 'flex', 'important');
-                if (CURRENT_USER_NAME) {
+                if (CURRENT_USER_NAME && CURRENT_USER_NAME !== 'Gast') {
                     userNameEl.textContent = CURRENT_USER_NAME;
                     onboardingModal.classList.add('hidden');
                     onboardingModal.classList.remove('flex');
                 } else {
-                    onboardingNameInput.value = '';
-                    onboardingModal.classList.remove('hidden');
-                    onboardingModal.classList.add('flex');
+                    CURRENT_USER_NAME = 'Gast';
+                    userNameEl.textContent = 'Gast';
+                    onboardingModal.classList.add('hidden');
+                    onboardingModal.classList.remove('flex');
                 }
             }
 
@@ -5239,7 +5242,7 @@
                 }
             }
 
-            loadDataFromServer();
+            // loadDataFromServer(); // Disabled for initial call to prevent any background sync attempts
         }
 
         onboardingSubmitBtn.addEventListener('click', async () => {
@@ -6991,10 +6994,12 @@
         const versionModal = document.getElementById('versionUpdateModal');
         const closeVersionBtn = document.getElementById('closeVersionModalBtn');
         const vKey = 'hasSeenVersion_2_0_3';
+        /* // Disabled for Demo Mode
         if (!localStorage.getItem(vKey)) {
             versionModal.classList.remove('hidden');
             versionModal.classList.add('flex');
         }
+        */
         closeVersionBtn.addEventListener('click', () => {
             localStorage.setItem(vKey, 'true');
             versionModal.classList.add('hidden');
