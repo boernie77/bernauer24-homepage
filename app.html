@@ -4795,8 +4795,12 @@
             let dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
             
             if (dictToUse && dictToUse.length > 0) {
-                // Slice to exactly 50 items as requested
-                fullDictionary = JSON.parse(JSON.stringify(dictToUse.slice(0, 50)));
+                // Map to ensure language property and unique IDs are present
+                fullDictionary = dictToUse.slice(0, 50).map((item, index) => ({
+                    ...item,
+                    id: `demo-${CURRENT_LANG}-${index}`,
+                    language: CURRENT_LANG
+                }));
                 console.log(`Demo Mode: Loaded ${fullDictionary.length} items for ${CURRENT_LANG}`);
                 renderApp();
             }
