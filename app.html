@@ -4609,11 +4609,25 @@
                     } catch (e) { console.warn("Cache parse failed", e); }
                 }
             }
+            
+            // FALLBACK: If still empty, load from Offline Dictionary
+            if (fullDictionary.length === 0) {
+                const dictToUse = CURRENT_LANG === 'en' ? (window.offlineDictionaryEn || []) : (window.offlineDictionary || []);
+                if (dictToUse.length > 0) {
+                    fullDictionary = JSON.parse(JSON.stringify(dictToUse));
+                    console.log(`Demo Mode: Loaded ${fullDictionary.length} items from offline dictionary (${CURRENT_LANG})`);
+                }
+            }
+            
+            if (fullDictionary.length > 0 && !isSilent) {
+                renderApp();
+            }
 
             if (window._isSyncing) return;
             window._isSyncing = true;
             
-            return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
+            // EXIT EARLY: We are in Demo Mode (Homepage), avoid any server API calls
+            return;
 
             try {
                 if (isCapacitor) console.log("Fetching vocab...");
@@ -5242,7 +5256,7 @@
                 }
             }
 
-            // loadDataFromServer(); // Disabled for initial call to prevent any background sync attempts
+            loadDataFromServer();
         }
 
         onboardingSubmitBtn.addEventListener('click', async () => {
