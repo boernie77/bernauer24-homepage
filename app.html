@@ -4612,10 +4612,15 @@
             
             // FALLBACK: If still empty, load from Offline Dictionary
             if (fullDictionary.length === 0) {
-                const dictToUse = CURRENT_LANG === 'en' ? (window.offlineDictionaryEn || []) : (window.offlineDictionary || []);
-                if (dictToUse.length > 0) {
+                // Check if offlineDictionary (it) or window.offlineDictionaryEn exist
+                const itDict = (typeof offlineDictionary !== 'undefined') ? offlineDictionary : [];
+                const enDict = (typeof offlineDictionaryEn !== 'undefined') ? offlineDictionaryEn : (window.offlineDictionaryEn || []);
+                
+                const dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
+                
+                if (dictToUse && dictToUse.length > 0) {
                     fullDictionary = JSON.parse(JSON.stringify(dictToUse));
-                    console.log(`Demo Mode: Loaded ${fullDictionary.length} items from offline dictionary (${CURRENT_LANG})`);
+                    console.log(`Demo Mode: Loaded ${fullDictionary.length} items from offline fallback (${CURRENT_LANG})`);
                 }
             }
             
