@@ -1709,9 +1709,9 @@
         </div>
 
         <!-- Header Bereich -->
-        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto relative">
+        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto relative pt-8">
             <!-- Demo Badge -->
-            <div class="absolute top-0 right-1 md:right-32 bg-orange-500 text-white text-xs md:text-sm uppercase font-bold px-4 py-1.5 rounded-full shadow-md z-10">Demo Modus</div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs md:text-sm uppercase font-bold px-4 py-1.5 rounded-full shadow-md z-[2000]">Demo Modus</div>
             <h1 class="text-2xl md:text-4xl font-bold text-slate-800 mb-0 flex items-center justify-center gap-2">
                 <span id="appHeaderIcon"></span>
                 <span id="appHeaderTitle">Lernen</span>
@@ -4784,6 +4784,22 @@
 
             if (window._isSyncing) return;
             window._isSyncing = true;
+
+            // DEMO MODE OFFLINE FALLBACK
+            console.log("Demo Mode: Initializing offline fallback data...");
+            fullDictionary = []; // Reset to ensure clean load for CURRENT_LANG
+            
+            const itDict = (typeof offlineDictionary !== 'undefined') ? offlineDictionary : [];
+            const enDict = (typeof offlineDictionaryEn !== 'undefined') ? offlineDictionaryEn : (window.offlineDictionaryEn || []);
+            
+            let dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
+            
+            if (dictToUse && dictToUse.length > 0) {
+                // Slice to exactly 50 items as requested
+                fullDictionary = JSON.parse(JSON.stringify(dictToUse.slice(0, 50)));
+                console.log(`Demo Mode: Loaded ${fullDictionary.length} items for ${CURRENT_LANG}`);
+                renderApp();
+            }
 
             return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
 
