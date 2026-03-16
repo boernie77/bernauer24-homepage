@@ -208,6 +208,18 @@ h1 {
     background: #eee;
 }
 
+.btn-xl {
+    padding: 1.5rem 4rem;
+    font-size: 1.5rem;
+    border-radius: 60px;
+    box-shadow: 0 15px 35px rgba(0, 140, 69, 0.3);
+}
+
+.btn-xl:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 45px rgba(0, 140, 69, 0.4);
+}
+
 /* Mockup */
 .hero-image {
     position: relative;

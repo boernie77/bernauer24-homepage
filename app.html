@@ -7,12 +7,19 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.Capacitor && window.Capacitor.isNative) {
                 document.body.classList.add('is-native-app');
+                
+                // Keyboard stabilization
+                if (window.Capacitor.Plugins && window.Capacitor.Plugins.Keyboard) {
+                    window.Capacitor.Plugins.Keyboard.setScroll({ isDisabled: true }).catch(err => {
+                        console.warn('Keyboard setScroll error:', err);
+                    });
+                }
             }
         });
     </script>
     <meta charset="UTF-8">
     <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover, interactive-widget=resizes-content">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0f172a">
@@ -24,7 +31,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Google Fonts -->
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- DragDropTouch Polyfill für mobile Geräte -->
     <script src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
@@ -96,6 +103,11 @@
             -webkit-user-select: none;
         }
 
+        .ios-smooth-scroll {
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
         /* Quiz Button Styles */
         .quiz-option-btn:disabled {
             cursor: not-allowed;
@@ -150,7 +162,7 @@
             color: #ffffff !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .quiz-option-btn.correct-dim {
                 background-color: rgba(34, 197, 94, 0.2) !important;
                 border-color: rgba(34, 197, 94, 0.5) !important;
@@ -442,7 +454,7 @@
             display: none !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             #openFilterModalBtn {
                 display: flex !important;
             }
@@ -452,22 +464,25 @@
             display: none !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             #infoIconBtn {
                 display: flex !important;
             }
         }
 
         /* Mobile Dark Mode Optimization (Elegant Dark Mode) */
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             body {
                 background-color: #0f172a;
                 background-image:
                     radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
                     radial-gradient(circle at 90% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 40%);
                 color: #f1f5f9;
-                overflow-y: auto !important;
-                height: auto !important;
+                overflow: hidden !important; /* Prevent iOS scroll/shift */
+                height: 100dvh !important;
+                height: 100svh !important; /* Fallback */
+                position: fixed;
+                width: 100%;
             }
 
             /* Core visibility fix: Ensure hidden class works */
@@ -974,7 +989,7 @@
             }
 
             /* --- DEFINITIVE MOBILE LAYOUT FIXES (High Priority) --- */
-            @media (max-width: 640px) {
+            @media (max-width: 768px) {
 
                 /* Flags alignment with top navigation */
                 #userDisplay {
@@ -992,6 +1007,10 @@
                 #mainAppContent {
                     padding-top: calc(env(safe-area-inset-top, 20px) + 60px) !important;
                     gap: 10px !important; /* 10px gap for all components per user request */
+                    height: 100dvh !important;
+                    height: 100vh !important; /* Fallback */
+                    overflow: hidden !important;
+                    width: 100% !important;
                 }
 
                 /* Eliminate all margins around the tabs and header text */
@@ -1173,13 +1192,13 @@
                     border-radius: 1.5rem !important;
                 }
             }
+            }
 
             @media (min-width: 768px) {
                 #openAdminDashboardBtn:not(.hidden) {
                     display: block !important;
                 }
             }
-        }
 
         /* Final Force Rules for Hamburger Menu */
         #dropdownMenu,
@@ -1199,7 +1218,7 @@
 
     <!-- Login/Register Overlay -->
     <div id="authOverlay"
-        class="hidden fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        class="fixed inset-0 bg-slate-900 bg-opacity-90 backdrop-blur-md z-[100] flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl">
             <h2 id="authTitle" class="text-3xl font-bold text-slate-800 mb-6 text-center">Willkommen!</h2>
             <div id="authError"
@@ -1281,13 +1300,13 @@
                         Lizenz: <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank"
                             class="text-blue-600 hover:underline">CC BY-SA 4.0</a>
                     </p>
-                    <p class="text-[10px] text-slate-400 mt-4 border-t pt-2">Version 2.0.2 Stable</p>
+                    <p class="text-[10px] text-slate-400 mt-4 border-t pt-2">Version 2.0.3 Stable</p>
                     <p class="text-[10px] text-slate-400">© 2026 Christian Bernauer. Alle Rechte vorbehalten.</p>
                 </div>
             </div>
             <!-- App-Style Bottom Section -->
             <div class="mt-8 pt-4 border-t border-slate-100 text-center">
-                <p class="text-[10px] text-slate-300 font-medium tracking-widest uppercase">Version 2.0.2 Stable</p>
+                <p class="text-[10px] text-slate-300 font-medium tracking-widest uppercase">Version 2.0.3 Stable</p>
             </div>
         </div>
     </div>
@@ -1530,15 +1549,15 @@
             <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
                 <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
-            <h3 class="text-3xl font-black text-slate-800 mb-4">Version 2.0.1 ist da! <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></h3>
+            <h3 class="text-3xl font-black text-slate-800 mb-4">Version 2.0.3 ist da! <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></h3>
             <div class="text-left space-y-4 mb-8">
                 <div class="flex items-start gap-3">
                     <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
-                    <p class="text-slate-600 font-medium leading-tight text-sm">Neu: <b>Englisch als neue Sprache</b> verfügbar!</p>
+                    <p class="text-slate-600 font-medium leading-tight text-sm">Update: <b>Kleine Fehlerverbesserungen und Optimierungen</b></p>
                 </div>
                 <div class="flex items-start gap-3">
                     <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
-                    <p class="text-slate-600 font-medium leading-tight text-sm">Update: <b>Stabilitätsverbesserungen</b> und Fehlerkorrekturen</p>
+                    <p class="text-slate-600 font-medium leading-tight text-sm">Neu: <b>Grammatikübungen und Infoteil im Englischen Modul</b></p>
                 </div>
                 <p class="text-slate-500 text-[10px] italic text-center mt-4 px-4 leading-normal">
                     Viel Spaß beim Lernen! Melde Fehler bitte direkt an uns.
@@ -1629,40 +1648,38 @@
                 </div>
                 <div class="px-4 py-1.5 text-[10px] text-slate-400 bg-slate-50/50 flex items-center justify-between border-t border-slate-100/50">
                     <span>App-Version:</span>
-                    <span class="font-mono font-medium text-slate-500">2.0.2 Stable</span>
+                    <span class="font-mono font-medium text-slate-500">2.0.3 Stable</span>
                 </div>
                 <input type="file" id="excelUploadEl" accept=".xlsx, .xls" class="hidden">
             </div>
         </div>
 
         <!-- Header Bereich -->
-        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto relative">
-            <!-- Demo Badge -->
-            <div class="absolute top-0 right-32 bg-orange-500 text-white text-[10px] uppercase font-bold px-3 py-1 rounded-full shadow-sm z-10">Demo Modus</div>
+        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto">
             <h1
                 class="text-2xl md:text-4xl font-bold text-slate-800 mb-0 flex items-center justify-center gap-2">
                 <span id="appHeaderIcon"></span> 
                 <span id="appHeaderTitle">Lernen</span> 
-                <span class="text-[10px] font-normal text-slate-400 align-top mt-1 ml-1" id="appVersionMain">2.0.2 Stable</span>
+                <span class="text-[10px] font-normal text-slate-400 align-top mt-1 ml-1" id="appVersionMain">2.0.3 Stable</span>
             </h1>
 
             <div class="flex justify-center items-center gap-1 mt-1 mb-1">
                 <div
                     class="bg-slate-200 p-1 md:p-1.5 rounded-xl inline-flex gap-1 shadow-inner text-xs md:text-sm w-full sm:w-auto">
                     <button id="modeDragDropBtn"
-                        class="flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 font-semibold transition-all">Drag
+                        class="flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg bg-white shadow-sm text-slate-800 font-semibold transition-all">Drag
                         & Drop</button>
                     <button id="modeQuizBtn"
-                        class="flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Quiz
+                        class="flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Quiz
                         Modus</button>
                     <button id="modeCardsBtn"
-                        class="flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Karteikarten</button>
+                        class="flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Karteikarten</button>
                     <button id="modeWriteBtn"
-                        class="flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Schreiben</button>
+                        class="flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Schreiben</button>
                     <button id="modeGrammarBtn"
-                        class="flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Grammatik</button>
+                        class="flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Grammatik</button>
                     <button id="modeInfoBtn"
-                        class="hidden sm:flex flex-1 sm:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Info</button>
+                        class="hidden md:flex flex-1 md:flex-none px-3 md:px-5 py-1.5 rounded-lg text-slate-500 font-medium hover:text-slate-800 transition-all">Info</button>
                 </div>
             </div>
 
@@ -1751,6 +1768,34 @@
                         </div>
                     </div>
                 </div>
+
+                <div id="grammarLevelFilterWrapper" class="mb-5 text-left hidden">
+                    <div>
+                        <label class="block text-xs md:text-sm font-semibold text-slate-700 mb-1.5">Sprachniveau</label>
+                    </div>
+                    <select id="grammarLevelFilter" style="display:none">
+                        <option value="Alle">Alle Niveaus</option>
+                        <option value="A1">A1 (Anfänger)</option>
+                        <option value="A2">A2 (Grundlagen)</option>
+                        <option value="B1">B1 (Fortgeschritten)</option>
+                    </select>
+                    <div style="position:relative">
+                        <button type="button" class="cs-btn w-full" id="grammarLevelFilterBtn">
+                            <span id="grammarLevelFilterLabel">Alle Niveaus</span>
+                            <svg class="cs-chevron" width="16" height="16" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="cs-list" id="grammarLevelFilterList">
+                            <div class="cs-opt selected" data-value="Alle">Alle Niveaus</div>
+                            <div class="cs-opt" data-value="A1">A1</div>
+                            <div class="cs-opt" data-value="A2">A2</div>
+                            <div class="cs-opt" data-value="B1">B1</div>
+                        </div>
+                    </div>
+                </div>
                 <p id="grammarExplanationText" class="flex items-start gap-2 text-sm leading-relaxed">
                     <span id="grammarBulbIcon"></span> <b>Grammatik-Übung:</b> Hier werden italienische Beispielsätze
                     präsentiert...
@@ -1782,7 +1827,7 @@
                 </div>
             </div>
             <style>
-                @media (max-width: 640px) {
+                @media (max-width: 768px) {
                     #infoModeToggle {
                         display: none !important;
                     }
@@ -1797,14 +1842,14 @@
                 <h2 id="dragColHeader"
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     Deutsch (Ziehen)</h2>
-                <div id="draggables-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px]">
+                <div id="draggables-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
                 </div>
             </section>
             <section class="flex flex-col min-h-0 order-1">
                 <h2 id="dropColHeader"
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     Italienisch (Ablegen)</h2>
-                <div id="dropzones-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px]">
+                <div id="dropzones-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
                 </div>
             </section>
             <section id="infoSection" class="flex flex-col transition-all min-h-0 order-3">
@@ -1812,7 +1857,7 @@
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     <span id="infoBulbIcon"></span> Zusatzinfo
                 </h2>
-                <div id="info-container-main" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2">
+                <div id="info-container-main" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 ios-smooth-scroll">
                     <div id="info-placeholder"
                         class="text-slate-400 italic text-sm text-center mt-2 bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200">
                         Hier erscheinen Zusatzinformationen oder Bilder.</div>
@@ -1823,7 +1868,7 @@
 
         <!-- === KARTEIKARTEN BEREICH === -->
         <main id="cardsContainer"
-            class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-3 md:gap-4 overflow-y-auto pb-4 mx-auto">
+            class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-3 md:gap-4 overflow-y-auto pb-4 mx-auto ios-smooth-scroll">
             <div
                 class="bg-white p-6 md:p-12 rounded-3xl shadow-sm border border-slate-200 w-full text-center flex flex-col items-center justify-center flex-shrink-0 cursor-pointer hover:bg-slate-50 transition-colors relative"
                 id="cardsFlashcard">
@@ -1906,7 +1951,7 @@
 
         <!-- === GRAMMATIK BEREICH === -->
         <main id="grammarContainer"
-            class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-4 overflow-y-auto pb-4 mx-auto">
+            class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-4 overflow-y-auto pb-4 mx-auto ios-smooth-scroll">
             <div
                 class="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-slate-200 w-full text-center flex flex-col items-center justify-center">
                 <div id="grammarQuestionDisplay"
@@ -1931,16 +1976,18 @@
 
         <!-- === INFO (GRAMMATIK-ÜBERSICHT) BEREICH === -->
         <main id="infoTabContainer"
-            class="w-full max-w-7xl hidden flex-col items-center justify-start gap-6 pb-24 mx-auto px-4 overflow-visible flex-shrink-0">
+            class="w-full max-w-7xl hidden flex-col items-center justify-start gap-6 pb-24 mx-auto px-4 overflow-y-auto flex-1 min-h-0 ios-smooth-scroll">
             <!-- Einleitung -->
             <div class="bg-white p-8 rounded-3xl w-full text-center border border-slate-200 shadow-xl mt-4">
                 <h2 class="text-3xl font-black mb-3 flex items-center justify-center gap-3">
-                    <span id="grammarHeaderIcon"></span> Grammatica Italiana
+                    <span id="grammarHeaderIcon"></span> <span id="infoTitleText">Grammatica Italiana</span>
                 </h2>
-                <p class="text-slate-600 text-lg font-medium">Index der wichtigsten Regeln und Konjugationstabellen.</p>
+                <p id="infoDescText" class="text-slate-600 text-lg font-medium">Index der wichtigsten Regeln und Konjugationstabellen.</p>
             </div>
 
-            <!-- Presente Indicativo (Regolare) -->
+            <!-- Language Specific Content Containers -->
+            <div id="infoContentIt" class="w-full flex flex-col gap-6">
+
             <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
                 <h3 class="text-2xl font-bold mb-2 text-blue-600">1. Presente Indicativo (Regelmäßig)</h3>
                 <p class="text-sm text-slate-500 mb-6 italic">Das Präsens wird für regelmäßige Handlungen oder
@@ -2581,7 +2628,224 @@
                     💡 Hinweis: Pronomen stehen normalerweise <b>vor</b> dem konjugierten Verb (z.B. "Lo leggo"), außer
                     beim Imperativ und Infinitiv, wo sie angehängt werden.
                 </div>
-            </div>
+            </div><!-- #Pronomi Box -->
+        </div><!-- #infoContentIt -->
+
+            <div id="infoContentEn" class="w-full hidden flex-col gap-6">
+                <!-- 1. Simple Present -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-600">1. Simple Present (Gegenwart)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Fakten, Gewohnheiten und regelmäßige Abläufe.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
+                            <p class="text-sm">Infinitiv (Grundform). <br><b>Achtung:</b> Bei <i>he/she/it</i> ein <b>-s</b> anhängen!</p>
+                            <p class="text-sm text-blue-600 mt-2 font-mono">I eat, you eat, he eat<b>s</b></p>
+                        </div>
+                        <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                            <h4 class="font-bold text-blue-600 mb-2">Beispiel</h4>
+                            <p class="text-sm font-medium">"I <b>play</b> football every Friday."</p>
+                            <p class="text-sm font-medium">"He <b>works</b> in London."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Present Continuous -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-indigo-600">2. Present Continuous (Verlaufsform)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Handlungen, die gerade in diesem Moment geschehen.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
+                            <p class="text-sm"><b>am / is / are</b> + Verb + <b>-ing</b></p>
+                        </div>
+                        <div class="bg-indigo-50/50 p-5 rounded-2xl border border-indigo-100">
+                            <h4 class="font-bold text-indigo-600 mb-2">Beispiel</h4>
+                            <p class="text-sm font-medium">"I <b>am reading</b> a book right now."</p>
+                            <p class="text-sm font-medium">"They <b>are watching</b> TV."</p>
+                        </div>
+                    </div>
+                    <!-- Hilfsverb for Continuous -->
+                    <div class="mt-4 bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100">
+                        <h4 class="font-bold text-indigo-700 mb-2">Hilfsverb "to be" (sein)</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-sm">
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>I</span> <b>am</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span> <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>he/she/it</span> <b>is</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>we</span> <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span> <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>they</span> <b>are</b></div>
+                        </div>
+                    </div>
+
+                    <!-- New: Continuous conjugation list -->
+                    <div class="mt-4 bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100">
+                        <h4 class="font-bold text-indigo-700 mb-2">Konjugations-Beispiel (working)</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-xs md:text-sm font-medium">
+                            <div class="p-1 bg-white rounded border border-indigo-50">I <b>am</b> working</div>
+                            <div class="p-1 bg-white rounded border border-indigo-50">you <b>are</b> working</div>
+                            <div class="p-1 bg-white rounded border border-indigo-50">he/she/it <b>is</b> working</div>
+                            <div class="p-1 bg-white rounded border border-indigo-50">we <b>are</b> working</div>
+                            <div class="p-1 bg-white rounded border border-indigo-50">you <b>are</b> working</div>
+                            <div class="p-1 bg-white rounded border border-indigo-50">they <b>are</b> working</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Simple Past -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-red-600">3. Simple Past (Vergangenheit)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für abgeschlossene Handlungen in der Vergangenheit.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
+                            <p class="text-sm">Regelmäßig: Infinitiv + <b>-ed</b><br>Unregelmäßig: 2. Verbform (siehe Liste)</p>
+                        </div>
+                        <div class="bg-red-50/50 p-5 rounded-2xl border border-red-100">
+                            <h4 class="font-bold text-red-600 mb-2">Beispiel</h4>
+                            <p class="text-sm font-medium">"We <b>visited</b> Berlin last year."</p>
+                            <p class="text-sm font-medium">"I <b>went</b> to the cinema." (go -> went)</p>
+                        </div>
+                    </div>
+                    <!-- New: Irregular verbs list -->
+                    <div class="mt-6 bg-slate-50 p-5 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-red-600 mb-4 flex items-center gap-2">
+                            <span>⭐</span> Wichtige unregelmäßige Verben
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-[11px] md:text-xs">
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">be ➔ was/were ➔ <b>been</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">go ➔ went ➔ <b>gone</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">do ➔ did ➔ <b>done</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">say ➔ said ➔ <b>said</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">see ➔ saw ➔ <b>seen</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">get ➔ got ➔ <b>got/gotten</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">buy ➔ bought ➔ <b>bought</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">come ➔ came ➔ <b>come</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">eat ➔ ate ➔ <b>eaten</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">know ➔ knew ➔ <b>known</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">think ➔ thought ➔ <b>thought</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">give ➔ gave ➔ <b>given</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">make ➔ made ➔ <b>made</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">take ➔ took ➔ <b>taken</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">write ➔ wrote ➔ <b>written</b></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Future (will & be going to) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-emerald-600">4. Future (will)</h3>
+                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Vorhersagen, Versprechen oder spontane Entschlüsse.</p>
+                        <div class="bg-slate-50 p-4 rounded-2xl mb-3">
+                            <p class="text-sm"><b>will</b> + Infinitiv</p>
+                        </div>
+                        <p class="text-sm font-medium text-emerald-700">"It <b>will rain</b> tomorrow."</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-teal-600">5. Future (be going to)</h3>
+                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Feste Pläne und Absichten für die Zukunft.</p>
+                        <div class="bg-slate-50 p-4 rounded-2xl mb-3">
+                            <p class="text-sm"><b>am/is/are going to</b> + Infinitiv</p>
+                        </div>
+                        <p class="text-sm font-medium text-teal-700">"I <b>am going to learn</b> Italian."</p>
+                    </div>
+                </div>
+
+                <!-- 6. Present Perfect -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-orange-600">6. Present Perfect</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Handlungen, die in der Vergangenheit begannen und bis zur Gegenwart andauern oder deren Ergebnis wichtig ist.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
+                            <p class="text-sm"><b>have / has</b> + Partizip (3. Verbform)</p>
+                        </div>
+                        <div class="bg-orange-50/50 p-5 rounded-2xl border border-orange-100">
+                            <h4 class="font-bold text-orange-600 mb-2">Beispiel</h4>
+                            <p class="text-sm font-medium">"I <b>have lost</b> my keys."</p>
+                            <p class="text-sm font-medium">"She <b>has lived</b> here for 5 years."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Imperativ, 8. Komparativ -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-2 text-rose-600">7. Imperativ (Befehlsform)</h3>
+                        <p class="text-sm text-slate-500 mb-4">Grundform des Verbs ohne Subjekt.</p>
+                        <ul class="text-sm space-y-1">
+                            <li>"<b>Close</b> the door!" (Positiv)</li>
+                            <li>"<b>Don't touch</b> that!" (Negativ)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4 text-amber-600">8. Komparativ & Superlativ</h3>
+                        <div class="space-y-4">
+                            <!-- Short adjectives -->
+                            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                                <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-1">Ein- & zweisilbig (Kurz)</h4>
+                                <p class="text-[11px] text-slate-500 mb-2">Regel: <b>-er</b> / <b>-est</b></p>
+                                <div class="text-sm font-medium space-y-1">
+                                    <div class="flex justify-between"><span>fast (schnell)</span> <span>➔ fast<b>er</b> ➔ fast<b>est</b></span></div>
+                                    <div class="flex justify-between"><span>happ<b>y</b> (glücklich)</span> <span>➔ happ<b>ier</b> ➔ happ<b>iest</b></span></div>
+                                </div>
+                            </div>
+
+                            <!-- Long adjectives -->
+                            <div class="p-3 bg-blue-50/30 rounded-2xl border border-blue-100">
+                                <h4 class="font-bold text-blue-700 text-xs uppercase tracking-wider mb-1">Mehrsilbig (Lang)</h4>
+                                <p class="text-[11px] text-blue-500 mb-2">Regel: <b>more</b> / <b>most</b></p>
+                                <div class="text-sm font-medium space-y-1">
+                                    <div class="flex justify-between"><span>expensive</span> <span>➔ <b>more</b> expensive</span></div>
+                                    <div class="flex justify-between"><span></span> <span>➔ <b>most</b> expensive</span></div>
+                                    <div class="italic text-[11px] text-slate-400 mt-1">(fast alle Wörter mit 3+ Silben)</div>
+                                </div>
+                            </div>
+
+                            <!-- Irregular adjectives -->
+                            <div class="p-3 bg-amber-50/30 rounded-2xl border border-amber-100">
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-wider mb-1">Wichtige Ausnahmen</h4>
+                                <div class="text-sm font-medium space-y-1">
+                                    <div class="flex justify-between"><span>good (gut)</span> <span>➔ <b>better</b> ➔ <b>best</b></span></div>
+                                    <div class="flex justify-between"><span>bad (schlecht)</span> <span>➔ <b>worse</b> ➔ <b>worst</b></span></div>
+                                </div>
+                            </div>
+
+                            <!-- Sentence structure -->
+                            <div class="pt-2 px-1">
+                                <h4 class="font-bold text-slate-800 text-xs mb-1">Vergleichssatz</h4>
+                                <p class="text-[11px] text-slate-600 italic">"I am tall<b>er than</b> you." (als)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Conditionals -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg mb-10">
+                    <h3 class="text-2xl font-bold mb-6 text-purple-600">9. Conditionals (Bedingungssätze)</h3>
+                    <div class="space-y-6">
+                        <div class="border-l-4 border-blue-400 pl-4">
+                            <h4 class="font-bold text-lg">Conditional 1 (Possible)</h4>
+                            <p class="text-xs text-slate-500 mb-2">Realistische Bedingungen in der Zukunft.</p>
+                            <p class="text-sm"><b>If</b> + Simple Present ➔ <b>will</b> + Infinitiv</p>
+                            <p class="text-sm font-medium mt-1">"If it <b>rains</b>, I <b>will stay</b> at home."</p>
+                        </div>
+                        <div class="border-l-4 border-amber-400 pl-4">
+                            <h4 class="font-bold text-lg">Conditional 2 (Unlikely)</h4>
+                            <p class="text-xs text-slate-500 mb-2">Hypothetische Situationen (Träume/Unwahrscheinliches).</p>
+                            <p class="text-sm"><b>If</b> + Simple Past ➔ <b>would</b> + Infinitiv</p>
+                            <p class="text-sm font-medium mt-1">"If I <b>won</b> the lottery, I <b>would buy</b> a car."</p>
+                        </div>
+                        <div class="border-l-4 border-red-400 pl-4">
+                            <h4 class="font-bold text-lg">Conditional 3 (Impossible)</h4>
+                            <p class="text-xs text-slate-500 mb-2">Unmögliche Bedingungen (Vergangenheit).</p>
+                            <p class="text-sm"><b>If</b> + Past Perfect ➔ <b>would have</b> + Partizip</p>
+                            <p class="text-sm font-medium mt-1">"If I <b>had studied</b>, I <b>would have passed</b>."</p>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- #infoContentEn -->
         </main>
     </div><!-- #mainAppContent -->
 
@@ -3267,7 +3531,10 @@
         let currentWriteTarget = null;
         function showToast(message, type = 'info', duration = 4000) {
             const isMobile = window.innerWidth <= 640;
-            const finalDuration = isMobile ? 1500 : duration;
+            let finalDuration = isMobile ? 1500 : duration;
+            if (type === 'error') {
+                finalDuration = isMobile ? 3500 : 6000;
+            }
 
             const container = document.getElementById('toastContainer');
             if (!container) return; // Guard
@@ -3443,6 +3710,7 @@
         const essereVerbsList = ['partire', 'arrivare', 'entrare', 'tornare', 'restare', 'rimanere', 'nascere', 'morire', 'salire', 'scendere', 'cadere', 'diventare', 'durare', 'sembrare'];
 
         function generateVerbForms(verbInfinitive) {
+            if (!verbInfinitive) return {};
             let v = verbInfinitive.toLowerCase().trim();
 
             let isReflexive = false;
@@ -3535,7 +3803,7 @@
 
             // 2. Process verbs from fullDictionary
             fullDictionary.forEach(item => {
-                if (item.typ === 'Verb') {
+                if (item.typ === 'Verb' && item.it) {
                     const forms = generateVerbForms(item.it);
                     addFormsToMap(item.it.toLowerCase().trim(), forms);
                 }
@@ -3544,7 +3812,7 @@
             // 3. Process verbs from offlineDictionary (Base vocabulary)
             if (typeof offlineDictionary !== 'undefined') {
                 offlineDictionary.forEach(item => {
-                    if (item.typ === 'Verb') {
+                    if (item.typ === 'Verb' && item.it) {
                         const forms = generateVerbForms(item.it);
                         addFormsToMap(item.it.toLowerCase().trim(), forms);
                     }
@@ -3611,10 +3879,7 @@
         });
         let API_TOKEN = localStorage.getItem('ita-token');
         let IS_ADMIN = localStorage.getItem('ita-admin') === 'true';
-        let CURRENT_USER_NAME = localStorage.getItem('ita-user-name');
-        if (!API_TOKEN && !CURRENT_USER_NAME) {
-            CURRENT_USER_NAME = 'TESTUSER';
-        }
+        let CURRENT_USER_NAME = localStorage.getItem('ita-user-name') || 'Gast';
         let CURRENT_LANG = localStorage.getItem('ita-lang') || 'it';
 
         // Global UI Reference placeholders
@@ -3623,8 +3888,6 @@
 
         const itToDeMap = {};
         const deToItMap = {};
-        const enToDeMap = {};
-        const deToEnMap = {};
 
         // ===================== OFFLINE-WÖRTERBUCH =====================
         const offlineDictionary = [
@@ -3788,59 +4051,88 @@
             { it: 'raramente', de: 'selten', typ: 'Sonstiges' }, { it: 'di tanto in tanto', de: 'ab und zu', typ: 'Sonstiges' },
             { it: 'nel frattempo', de: 'inzwischen', typ: 'Sonstiges' }, { it: 'alla fine', de: 'am Ende', typ: 'Sonstiges' },
             { it: 'in primo luogo', de: 'erstens', typ: 'Sonstiges' }, { it: 'in secondo luogo', de: 'zweitens', typ: 'Sonstiges' },
-            // --- English Vocabulary (Demo) ---
-            { en: 'to be', de: 'sein', typ: 'Verb', language: 'en' },
-            { en: 'to have', de: 'haben', typ: 'Verb', language: 'en' },
-            { en: 'to do', de: 'machen', typ: 'Verb', language: 'en' },
-            { en: 'to go', de: 'gehen', typ: 'Verb', language: 'en' },
-            { en: 'to come', de: 'kommen', typ: 'Verb', language: 'en' },
-            { en: 'to say', de: 'sagen', typ: 'Verb', language: 'en' },
-            { en: 'to see', de: 'sehen', typ: 'Verb', language: 'en' },
-            { en: 'to hear', de: 'hören', typ: 'Verb', language: 'en' },
-            { en: 'to think', de: 'denken', typ: 'Verb', language: 'en' },
-            { en: 'to find', de: 'finden', typ: 'Verb', language: 'en' },
-            { en: 'to speak', de: 'sprechen', typ: 'Verb', language: 'en' },
-            { en: 'to eat', de: 'essen', typ: 'Verb', language: 'en' },
-            { en: 'to drink', de: 'trinken', typ: 'Verb', language: 'en' },
-            { en: 'to sleep', de: 'schlafen', typ: 'Verb', language: 'en' },
-            { en: 'to work', de: 'arbeiten', typ: 'Verb', language: 'en' },
-            { en: 'to buy', de: 'kaufen', typ: 'Verb', language: 'en' },
-            { en: 'to take', de: 'nehmen', typ: 'Verb', language: 'en' },
-            { en: 'to open', de: 'öffnen', typ: 'Verb', language: 'en' },
-            { en: 'to close', de: 'schließen', typ: 'Verb', language: 'en' },
-            { en: 'to help', de: 'helfen', typ: 'Verb', language: 'en' },
-            { en: 'head', de: 'Kopf', typ: 'Substantiv', emoji: '🗣️', language: 'en' },
-            { en: 'eye', de: 'Auge', typ: 'Substantiv', emoji: '👁', language: 'en' },
-            { en: 'ear', de: 'Ohr', typ: 'Substantiv', emoji: '👂', language: 'en' },
-            { en: 'nose', de: 'Nase', typ: 'Substantiv', emoji: '👃', language: 'en' },
-            { en: 'mouth', de: 'Mund', typ: 'Substantiv', emoji: '👄', language: 'en' },
-            { en: 'hand', de: 'Hand', typ: 'Substantiv', emoji: '✋', language: 'en' },
-            { en: 'foot', de: 'Fuß', typ: 'Substantiv', emoji: '👣', language: 'en' },
-            { en: 'heart', de: 'Herz', typ: 'Substantiv', emoji: '❤️', language: 'en' },
-            { en: 'house', de: 'Haus', typ: 'Substantiv', emoji: '🏠', language: 'en' },
-            { en: 'room', de: 'Zimmer', typ: 'Substantiv', emoji: '🚪', language: 'en' },
-            { en: 'car', de: 'Auto', typ: 'Substantiv', emoji: '🚗', language: 'en' },
-            { en: 'book', de: 'Buch', typ: 'Substantiv', emoji: '📖', language: 'en' },
-            { en: 'water', de: 'Wasser', typ: 'Substantiv', emoji: '💧', language: 'en' },
-            { en: 'food', de: 'Essen', typ: 'Substantiv', emoji: '🍲', language: 'en' },
-            { en: 'table', de: 'Tisch', typ: 'Substantiv', emoji: '🪑', language: 'en' },
-            { en: 'chair', de: 'Stuhl', typ: 'Substantiv', emoji: '🪑', language: 'en' },
-            { en: 'sun', de: 'Sonne', typ: 'Substantiv', emoji: '☀️', language: 'en' },
-            { en: 'moon', de: 'Mond', typ: 'Substantiv', emoji: '🌙', language: 'en' },
-            { en: 'earth', de: 'Erde', typ: 'Substantiv', emoji: '🌍', language: 'en' },
-            { en: 'sky', de: 'Himmel', typ: 'Substantiv', emoji: '☁️', language: 'en' }
+            // English Essentials & Common Nouns (to safeguard grammar logic)
+            { en: 'time', de: 'Zeit', typ: 'Substantiv' }, { en: 'year', de: 'Jahr', typ: 'Substantiv' },
+            { en: 'people', de: 'Leute/Menschen', typ: 'Substantiv' }, { en: 'way', de: 'Weg', typ: 'Substantiv' },
+            { en: 'day', de: 'Tag', typ: 'Substantiv' }, { en: 'man', de: 'Mann', typ: 'Substantiv' },
+            { en: 'thing', de: 'Ding', typ: 'Substantiv' }, { en: 'woman', de: 'Frau', typ: 'Substantiv' },
+            { en: 'life', de: 'Leben', typ: 'Substantiv' }, { en: 'child', de: 'Kind', typ: 'Substantiv' },
+            { en: 'world', de: 'Welt', typ: 'Substantiv' }, { en: 'school', de: 'Schule', typ: 'Substantiv' },
+            { en: 'state', de: 'Staat', typ: 'Substantiv' }, { en: 'family', de: 'Familie', typ: 'Substantiv' },
+            { en: 'hand', de: 'Hand', typ: 'Substantiv' }, { en: 'part', de: 'Teil', typ: 'Substantiv' },
+            { en: 'place', de: 'Ort', typ: 'Substantiv' }, { en: 'case', de: 'Fall', typ: 'Substantiv' },
+            { en: 'week', de: 'Woche', typ: 'Substantiv' }, { en: 'company', de: 'Firma/Unternehmen', typ: 'Substantiv' },
+            { en: 'system', de: 'System', typ: 'Substantiv' }, { en: 'program', de: 'Programm', typ: 'Substantiv' },
+            { en: 'question', de: 'Frage', typ: 'Substantiv' }, { en: 'work', de: 'Arbeit', typ: 'Substantiv' },
+            { en: 'number', de: 'Nummer/Zahl', typ: 'Substantiv' }, { en: 'night', de: 'Nacht', typ: 'Substantiv' },
+            { en: 'point', de: 'Punkt', typ: 'Substantiv' }, { en: 'home', de: 'Zuhause', typ: 'Substantiv' },
+            { en: 'water', de: 'Wasser', typ: 'Substantiv' }, { en: 'room', de: 'Zimmer', typ: 'Substantiv' },
+            { en: 'area', de: 'Gebiet/Bereich', typ: 'Substantiv' }, { en: 'money', de: 'Geld', typ: 'Substantiv' },
+            { en: 'story', de: 'Geschichte', typ: 'Substantiv' }, { en: 'fact', de: 'Tatsache/Fakt', typ: 'Substantiv' },
+            { en: 'month', de: 'Monat', typ: 'Substantiv' }, { en: 'book', de: 'Buch', typ: 'Substantiv' },
+            { en: 'job', de: 'Job/Beruf', typ: 'Substantiv' }, { en: 'word', de: 'Wort', typ: 'Substantiv' },
+            { en: 'business', de: 'Geschäft/Business', typ: 'Substantiv' }, { en: 'issue', de: 'Thema/Ausgabe', typ: 'Substantiv' },
+            { en: 'side', de: 'Seite', typ: 'Substantiv' }, { en: 'head', de: 'Kopf', typ: 'Substantiv' },
+            { en: 'house', de: 'Haus', typ: 'Substantiv' }, { en: 'friend', de: 'Freund', typ: 'Substantiv' },
+            { en: 'father', de: 'Vater', typ: 'Substantiv' }, { en: 'hour', de: 'Stunde', typ: 'Substantiv' },
+            { en: 'game', de: 'Spiel', typ: 'Substantiv' }, { en: 'end', de: 'Ende', typ: 'Substantiv' },
+            { en: 'city', de: 'Stadt', typ: 'Substantiv' }, { en: 'name', de: 'Name', typ: 'Substantiv' },
+            { en: 'team', de: 'Team', typ: 'Substantiv' }, { en: 'minute', de: 'Minute', typ: 'Substantiv' },
+            { en: 'idea', de: 'Idee', typ: 'Substantiv' }, { en: 'body', de: 'Körper', typ: 'Substantiv' },
+            { en: 'information', de: 'Information', typ: 'Substantiv' }, { en: 'face', de: 'Gesicht', typ: 'Substantiv' },
+            { en: 'office', de: 'Büro', typ: 'Substantiv' }, { en: 'door', de: 'Tür', typ: 'Substantiv' },
+            { en: 'health', de: 'Gesundheit', typ: 'Substantiv' }, { en: 'person', de: 'Person', typ: 'Substantiv' },
+            { en: 'art', de: 'Kunst', typ: 'Substantiv' }, { en: 'war', de: 'Krieg', typ: 'Substantiv' },
+            { en: 'history', de: 'Geschichte', typ: 'Substantiv' }, { en: 'party', de: 'Partei/Party', typ: 'Substantiv' },
+            { en: 'result', de: 'Ergebnis', typ: 'Substantiv' }, { en: 'change', de: 'Veränderung', typ: 'Substantiv' },
+            { en: 'morning', de: 'Morgen', typ: 'Substantiv' }, { en: 'reason', de: 'Grund', typ: 'Substantiv' },
+            { en: 'research', de: 'Forschung', typ: 'Substantiv' }, { en: 'moment', de: 'Moment', typ: 'Substantiv' },
+            { en: 'air', de: 'Luft', typ: 'Substantiv' }, { en: 'force', de: 'Kraft', typ: 'Substantiv' },
+            { en: 'education', de: 'Bildung', typ: 'Substantiv' },
+            // Nouns ending in -er/-or (Safety against Comparative misclassification)
+            { en: 'teacher', it: 'insegnante', de: 'Lehrer', typ: 'Substantiv' },
+            { en: 'doctor', it: 'medico', de: 'Arzt', typ: 'Substantiv' },
+            { en: 'actor', de: 'Schauspieler', typ: 'Substantiv' },
+            { en: 'author', de: 'Autor', typ: 'Substantiv' },
+            { en: 'computer', it: 'computer', de: 'Computer', typ: 'Substantiv' },
+            { en: 'worker', de: 'Arbeiter', typ: 'Substantiv' },
+            { en: 'visitor', de: 'Besucher', typ: 'Substantiv' },
+            { en: 'driver', de: 'Fahrer', typ: 'Substantiv' },
+            { en: 'manager', de: 'Manager', typ: 'Substantiv' },
+            { en: 'player', de: 'Spieler', typ: 'Substantiv' },
+            { en: 'sector', de: 'Sektor', typ: 'Substantiv' },
+            { en: 'factor', de: 'Faktor', typ: 'Substantiv' },
+            { en: 'member', de: 'Mitglied', typ: 'Substantiv' },
+            { en: 'center', de: 'Zentrum', typ: 'Substantiv' },
+            { en: 'order', de: 'Ordnung/Bestellung', typ: 'Substantiv' },
+            { en: 'paper', de: 'Papier', typ: 'Substantiv' },
+            { en: 'power', de: 'Macht', typ: 'Substantiv' },
+            { en: 'river', de: 'Fluss', typ: 'Substantiv' },
+            { en: 'weather', de: 'Wetter', typ: 'Substantiv' },
+            // Essential Verbs
+            { en: 'ask', de: 'fragen', typ: 'Verb' }, { en: 'begin', de: 'beginnen', typ: 'Verb' },
+            { en: 'call', de: 'rufen/anrufen', typ: 'Verb' }, { en: 'become', de: 'werden', typ: 'Verb' },
+            { en: 'feel', de: 'fühlen', typ: 'Verb' }, { en: 'find', de: 'finden', typ: 'Verb' },
+            { en: 'give', de: 'geben', typ: 'Verb' }, { en: 'hear', de: 'hören', typ: 'Verb' },
+            { en: 'help', de: 'helfen', typ: 'Verb' }, { en: 'keep', de: 'behalten/halten', typ: 'Verb' },
+            { en: 'know', de: 'wissen/kennen', typ: 'Verb' }, { en: 'leave', de: 'verlassen', typ: 'Verb' },
+            { en: 'let', de: 'lassen', typ: 'Verb' }, { en: 'like', de: 'mögen', typ: 'Verb' },
+            { en: 'look', de: 'schauen', typ: 'Verb' }, { en: 'mean', de: 'bedeuten', typ: 'Verb' },
+            { en: 'move', de: 'bewegen', typ: 'Verb' }, { en: 'need', de: 'brauchen', typ: 'Verb' },
+            { en: 'play', de: 'spielen', typ: 'Verb' }, { en: 'put', de: 'stellen/legen', typ: 'Verb' },
+            { en: 'run', de: 'rennen', typ: 'Verb' }, { en: 'seem', de: 'scheinen', typ: 'Verb' },
+            { en: 'show', de: 'zeigen', typ: 'Verb' }, { en: 'start', de: 'starten', typ: 'Verb' },
+            { en: 'talk', de: 'sprechen/reden', typ: 'Verb' }, { en: 'tell', de: 'erzählen', typ: 'Verb' },
+            { en: 'think', de: 'denken', typ: 'Verb' }, { en: 'try', de: 'versuchen', typ: 'Verb' },
+            { en: 'turn', de: 'drehen/wenden', typ: 'Verb' }
         ];
 
         // Bidirektionale Lookup-Maps aufbauen
         offlineDictionary.forEach(entry => {
             if (entry.it) itToDeMap[entry.it.toLowerCase()] = entry;
-            if (entry.en) enToDeMap[entry.en.toLowerCase()] = entry;
             if (entry.de) {
                 const deKeys = entry.de.toLowerCase().split('/').map(w => w.trim());
-                deKeys.forEach(dk => {
-                    if (entry.it && !deToItMap[dk]) deToItMap[dk] = entry;
-                    if (entry.en && !deToEnMap[dk]) deToEnMap[dk] = entry;
-                });
+                deKeys.forEach(dk => { if (!deToItMap[dk]) deToItMap[dk] = entry; });
             }
         });
 
@@ -3856,7 +4148,8 @@
                 addVocab: "Vokabel hinzufügen",
                 direction: "Italienisch",
                 welcomePrefix: "Ciao,",
-                statsTitle: "Lern-Statistik"
+                statsTitle: "Lern-Statistik",
+                grammarDescription: "Hier werden italienische Beispielsätze präsentiert..."
             },
             en: {
                 welcome: "Welcome!",
@@ -3867,21 +4160,12 @@
                 addVocab: "Add Vocabulary",
                 direction: "Englisch",
                 welcomePrefix: "Hello,",
-                statsTitle: "Learning Statistics"
+                statsTitle: "Learning Statistics",
+                grammarDescription: "Hier werden englische Beispielsätze präsentiert..."
             }
         };
 
         let fullDictionary = [];
-        
-        // --- Demo-Limitierung ---
-        const DEMO_LIMIT = 40;
-        function applyDemoLimit() {
-            if (!fullDictionary) return;
-            const itWords = fullDictionary.filter(w => (w.language || 'it') === 'it').slice(0, 40);
-            const enWords = fullDictionary.filter(w => w.language === 'en').slice(0, 40);
-            fullDictionary = [...itWords, ...enWords];
-        }
-        // -------------------------
         let wordStats = {};
 
         function renderAllLabels() {
@@ -3956,12 +4240,22 @@
             const excelCol1Desc = document.getElementById('excelCol1Desc');
             if (excelCol1Desc) excelCol1Desc.textContent = CURRENT_LANG === 'en' ? 'Englische Wörter' : 'Italienische Wörter';
 
-            const grammarInfolabel = document.querySelector('#grammarSection .bg-amber-50 b + span') || document.querySelector('#grammarContainer .bg-amber-50 b + span');
-            if (grammarInfolabel) {
+            const grammarExplText = document.getElementById('grammarExplanationText');
+            if (grammarExplText) {
+                grammarExplText.innerHTML = `<span id="grammarBulbIcon"></span> <b>Grammatik-Übung:</b> ${t.grammarDescription}`;
+                const gIcon = document.getElementById('grammarBulbIcon');
+                if (gIcon) gIcon.innerHTML = `
+                    <svg class="w-4 h-4 text-amber-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>`;
+            }
+
+            const levelWrapper = document.getElementById('grammarLevelFilterWrapper');
+            if (levelWrapper) {
                 if (CURRENT_LANG === 'en') {
-                    grammarInfolabel.textContent = grammarInfolabel.textContent.replace('italienische', 'englische');
+                    levelWrapper.classList.remove('hidden');
                 } else {
-                    grammarInfolabel.textContent = grammarInfolabel.textContent.replace('englische', 'italienische');
+                    levelWrapper.classList.add('hidden');
                 }
             }
 
@@ -3971,31 +4265,18 @@
             const iIcon = document.getElementById('infoIconBtn');
 
             if (CURRENT_LANG === 'en') {
-                if (gBtn) { gBtn.classList.add('hidden'); gBtn.style.setProperty('display', 'none', 'important'); }
-                if (iIcon) { iIcon.classList.add('hidden'); iIcon.style.setProperty('display', 'none', 'important'); }
-                if (iTab) { iTab.classList.add('hidden'); iTab.style.setProperty('display', 'none', 'important'); }
-                if (currentMode === 'grammar' || currentMode === 'info') switchMode('dragdrop');
+                if (gBtn) { gBtn.classList.remove('hidden'); gBtn.style.removeProperty('display'); } 
             } else {
                 if (gBtn) { gBtn.classList.remove('hidden'); gBtn.style.removeProperty('display'); }
-                
-                // Platform specific Info visibility (Italian)
-                if (isCapacitor) {
-                    // App: Icon top-right, Tab hidden
-                    if (iIcon) { iIcon.classList.remove('hidden'); iIcon.style.removeProperty('display'); }
-                    if (iTab) { iTab.classList.add('hidden'); iTab.style.setProperty('display', 'none', 'important'); }
-                } else {
-                    // Desktop/Web: Icon hidden, Tab visible
-                    // Fix: Ensure Info tab is actually visible on Desktop/Web for Italian
-                    if (iIcon) { iIcon.classList.add('hidden'); iIcon.style.setProperty('display', 'none', 'important'); }
-                    if (iTab) { 
-                        iTab.classList.remove('hidden'); 
-                        iTab.style.removeProperty('display');
-                        iTab.classList.add('sm:flex'); // Reset responsive flex if it was changed
-                    }
-                }
-
-                if (currentMode === 'info' && isCapacitor) switchMode('dragdrop');
             }
+
+            // Platform specific Info visibility (Removed manual overrides to let CSS media queries handle it)
+
+            // Switch out of info if it shouldn't be visible (e.g. mobile grammar)
+            // But actually we want it to work on mobile too if they click the 'i'
+            
+            // Show/Hide language specific info content handled below in dynamic section
+
 
             // Sync Flag Switcher Opacity
             const itBtn = document.getElementById('langItBtn');
@@ -4051,15 +4332,32 @@
             // Language specific UI adjustments
             const infoSection = document.getElementById('infoSection');
             const infoModeToggle = document.getElementById('infoModeToggle');
+            const infoIt = document.getElementById('infoContentIt');
+            const infoEn = document.getElementById('infoContentEn');
             const tabInfoBtn = document.getElementById('tabInfoBtn');
 
             if (CURRENT_LANG === 'en') {
-                if (infoSection) { infoSection.classList.add('hidden'); infoSection.style.setProperty('display', 'none', 'important'); }
-                if (infoModeToggle) { infoModeToggle.classList.add('hidden'); infoModeToggle.style.setProperty('display', 'none', 'important'); }
+                if (infoSection) { 
+                    infoSection.style.removeProperty('display');
+                    if (currentMode === 'dragdrop' || currentMode === 'info') {
+                        infoSection.classList.remove('hidden');
+                        infoSection.classList.add('flex');
+                    } else {
+                        infoSection.classList.add('hidden');
+                    }
+                }
+                if (infoModeToggle) { 
+                    infoModeToggle.classList.remove('hidden'); 
+                    infoModeToggle.style.removeProperty('display'); 
+                }
+                if (infoIt) { infoIt.classList.add('hidden'); infoIt.classList.remove('flex'); }
+                if (infoEn) { infoEn.classList.remove('hidden'); infoEn.classList.add('flex'); }
+                setIc('infoTitleText', 'English Grammar Index');
+                setIc('infoDescText', 'Overview of the most important rules and tenses.');
             } else {
                 if (infoSection) {
                     infoSection.style.removeProperty('display');
-                    if (currentMode === 'dragdrop') {
+                    if (currentMode === 'dragdrop' || currentMode === 'info') {
                         infoSection.classList.remove('hidden');
                         infoSection.classList.add('flex');
                     } else {
@@ -4067,32 +4365,16 @@
                     }
                 }
                 if (infoModeToggle) { infoModeToggle.classList.remove('hidden'); infoModeToggle.style.removeProperty('display'); }
+                if (infoEn) { infoEn.classList.add('hidden'); infoEn.classList.remove('flex'); }
+                if (infoIt) { infoIt.classList.remove('hidden'); infoIt.classList.add('flex'); }
+                setIc('infoTitleText', 'Grammatica Italiana');
+                setIc('infoDescText', 'Index der wichtigsten Regeln und Konjugationstabellen.');
             }
 
             const vMain = document.getElementById('appVersionMain');
-            if (vMain) vMain.textContent = "2.0.2 Stable";
+            if (vMain) vMain.textContent = "2.0.3 Stable";
 
             document.querySelectorAll('.vocab-btn-arrow').forEach(el => el.innerHTML = arrowSVG);
-        }
-
-        async function loadGrammarSentences() {
-            if (!API_TOKEN) {
-                const cached = localStorage.getItem(`ita-grammar-sentences-${CURRENT_LANG}`);
-                if (cached) {
-                    try {
-                        grammarSentences = JSON.parse(cached);
-                        updateGrammarFocusOptions();
-                    } catch (e) { console.warn("Grammar cache parse failed", e); }
-                }
-                return;
-            }
-            try {
-                grammarSentences = await apiFetch('/grammar-sentences');
-                saveAllDataLocally();
-                updateGrammarFocusOptions();
-            } catch (err) {
-                console.warn("Grammar fetch failed", err);
-            }
         }
 
         async function switchLanguage(lang) {
@@ -4104,15 +4386,14 @@
             // Reload data
             showToast(translations[lang].welcome, 'info');
             await loadDataFromServer();
-            if (lang === 'it') await loadGrammarSentences();
+            await updateAdminGrammarCount(); // Now load for both IT and EN
             
             // Refresh administration/modal stats if needed
-            if (API_TOKEN && typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
+            if (typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
 
             if (currentMode === 'dragdrop' || currentMode === 'quiz' || currentMode === 'write') {
-                restartCurrentMode();
+                startNewRound();
             }
-            renderApp();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -4193,6 +4474,9 @@
         setupCustomDropdown('grammarFocusFilterBtn', 'grammarFocusFilterList', 'grammarFocusFilterLabel', 'grammarFocusFilter', () => {
             if (currentMode === 'grammar') startGrammarRound();
         });
+        setupCustomDropdown('grammarLevelFilterBtn', 'grammarLevelFilterList', 'grammarLevelFilterLabel', 'grammarLevelFilter', () => {
+            if (currentMode === 'grammar') startGrammarRound();
+        });
 
         // Modal & Management Elements
         const excelModal = document.getElementById('excelModal');
@@ -4234,10 +4518,14 @@
         const saveVocabBtn = document.getElementById('saveVocabBtn');
         const vocabTypLabel = document.getElementById('vocabTypLabel');
         const vocabDuplicateHint = document.getElementById('vocabDuplicateHint');
+        const infoTabContainer = document.getElementById('infoTabContainer');
+        const infoContentEn = document.getElementById('infoContentEn');
+        const infoContentIt = document.getElementById('infoContentIt');
+        const cardsContainer = document.getElementById('cardsContainer');
 
         async function apiFetch(endpoint, options = {}) {
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+            const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 second timeout
 
             if (!navigator.onLine && options.method && options.method !== 'GET') {
                 clearTimeout(timeoutId);
@@ -4307,7 +4595,6 @@
                 if (cachedVocab) {
                     try {
                         fullDictionary = JSON.parse(cachedVocab);
-                        applyDemoLimit();
                         const cachedStats = localStorage.getItem(`ita-word-stats-${CURRENT_LANG}`);
                         if (cachedStats) wordStats = JSON.parse(cachedStats);
                         
@@ -4323,36 +4610,18 @@
                 }
             }
 
-            // NO TOKEN -> Demo Mode Logic
-            if (!API_TOKEN) {
-                if (fullDictionary.length === 0 || CURRENT_LANG !== (fullDictionary[0]?.language || 'it')) {
-                    console.log("Demo Mode: Initializing/Updating with offline dictionary");
-                    fullDictionary = offlineDictionary.map((v, idx) => {
-                        const isIt = (v.language || (v.it ? 'it' : 'en')) === 'it';
-                        return {
-                            id: 'demo-' + idx,
-                            ...v,
-                            isActive: true,
-                            isMarked: false,
-                            language: v.language || (isIt ? 'it' : 'en'),
-                            ... (v.typ === 'Verb' && isIt ? generateVerbForms(v.it) : {})
-                        };
-                    });
-                    applyDemoLimit();
-                    renderApp();
-                }
-                return;
-            }
-
             if (window._isSyncing) return;
             window._isSyncing = true;
 
             try {
+                if (isCapacitor) console.log("Fetching vocab...");
                 const vocab = await apiFetch('/vocab');
+                if (isCapacitor) console.log(`Vocab fetched: ${vocab.length} items`);
 
                 let serverActivity = {};
                 let serverLastReset = null;
                 try {
+                    if (isCapacitor) console.log("Fetching profile...");
                     const profile = await apiFetch('/auth/me');
                     serverActivity = profile.dailyActivity || {};
                     serverLastReset = profile.lastResetAt;
@@ -4361,23 +4630,25 @@
                         if (userNameEl) userNameEl.textContent = profile.name;
                         if (userNameMobileEl) userNameMobileEl.textContent = profile.name;
                     }
-                } catch (pe) { if (!isSilent) console.warn("Profile sync failed", pe); }
+                } catch (pe) { 
+                    if (!isSilent) console.warn("Profile sync failed", pe); 
+                }
 
                 // Check for remote reset
-                if (serverLastReset) {
-                    const localLastReset = localStorage.getItem('ita-local-last-reset');
-                    const serverResetTime = new Date(serverLastReset).getTime();
-                    const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
+                    if (serverLastReset) {
+                        const localLastReset = localStorage.getItem('ita-local-last-reset');
+                        const serverResetTime = new Date(serverLastReset).getTime();
+                        const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
 
-                    if (serverResetTime > localResetTime || !localLastReset) {
-                        console.log("Remote statistics reset (or new account) detected. Clearing local data...");
-                        wordStats = {};
-                        dailyActivity = {};
-                        grammarActivityCount = 0;
-                        localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
-                        saveAllDataLocally();
+                        if (serverResetTime > localResetTime || !localLastReset) {
+                            console.log("Remote statistics reset (or new account) detected. Clearing local data...");
+                            wordStats = {};
+                            dailyActivity = {};
+                            grammarActivityCount = 0;
+                            localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
+                            saveAllDataLocally();
+                        }
                     }
-                }
 
                 fullDictionary = vocab.map(v => ({
                     id: v.id,
@@ -4389,9 +4660,8 @@
                     isActive: v.isActive !== false,
                     isMarked: v.isMarked === true,
                     language: v.language || (v.it ? 'it' : 'en'),
-                    ... (v.typ === 'Verb' ? generateVerbForms(v.it) : {})
+                    ... (v.typ === 'Verb' && v.it ? generateVerbForms(v.it) : {})
                 }));
-                applyDemoLimit();
 
                 // Merge wordStats instead of replacing
                 vocab.forEach(v => {
@@ -4499,7 +4769,6 @@
         }
 
         async function saveStatToServer(wordId) {
-            if (!API_TOKEN) return; // Skip in Demo Mode
             const s = wordStats[wordId];
             const w = fullDictionary.find(item => item.id == wordId);
             try {
@@ -5173,11 +5442,23 @@
 
         function getFullIt(pair) {
             const isNoun = pair.typ && (pair.typ.toLowerCase().includes('substantiv') || pair.typ.toLowerCase().includes('nomen'));
+            // Use regex strict boundary to avoid matching "Adverb"
+            const isVerb = pair.typ && /\bverb\b/i.test(pair.typ);
+
             // Only apply Italian articles if CURRENT_LANG is 'it'
             if (isNoun && pair.grammatica && CURRENT_LANG === 'it') {
                 return (getArticle(pair.it, pair.grammatica) + pair.it);
             }
-            return pair.en || pair.it;
+            
+            // Apply "to " prefix for English verbs
+            if (isVerb && CURRENT_LANG === 'en') {
+                const word = pair.it.trim();
+                if (!word.toLowerCase().startsWith('to ')) {
+                    return 'to ' + word;
+                }
+            }
+
+            return pair.it;
         }
 
         function startWriteRound() {
@@ -5415,11 +5696,28 @@
 
             if (filterValue === 'Markiert' || filterValue === 'Favoriten') {
                 availableWords = availableWords.filter(word => word.isMarked === true);
-            } else if (filterValue === 'VerbInfinitiv') {
-                availableWords = availableWords.filter(word => word.typ && word.typ.toLowerCase().includes('verb'));
-            } else if (filterValue !== 'Alle') {
-                availableWords = availableWords.filter(word => word.typ && word.typ.toLowerCase().includes(filterValue.toLowerCase()));
+            } else if (filterValue === 'Verb' || filterValue === 'VerbInfinitiv') {
+                availableWords = availableWords.filter(word => word.typ && /\bverb\b/i.test(word.typ));
+            } else if (filterValue === 'Substantiv') {
+                availableWords = availableWords.filter(word => {
+                    if (!word.typ) return false;
+                    const typLower = word.typ.toLowerCase();
+                    return typLower.includes('substantiv') || typLower.includes('nomen') || typLower.includes('pronomen');
+                });
+            } else if (filterValue === 'Adjektiv') {
+                availableWords = availableWords.filter(word => word.typ && /\badjektiv\b/i.test(word.typ));
+            } else if (filterValue === 'Sonstiges') {
+                // Catch-all for things that are NOT Verbs, Nouns/Pronouns, or Adjectives
+                availableWords = availableWords.filter(word => {
+                    if (!word.typ) return true; // Empty type goes to Sonstiges
+                    const typLower = word.typ.toLowerCase();
+                    const isVerb = /\bverb\b/i.test(typLower);
+                    const isNoun = typLower.includes('substantiv') || typLower.includes('nomen') || typLower.includes('pronomen');
+                    const isAdj = /\badjektiv\b/i.test(typLower);
+                    return !isVerb && !isNoun && !isAdj;
+                });
             }
+            // If filterValue is 'Alle', we do nothing and return all availableWords
             return availableWords;
         }
 
@@ -5504,8 +5802,7 @@
 
         function createDraggable(pair) {
             const isDeToIt = directionFilterEl.value === 'de-it';
-            const targetWord = pair.en || pair.it;
-            const textContent = isDeToIt ? pair.de : (CURRENT_LANG === 'it' ? getFullIt(pair) : targetWord);
+            const textContent = isDeToIt ? pair.de : getFullIt(pair);
             const el = document.createElement('div');
             const isMobile = window.innerWidth <= 640;
 
@@ -5520,10 +5817,27 @@
             textSpan.textContent = textContent;
             el.appendChild(textSpan);
 
-            // Desktop Toggle (Far Right)
+            // Controls Container (Star + Toggle)
+            const controlsWrapper = document.createElement('div');
+            controlsWrapper.className = 'flex items-center gap-3 ml-auto flex-shrink-0';
+
+            // Star Icon
+            const starSvg = `
+                <svg class="star-icon w-6 h-6 ${pair.isMarked ? 'marked' : ''}" 
+                     data-mark-id="${pair.id}" 
+                     onclick="event.stopPropagation(); toggleMark('${pair.id}', this)"
+                     fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                </svg>
+            `;
+            const starContainer = document.createElement('div');
+            starContainer.innerHTML = starSvg;
+            controlsWrapper.appendChild(starContainer);
+
+            // Desktop Toggle
             if (!isMobile) {
                 const toggleLabel = document.createElement('label');
-                toggleLabel.className = 'relative inline-flex items-center cursor-pointer flex-shrink-0 ml-auto';
+                toggleLabel.className = 'relative inline-flex items-center cursor-pointer';
                 toggleLabel.innerHTML = `
                     <input type="checkbox" class="sr-only peer vocab-toggle" ${pair.isActive !== false ? 'checked' : ''}>
                     <div class="w-8 h-4 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-blue-600 shadow-inner"></div>
@@ -5535,14 +5849,12 @@
                     saveAllDataLocally();
                     saveStatToServer(pair.id);
 
-                    // Dynamic replacement if deactivated
                     if (!pair.isActive) {
                         const dropzone = document.querySelector(`#dropzones-container div[data-id="${pair.id}"]`);
                         if (dropzone) dropzone.remove();
                         el.remove();
                         currentPairs = currentPairs.filter(p => p.id !== pair.id);
 
-                        // Find a replacement word
                         let availableWords = getAvailableWords().filter(w =>
                             !currentPairs.some(cp => cp.id === w.id) &&
                             w.id !== pair.id
@@ -5555,8 +5867,9 @@
                         }
                     }
                 });
-                el.appendChild(toggleLabel);
+                controlsWrapper.appendChild(toggleLabel);
             }
+            el.appendChild(controlsWrapper);
 
             el.addEventListener('click', (e) => {
                 if (isMobile) {
@@ -5597,8 +5910,7 @@
 
         function createDropzone(pair) {
             const isDeToIt = directionFilterEl.value === 'de-it';
-            const targetWord = pair.en || pair.it;
-            const textContent = isDeToIt ? (CURRENT_LANG === 'it' ? getFullIt(pair) : targetWord) : pair.de;
+            const textContent = isDeToIt ? getFullIt(pair) : pair.de;
             const el = document.createElement('div');
             el.className = 'relative bg-slate-100 p-2 md:p-3 rounded-xl border-2 border-dashed border-slate-300 min-h-[45px] md:min-h-[50px] flex flex-col justify-center transition-colors no-select flex-shrink-0';
             el.dataset.id = pair.id;
@@ -5821,9 +6133,9 @@
                 if (isDeToIt) {
                     quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.de}</div></div>`;
                     quizSubtext.textContent = `Was ist der Infinitiv auf ${CURRENT_LANG === 'en' ? 'Englisch' : 'Italienisch'}?`;
-                    options.forEach(opt => createQuizButton(opt.id, (opt.en || opt.it)));
+                    options.forEach(opt => createQuizButton(opt.id, opt.it));
                 } else {
-                    quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.en || currentQuizTarget.it}</div></div>`;
+                    quizQuestionDisplay.innerHTML = `<div class="pt-12 pb-6 px-4 md:pt-16 md:pb-10 md:px-12 bg-transparent inline-block relative max-w-full"><div class="text-xl md:text-3xl font-bold break-words">${currentQuizTarget.it}</div></div>`;
                     quizSubtext.textContent = 'Was bedeutet dieser Infinitiv auf Deutsch?';
                     options.forEach(opt => createQuizButton(opt.id, opt.de));
                 }
@@ -5985,7 +6297,6 @@
         });
 
         async function updateAdminGrammarCount() {
-            if (!API_TOKEN) return;
             try {
                 grammarSentences = await apiFetch('/grammar-sentences');
                 saveAllDataLocally(); // Save to cache after fetch
@@ -6015,7 +6326,18 @@
             const btn = document.getElementById('grammarFocusFilterBtn');
             if (!sel || !list || !label || !btn) return;
 
-            const categories = [...new Set(grammarSentences.map(s => s.category).filter(Boolean))];
+            let categories = [...new Set(grammarSentences.map(s => s.category).filter(Boolean))];
+            
+            // Add default English tenses if they are not already in the categories 
+            if (CURRENT_LANG === 'en') {
+                const enTenses = ['Simple Present', 'Present Continuous', 'Simple Past', 'Future', 'Present Perfect', 'Imperativ', 'Conditional'];
+                enTenses.forEach(tense => {
+                    if (!categories.includes(tense)) {
+                        categories.push(tense);
+                    }
+                });
+            }
+            
             categories.sort();
 
             const currentVal = sel.value;
@@ -6061,6 +6383,7 @@
                     list.classList.remove('open');
                     btn.classList.remove('open');
                     sel.dispatchEvent(new Event('change'));
+                    if (currentMode === 'grammar') startGrammarRound();
                 });
             });
         }
@@ -6100,6 +6423,96 @@
                 'scritto': 'scrivere', 'letto': 'leggere', 'messo': 'mettere', 'chiuso': 'chiudere', 'aperto': 'aprire'
             }
         };
+
+        const GRAMMAR_RULES_EN = {
+            possessives: new Set(['my', 'your', 'his', 'her', 'its', 'our', 'their']),
+            prepositions: new Set(['in', 'on', 'at', 'under']),
+            modals: new Set(['can', 'could', 'must', 'should', 'will', 'would', 'may', 'might', 'shall', 'ought to']),
+            nonVerbs: new Set(['the', 'a', 'an', 'and', 'or', 'but', 'so', 'because', 'although', 'if', 'when', 'while', 'to', 'for', 'with', 'by', 'about', 'as', 'than', 'this', 'that', 'these', 'those', 'it', 'he', 'she', 'they', 'you', 'i', 'we', 'me', 'him', 'us', 'them']),
+            adverbsTime: new Set(['always', 'never', 'often', 'sometimes', 'usually', 'rarely', 'seldom', 'already', 'yet', 'still', 'just', 'ever'])
+        };
+
+        function deriveInfinitiveEn(word) {
+            const clean = word.toLowerCase().trim();
+            if (clean === 'will') return 'Future';
+            if (GRAMMAR_RULES_EN.modals.has(clean)) return clean;
+            
+            // Basic irregulars
+            const irregulars = {
+                'am': 'be', 'is': 'be', 'are': 'be', 'was': 'be', 'were': 'be', 'been': 'be', 'being': 'be',
+                'has': 'have', 'had': 'have', 'having': 'have',
+                'does': 'do', 'did': 'do', 'done': 'do', 'doing': 'do',
+                'went': 'go', 'gone': 'go', 'going': 'go', 'goes': 'go',
+                'saw': 'see', 'seen': 'see', 'seeing': 'see', 'sees': 'see',
+                'took': 'take', 'taken': 'take', 'taking': 'take', 'takes': 'take',
+                'gave': 'give', 'given': 'give', 'giving': 'give', 'gives': 'give',
+                'made': 'make', 'making': 'make', 'makes': 'make',
+                'came': 'come', 'coming': 'come', 'comes': 'come',
+                'knew': 'know', 'known': 'know', 'knowing': 'know', 'knows': 'know',
+                'thought': 'think', 'thinking': 'think', 'thinks': 'think',
+                'brought': 'bring', 'bringing': 'bring', 'brings': 'bring',
+                'bought': 'buy', 'buying': 'buy', 'buys': 'buy',
+                'caught': 'catch', 'catching': 'catch', 'catches': 'catch',
+                'taught': 'teach', 'teaching': 'teach', 'teaches': 'teach',
+                'found': 'find', 'finding': 'find', 'finds': 'find',
+                'told': 'tell', 'telling': 'tell', 'tells': 'tell',
+                'said': 'say', 'saying': 'say', 'says': 'say',
+                'left': 'leave', 'leaving': 'leave', 'leaves': 'leave',
+                'felt': 'feel', 'feeling': 'feel', 'feels': 'feel',
+                'kept': 'keep', 'keeping': 'keep', 'keeps': 'keep',
+                'slept': 'sleep', 'sleeping': 'sleep', 'sleeps': 'sleep',
+                'spoke': 'speak', 'spoken': 'speak', 'speaking': 'speak', 'speaks': 'speak',
+                'wrote': 'write', 'written': 'write', 'writing': 'write', 'writes': 'write',
+                'ate': 'eat', 'eaten': 'eat', 'eating': 'eat', 'eats': 'eat',
+                'drank': 'drink', 'drunk': 'drink', 'drinking': 'drink', 'drinks': 'drink',
+                'sang': 'sing', 'sung': 'sing', 'singing': 'sing', 'sings': 'sing',
+                'swam': 'swim', 'swum': 'swim', 'swimming': 'swim', 'swims': 'swim',
+                'ran': 'run', 'running': 'run', 'runs': 'run',
+                'began': 'begin', 'begun': 'begin', 'beginning': 'begin', 'begins': 'begin',
+                'won': 'win', 'winning': 'win', 'wins': 'win',
+                'lost': 'lose', 'losing': 'lose', 'loses': 'lose',
+                'stood': 'stand', 'standing': 'stand', 'stands': 'stand',
+                'understood': 'understand', 'understanding': 'understand', 'understands': 'understand',
+                'sat': 'sit', 'sitting': 'sit', 'sits': 'sit',
+                'got': 'get', 'getting': 'get', 'gets': 'get', 'gotten': 'get'
+            };
+            
+            if (irregulars[clean]) return irregulars[clean];
+
+            // Regular endings
+            if (clean.endsWith('ing')) {
+                const root = clean.slice(0, -3);
+                // Double consonant (running -> run)
+                if (root.match(/([^aeiou])\1$/)) {
+                    return root.slice(0, -1);
+                }
+                // e-drop (making -> make) - tricky, guess 'e' if simple root
+                if (root.match(/[aeiou][^aeiou]$/)) {
+                     return root + 'e';
+                }
+                return root;
+            }
+            if (clean.endsWith('ed')) {
+                const root = clean.slice(0, -2);
+                 if (root.match(/([^aeiou])\1$/)) {
+                    return root.slice(0, -1);
+                }
+                // tried -> try
+                if (root.endsWith('i')) return root.slice(0, -1) + 'y';
+                // loved -> love
+                if (root.match(/[aeiou][^aeiou]$/)) return root + 'e';
+                return root;
+            }
+            if (clean.endsWith('s') && clean.length > 3 && !clean.endsWith('ss')) {
+                // tries -> try
+                if (clean.endsWith('ies')) return clean.slice(0, -3) + 'y';
+                // goes -> go
+                if (clean.endsWith('oes')) return clean.slice(0, -2);
+                return clean.slice(0, -1);
+            }
+
+            return word;
+        }
 
         function deriveInfinitive(word) {
             const clean = word.toLowerCase().trim();
@@ -6147,9 +6560,13 @@
 
             let filteredSentences = grammarSentences;
             const currentFocus = grammarFocusFilter ? grammarFocusFilter.value : "Alle";
+            const currentLevel = (grammarLevelFilter && CURRENT_LANG === 'en') ? grammarLevelFilter.value : "Alle";
 
             if (currentFocus !== "Alle") {
-                filteredSentences = grammarSentences.filter(s => s.category === currentFocus);
+                filteredSentences = filteredSentences.filter(s => s.category === currentFocus);
+            }
+            if (currentLevel !== "Alle") {
+                filteredSentences = filteredSentences.filter(s => s.level === currentLevel);
             }
 
             if (filteredSentences.length === 0) {
@@ -6164,38 +6581,158 @@
 
             // Split into tokens including punctuation and spaces
             const tokens = sentenceObj.it.split(/(\s+|[,.!?;:()])/);
+            
+            // --- Merge "be going to" for English ---
+            if (CURRENT_LANG === 'en') {
+                for (let i = 0; i < tokens.length - 2; i++) {
+                    const t1 = tokens[i].trim().toLowerCase();
+                    // Match am/is/are/was/were or contractions 'm/'s/'re
+                    if (['am', 'is', 'are', 'was', 'were', 'be', "'m", "'s", "'re"].includes(t1)) {
+                        let nextGoeIdx = -1;
+                        let nextToIdx = -1;
+                        
+                        // Look for "going"
+                        for (let j = i + 1; j < tokens.length; j++) {
+                            if (!tokens[j].trim()) continue;
+                            if (tokens[j].trim().toLowerCase() === 'going') {
+                                nextGoeIdx = j;
+                                break;
+                            }
+                            break; 
+                        }
+                        
+                        if (nextGoeIdx !== -1) {
+                            // Look for "to"
+                            for (let k = nextGoeIdx + 1; k < tokens.length; k++) {
+                                if (!tokens[k].trim()) continue;
+                                if (tokens[k].trim().toLowerCase() === 'to') {
+                                    nextToIdx = k;
+                                    break;
+                                }
+                                break;
+                            }
+                        }
+                        
+                        if (nextToIdx !== -1) {
+                            const mergedValue = tokens.slice(i, nextToIdx + 1).join('');
+                            tokens.splice(i, nextToIdx - i + 1, mergedValue);
+                            // Stay at same index to re-check if needed, though unlikely for this pattern
+                        }
+                    }
+                }
+            }
+
             let eligibleTokens = [];
 
             tokens.forEach((token, idx) => {
                 const clean = token.toLowerCase().trim();
-                if (!clean) return;
+                const cleanNoPunct = clean.replace(/[.,:;?!()]/g, '');
+                if (!cleanNoPunct) return;
 
-                // Check if this word is a known noun (Substantiv) in our dictionary
-                const isKnownNoun = fullDictionary.some(item =>
-                    item.it.toLowerCase() === clean && item.typ === 'Substantiv'
-                );
+                if (CURRENT_LANG === 'it') {
+                    // Check if this word is a known noun (Substantiv) in our dictionary
+                    const isKnownNoun = fullDictionary.some(item =>
+                        item.it && item.it.toLowerCase() === cleanNoPunct && item.typ === 'Substantiv'
+                    );
 
-                if (isKnownNoun) return; // Never make a gap for nouns
+                    if (isKnownNoun) return; // Never make a gap for nouns
+                    if (GRAMMAR_RULES.nonVerbs.has(cleanNoPunct)) return; // Ausschlussliste
 
-                if (GRAMMAR_RULES.nonVerbs.has(clean)) return; // Ausschlussliste
+                    if (GRAMMAR_RULES.articulatedPrepositions.has(cleanNoPunct)) {
+                        eligibleTokens.push({ idx, type: 'grammar', weight: 1.2 });
+                    } else if (GRAMMAR_RULES.articles.has(cleanNoPunct)) {
+                        eligibleTokens.push({ idx, type: 'grammar', weight: 1.0 });
+                    } else if (GRAMMAR_RULES.prepositions.has(cleanNoPunct)) {
+                        eligibleTokens.push({ idx, type: 'grammar', weight: 1.0 });
+                    } else if (verbReverseMap[cleanNoPunct] || GRAMMAR_RULES.commonVerbs[cleanNoPunct] ||
+                        cleanNoPunct.endsWith('ato') || cleanNoPunct.endsWith('ito') || cleanNoPunct.endsWith('uto') ||
+                        cleanNoPunct.endsWith('ando') || cleanNoPunct.endsWith('endo') || cleanNoPunct.match(/[aei]mo$/)) {
+                        eligibleTokens.push({ idx, type: 'verb', weight: 1.0 });
+                    }
+                } else if (CURRENT_LANG === 'en') {
+                    // Start of English Rules
+                    
+                    // Ignore common known non-verbs to prevent weird gaps
+                    if (GRAMMAR_RULES_EN.nonVerbs.has(cleanNoPunct)) return;
+                    
+                    // Check if known noun
+                    let singular = cleanNoPunct;
+                    if (cleanNoPunct.endsWith('ies')) singular = cleanNoPunct.slice(0, -3) + 'y';
+                    else if (cleanNoPunct.endsWith('es')) singular = cleanNoPunct.slice(0, -2);
+                    else if (cleanNoPunct.endsWith('s') && cleanNoPunct.length > 3 && !cleanNoPunct.endsWith('ss')) singular = cleanNoPunct.slice(0, -1);
 
-                if (GRAMMAR_RULES.articulatedPrepositions.has(clean)) {
-                    eligibleTokens.push({ idx, type: 'grammar', weight: 1.2 });
-                } else if (GRAMMAR_RULES.articles.has(clean)) {
-                    eligibleTokens.push({ idx, type: 'grammar', weight: 1.0 });
-                } else if (GRAMMAR_RULES.prepositions.has(clean)) {
-                    eligibleTokens.push({ idx, type: 'grammar', weight: 1.0 });
-                } else if (verbReverseMap[clean] || GRAMMAR_RULES.commonVerbs[clean] ||
-                    clean.endsWith('ato') || clean.endsWith('ito') || clean.endsWith('uto') ||
-                    clean.endsWith('ando') || clean.endsWith('endo') || clean.match(/[aei]mo$/)) {
-                    // Final check: some nouns end in -ato/-ito, so we prefer the reverse map or strict common verbs
-                    eligibleTokens.push({ idx, type: 'verb', weight: 1.0 });
+                    const isKnownNoun = fullDictionary.some(item =>
+                        ((item.en && (item.en.toLowerCase() === cleanNoPunct || item.en.toLowerCase() === singular)) || 
+                         (item.it && (item.it.toLowerCase() === cleanNoPunct || item.it.toLowerCase() === singular)) ||
+                         (CURRENT_LANG === 'en' && item.de && (item.de.toLowerCase() === cleanNoPunct || item.de.toLowerCase() === singular))) && 
+                        item.typ === 'Substantiv'
+                    );
+                    const isNounSuffix = /((tion|sion|ment|ness|ity|ance|ence|ship|hood|er|or)s?)$/.test(cleanNoPunct);
+                    if (isKnownNoun || isNounSuffix) return;
+
+                    // 2. Check Modals and strong Verb clues first
+                    if (GRAMMAR_RULES_EN.modals.has(cleanNoPunct)) {
+                         eligibleTokens.push({ idx, type: 'verb', weight: 1.2 });
+                    } else if (GRAMMAR_RULES_EN.prepositions.has(cleanNoPunct)) {
+                         eligibleTokens.push({ idx, type: 'preposition', weight: 1.0 });
+                    } else if (GRAMMAR_RULES_EN.possessives.has(cleanNoPunct)) {
+                         eligibleTokens.push({ idx, type: 'possessive', weight: 1.0 });
+                    } else {
+                         const isKnownVerb = fullDictionary.some(item =>
+                             ((item.en && item.en.toLowerCase() === cleanNoPunct) || (item.it && item.it.toLowerCase() === cleanNoPunct)) && item.typ === 'Verb'
+                         );
+                         const inf = deriveInfinitiveEn(cleanNoPunct);
+                         let isValidVerbGap = isKnownVerb || cleanNoPunct.endsWith('ing') || cleanNoPunct.endsWith('ed') || /^(am|is|are|was|were|'m|'s|'re|be)\s+going\s+to$/i.test(cleanNoPunct);
+                         
+                         if (!isValidVerbGap && inf !== cleanNoPunct) {
+                              const isJustStripped = cleanNoPunct.endsWith('s') && (inf === cleanNoPunct.slice(0, -1) || inf === cleanNoPunct.slice(0, -2) || inf === cleanNoPunct.slice(0, -3) + 'y');
+                              if (isJustStripped) {
+                                  isValidVerbGap = fullDictionary.some(item => ((item.en && item.en.toLowerCase() === inf) || (item.it && item.it.toLowerCase() === inf)) && item.typ === 'Verb');
+                              } else { isValidVerbGap = true; }
+                         }
+
+                         if (isValidVerbGap) {
+                              eligibleTokens.push({ idx, type: 'verb', weight: 1.0 });
+                         } else {
+                              // 3. Morphological guesses (Comparative/Superlative)
+                              // Only if length > 3 and not already identified as noun/verb
+                              if (cleanNoPunct.length > 3) {
+                                  if (cleanNoPunct.endsWith('est') || cleanNoPunct === 'most' || cleanNoPunct === 'best' || cleanNoPunct === 'worst') {
+                                       eligibleTokens.push({ idx, type: 'superlative', weight: 0.8 }); // Lower weight to prioritize verbs
+                                  } else if (cleanNoPunct.endsWith('er') || cleanNoPunct === 'more' || cleanNoPunct === 'better' || cleanNoPunct === 'worse') {
+                                       eligibleTokens.push({ idx, type: 'comparative', weight: 0.8 }); // Lower weight
+                                  }
+                              }
+                         }
+                    }
                 }
             });
 
-            // Randomly pick max 2 gaps, weighted towards articulated prepositions
+            if (CURRENT_LANG === 'en' && sentenceObj.category && sentenceObj.category.toLowerCase().includes('conditional')) {
+                const ifIdx = tokens.findIndex(tk => tk.toLowerCase().replace(/[.,!?;:]/g, '').trim() === 'if');
+                let foundIfVerb = false;
+
+                eligibleTokens.forEach(t => {
+                    if (t.type === 'verb') {
+                        const tokenStr = tokens[t.idx].toLowerCase().replace(/[.,!?()[\]{}"']/g, '').trim();
+                        
+                        // Force the first verb after "if" to be a gap
+                        if (!foundIfVerb && ifIdx !== -1 && t.idx > ifIdx) {
+                            t.weight += 100.0; // Mandatory boost
+                            foundIfVerb = true;
+                        } else if (GRAMMAR_RULES_EN.modals.has(tokenStr)) {
+                            t.weight += 50.0; // Extreme priority for modals (will, would, can, could, etc.)
+                        } else {
+                            t.weight += 10.0; // High priority for normal verbs
+                        }
+                    }
+                });
+            }
+
+            // Randomly pick max 2 gaps (or 3 for English Conditionals), weighted towards articulated prepositions
             eligibleTokens.sort((a, b) => (Math.random() * b.weight) - (Math.random() * a.weight));
-            const selected = eligibleTokens.slice(0, 2);
+            const maxGaps = (CURRENT_LANG === 'en' && sentenceObj.category && sentenceObj.category.toLowerCase().includes('conditional')) ? 3 : 2;
+            const selected = eligibleTokens.slice(0, maxGaps);
 
             grammarQuestionDisplay.innerHTML = '';
             grammarFeedback.classList.add('hidden');
@@ -6225,10 +6762,48 @@
                     span.appendChild(input);
 
                     if (gap.type === 'verb') {
-                        const inf = deriveInfinitive(token);
+                        const cleanPunct = token.replace(/[.,:;?!()]/g, '');
+                        let inf = CURRENT_LANG === 'it' ? deriveInfinitive(cleanPunct) : deriveInfinitiveEn(cleanPunct);
+                        
+                        // Handle "be going to" Future Hint
+                        if (CURRENT_LANG === 'en') {
+                            const w = cleanPunct.toLowerCase();
+                            let nextWord = '';
+                            for (let i = idx + 1; i < tokens.length; i++) {
+                                if (tokens[i].trim() && !/[.,:;?!()]/.test(tokens[i])) {
+                                    nextWord = tokens[i].trim().toLowerCase();
+                                    break;
+                                }
+                            }
+                            if (w === 'going' && nextWord === 'to') {
+                                inf = 'Future';
+                            } else if (/^(am|is|are|was|were|'m|'s|'re|be)\s+going\s+to$/i.test(w)) {
+                                inf = 'Future';
+                            } else if (['am', 'is', 'are', 'was', 'were'].includes(w) && nextWord === 'going') {
+                                inf = 'Future';
+                            } else if (sentenceObj.category && sentenceObj.category.toLowerCase().includes('conditional') && (w === 'would' || w === 'could' || w === 'should')) {
+                                inf = 'Conditional';
+                            } else if (GRAMMAR_RULES_EN.modals.has(w) && inf === w) {
+                                inf = 'Modal';
+                            }
+                        }
+                        let displayInf = inf;
+                        if (CURRENT_LANG === 'en' && !['Future', 'Conditional', 'Modal'].includes(inf)) {
+                            displayInf = 'to ' + inf;
+                        }
                         const label = document.createElement('span');
-                        label.textContent = ` (${inf}) `;
+                        label.textContent = ` (${displayInf}) `;
                         label.className = 'text-sm md:text-base text-blue-500 font-medium ml-1';
+                        span.appendChild(label);
+                    } else if (CURRENT_LANG === 'en' && gap.type === 'comparative') {
+                        const label = document.createElement('span');
+                        label.textContent = ` (Komparativ) `;
+                        label.className = 'text-sm md:text-base text-amber-500 font-medium ml-1';
+                        span.appendChild(label);
+                    } else if (CURRENT_LANG === 'en' && gap.type === 'superlative') {
+                        const label = document.createElement('span');
+                        label.textContent = ` (Superlativ) `;
+                        label.className = 'text-sm md:text-base text-purple-500 font-medium ml-1';
                         span.appendChild(label);
                     }
                     grammarQuestionDisplay.appendChild(span);
@@ -6269,7 +6844,8 @@
                 grammarActivityCount++;
                 recordDailyActivity();
                 saveAllDataLocally();
-                grammarFeedback.textContent = "Bravissimo! ✨";
+                const successMsg = CURRENT_LANG === 'en' ? "Well done! ✨" : "Bravissimo! ✨";
+                grammarFeedback.textContent = successMsg;
                 grammarFeedback.classList.add('bg-green-50', 'text-green-700');
                 grammarSubmitBtn.classList.add('hidden');
                 grammarNextBtn.classList.remove('hidden');
@@ -6393,7 +6969,8 @@
                 grammarContainer.classList.remove('hidden'); grammarContainer.classList.add('flex');
                 startGrammarRound();
             } else if (mode === 'info') {
-                infoTabContainer.classList.remove('hidden'); infoTabContainer.classList.add('flex');
+                infoTabContainer.classList.add('flex'); infoTabContainer.classList.remove('hidden');
+                renderAllLabels(); // Ensure content is correctly shown for language
             }
         }
 
@@ -6413,8 +6990,8 @@
         // Version Update Modal Logic
         const versionModal = document.getElementById('versionUpdateModal');
         const closeVersionBtn = document.getElementById('closeVersionModalBtn');
-        const vKey = 'hasSeenVersion_2_0_1';
-        if (!localStorage.getItem(vKey) && API_TOKEN) {
+        const vKey = 'hasSeenVersion_2_0_3';
+        if (!localStorage.getItem(vKey)) {
             versionModal.classList.remove('hidden');
             versionModal.classList.add('flex');
         }
@@ -6483,7 +7060,19 @@
 
                 // Clear modal and move content in
                 mobileFilterContent.innerHTML = '';
-                if (sourceContainer) {
+                
+                if (currentMode === 'grammar') {
+                    const focusWrap = document.getElementById('grammarFocusFilterWrapper');
+                    const levelWrap = document.getElementById('grammarLevelFilterWrapper');
+                    if (focusWrap) {
+                        while (focusWrap.firstChild) mobileFilterContent.appendChild(focusWrap.firstChild);
+                    }
+                    if (levelWrap) {
+                        // Language level filter might be hidden for Italian, but we move it anyway 
+                        // as its visibility is controlled by classes
+                        while (levelWrap.firstChild) mobileFilterContent.appendChild(levelWrap.firstChild);
+                    }
+                } else if (sourceContainer) {
                     while (sourceContainer.firstChild) {
                         mobileFilterContent.appendChild(sourceContainer.firstChild);
                     }
@@ -6499,16 +7088,21 @@
         }
 
         function restoreFilters() {
-            // Move everything back from modal content to its original placeholder
+            // Move everything back from modal content to its original placeholders
             const standardPlaceholder = document.getElementById('standardFiltersWrapper');
-            const grammarPlaceholder = document.getElementById('grammarFocusFilterWrapper');
+            const focusPlaceholder = document.getElementById('grammarFocusFilterWrapper');
+            const levelPlaceholder = document.getElementById('grammarLevelFilterWrapper');
 
             while (mobileFilterContent.firstChild) {
                 const child = mobileFilterContent.firstChild;
-                // Heuristic: If it's the grammar focus label/button, move it back to grammar
-                if (child.id === 'grammarFocusFilterLabelParent' ||
-                    (child.innerText && child.innerText.includes('Übungs-Focus'))) {
-                    grammarPlaceholder.appendChild(child);
+                
+                // Route children back based on their content/ID
+                if (child.id === 'grammarFocusFilterLabelParent' || 
+                    child.id === 'grammarFocusFilter' || 
+                    (child.querySelector && child.querySelector('#grammarFocusFilterBtn'))) {
+                    focusPlaceholder.appendChild(child);
+                } else if (child.innerHTML && (child.innerHTML.includes('grammarLevelFilter') || child.innerHTML.includes('Sprachniveau'))) {
+                    levelPlaceholder.appendChild(child);
                 } else {
                     standardPlaceholder.appendChild(child);
                 }
@@ -6653,8 +7247,7 @@
             wordsWithStats.forEach(word => {
                 const tr = document.createElement('tr'); tr.className = "hover:bg-slate-50 transition-colors";
                 const lastRevStr = word.stats.lastReviewedDate ? new Date(word.stats.lastReviewedDate).toLocaleDateString('de-DE') : '-';
-                const targetWord = (word.language === 'en') ? word.en : word.it;
-                tr.innerHTML = `<td class="p-3 text-slate-800 border-b border-slate-100">${word.de} <span class="text-slate-300 mx-1 md:mx-2">|</span> <span class="font-medium text-blue-600">${targetWord}</span></td><td class="p-3 text-center text-slate-900 font-semibold border-b border-slate-100">${word.stats.presented}</td><td class="p-3 text-center text-green-600 font-bold border-b border-slate-100">${word.stats.correct}</td><td class="p-3 text-center text-red-500 font-bold border-b border-slate-100">${word.stats.incorrect}</td><td class="p-3 text-center text-slate-600 border-b border-slate-100">${lastRevStr}</td>`;
+                tr.innerHTML = `<td class="p-3 text-slate-800 border-b border-slate-100">${word.de} <span class="text-slate-300 mx-1 md:mx-2">|</span> <span class="font-medium text-blue-600">${word.it}</span></td><td class="p-3 text-center text-slate-900 font-semibold border-b border-slate-100">${word.stats.presented}</td><td class="p-3 text-center text-green-600 font-bold border-b border-slate-100">${word.stats.correct}</td><td class="p-3 text-center text-red-500 font-bold border-b border-slate-100">${word.stats.incorrect}</td><td class="p-3 text-center text-slate-600 border-b border-slate-100">${lastRevStr}</td>`;
                 tbody.appendChild(tr);
             });
         }
@@ -6765,11 +7358,10 @@
                 const isChecked = word.isActive !== false;
 
                 // Determine display order based on sort direction
-                const sortTarget = word.language === 'en' ? word.en : word.it;
-                const primary = sortDir === 'de' ? word.de : sortTarget;
-                const secondary = sortDir === 'de' ? sortTarget : word.de;
-                const flagPri = sortDir === 'de' ? deFlagSVG : (word.language === 'en' ? gbFlagSVG : itFlagSVG);
-                const flagSec = sortDir === 'de' ? (word.language === 'en' ? gbFlagSVG : itFlagSVG) : deFlagSVG;
+                const primary = sortDir === 'de' ? word.de : word.it;
+                const secondary = sortDir === 'de' ? word.it : word.de;
+                const flagPri = sortDir === 'de' ? deFlagSVG : itFlagSVG;
+                const flagSec = sortDir === 'de' ? itFlagSVG : deFlagSVG;
 
                 li.innerHTML = `
                     <div class="flex items-center gap-2 overflow-hidden flex-1">
@@ -6807,7 +7399,7 @@
         setupCustomDropdown('vocabListCatFilterBtn', 'vocabListCatFilterList', 'vocabListCatFilterLabel', 'vocabListCatFilter', renderVocabList);
 
         function restartCurrentMode() {
-            if (currentMode === 'dragdrop' || currentMode === 'dragDrop') startDragDropRound();
+            if (currentMode === 'dragDrop') startDragDropRound();
             else if (currentMode === 'quiz') startQuizRound();
             else if (currentMode === 'write') startWriteRound();
         }
@@ -7210,7 +7802,7 @@
                 // NOTE: If there are separate enToDeMap / deToEnMap, they should be used.
                 // For now, it seems itToDeMap[q] might be used or it's empty.
                 // If it's empty, it falls back to online.
-                offlineResult = vocabInputLang === 'en' ? enToDeMap[q] : deToEnMap[q];
+                offlineResult = vocabInputLang === 'en' ? (window.enToDeMap ? enToDeMap[q] : null) : (window.deToEnMap ? deToEnMap[q] : null);
             }
             
             if (offlineResult) {
@@ -7867,10 +8459,15 @@
                 const elEn = document.getElementById('adminBaseVocabCountEn');
                 if (elEn) elEn.textContent = `${countEn} Vokabeln`;
 
-                // Grammar counts (IT)
-                const grammarItRes = await apiFetch('/grammar-sentences?language=it');
+                // Grammar counts (IT & EN)
+                const [grammarItRes, grammarEnRes] = await Promise.all([
+                    apiFetch('/grammar-sentences?language=it'),
+                    apiFetch('/grammar-sentences?language=en')
+                ]);
                 const elGrammarIt = document.getElementById('adminGrammarCountIt');
                 if (elGrammarIt) elGrammarIt.textContent = `${(grammarItRes && grammarItRes.length) || 0} Sätze`;
+                const elGrammarEn = document.getElementById('adminGrammarCountEn');
+                if (elGrammarEn) elGrammarEn.textContent = `${(grammarEnRes && grammarEnRes.length) || 0} Sätze`;
 
                 // Update User Modal (Excel Modal) dynamically
                 const userCountEl = document.getElementById('baseVocabUserCountDesc');
@@ -8042,24 +8639,53 @@
                     const data = new Uint8Array(event.target.result);
                     const workbook = XLSX.read(data, { type: 'array' });
                     const sheet = workbook.Sheets[workbook.SheetNames[0]];
-                    // Use header-based JSON instead of positional arrays
-                    const json = XLSX.utils.sheet_to_json(sheet);
+                    // Extrahiere als 2D-Array (ignoriert kaputte Header-Namen)
+                    let rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                    
+                    // Leere Zeilen rausfiltern
+                    rows = rows.filter(row => row.length > 0 && row.some(cell => cell !== undefined && cell !== null && String(cell).trim() !== ''));
 
-                    const sentencesToUpload = json.map(row => {
-                        // Robust header mapping
-                        const it = row.Italienisch || row.italienisch || row.IT || row.it || row.Sentence || row.sentence || '';
-                        const de = row.Deutsch || row.deutsch || row.DE || row.de || row.Translation || row.translation || '';
-                        const cat = row.Kategorie || row.kategorie || row.Category || row.category || row.Fokus || row.fokus || row.Type || row.type || "Allgemein";
+                    if (rows.length === 0) return showToast("Datei ist leer.", "warning");
+
+                    // Prüfen ob die erste Zeile ein Header ist (enthält Schlüsselworte)
+                    const firstRowStr = String(rows[0].join(' ')).toLowerCase();
+                    const hasHeader = firstRowStr.includes('italienisch') || firstRowStr.includes('deutsch') || firstRowStr.includes('englisch') || firstRowStr.includes('sätze') || firstRowStr.includes('sentence') || firstRowStr.includes('kategorie') || firstRowStr.includes('fokus') || firstRowStr.includes('type');
+                    
+                    if (hasHeader) {
+                        rows.shift(); // Header entfernen
+                    }
+
+                    const sentencesToUpload = rows.map(row => {
+                        // Spalte A = Fremdsprache, Spalte B = Muttersprache, Spalte C = Kategorie
+                        const it = row[0] || ''; 
+                        const de = row[1] || '';
+                        let cat = row[2] || "Allgemein";
+                        
+                        // Standardize categories for English based on keyword matches
+                        if (lang === 'en') {
+                             const lowerCat = String(cat).toLowerCase();
+                             if (lowerCat.includes('present simple') || lowerCat.includes('simple present')) cat = 'Simple Present';
+                             else if (lowerCat.includes('present continuous') || lowerCat.includes('present progressive')) cat = 'Present Continuous';
+                             else if (lowerCat.includes('past simple') || lowerCat.includes('simple past')) cat = 'Simple Past';
+                             else if (lowerCat.includes('present perfect')) cat = 'Present Perfect';
+                             else if (lowerCat.includes('future')) cat = 'Future';
+                             else if (lowerCat.includes('imperative') || lowerCat.includes('imperativ')) cat = 'Imperativ';
+                             else if (lowerCat.includes('conditional')) cat = 'Conditional';
+                        }
 
                         return {
-                            it: it ? String(it).trim() : null,
+                            it: it ? String(it).trim() : null, // The db column is named 'it' globally, so we save English text here too
                             de: de ? String(de).trim() : null,
                             category: String(cat).trim(),
+                            level: row[3] ? String(row[3]).trim() : null,
                             language: lang
                         };
                     }).filter(s => s.it && s.de && isNaN(s.it)); // Filter out empty or numeric ID columns
 
-                    if (sentencesToUpload.length === 0) return showToast("Keine gültigen Sätze gefunden (Spalten Italienisch & Deutsch prüfen).", "warning");
+                    if (sentencesToUpload.length === 0) {
+                        const langName = lang === 'en' ? 'Englisch' : 'Italienisch';
+                        return showToast(`Keine gültigen Sätze gefunden (Spalten ${langName} & Deutsch prüfen).`, "warning");
+                    }
 
                     if (await showConfirm(`Die ${lang.toUpperCase()}-Grammatikliste mit ${sentencesToUpload.length} Sätzen ÜBERSCHREIBEN?`, "Import bestätigen")) {
                         const res = await fetch(`${API_BASE_URL}/api/admin/grammar-sentences/bulk`, {
@@ -8072,7 +8698,8 @@
                         });
                         if (res.ok) {
                             showToast(`${sentencesToUpload.length} Sätze importiert.`, "success");
-                            updateAdminGrammarCount();
+                            if (lang === CURRENT_LANG) updateAdminGrammarCount();
+                            updateAdminBaseVocabCount();
                             if (currentMode === 'grammar') startGrammarRound();
                         } else {
                             const errData = await res.json();
@@ -8121,7 +8748,8 @@
                 });
                 if (res.ok) {
                     showToast(`${lang.toUpperCase()}-Grammatikliste gelöscht`, "success");
-                    updateAdminGrammarCount();
+                    if (lang === CURRENT_LANG) updateAdminGrammarCount();
+                    updateAdminBaseVocabCount();
                 } else {
                     const data = await res.json();
                     showToast("Fehler: " + (data.error || 'Unbekannt'), "error");
@@ -8308,9 +8936,6 @@
         // Initialize DOM Elements and Triggers
         userNameEl = document.getElementById('userName');
         userNameMobileEl = document.getElementById('userNameMobile');
-        
-        if (userNameEl) userNameEl.textContent = CURRENT_USER_NAME || 'Gast';
-        if (userNameMobileEl) userNameMobileEl.textContent = CURRENT_USER_NAME || 'Gast';
         
         showApp();
     </script>
