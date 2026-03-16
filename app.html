@@ -7,7 +7,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             if (window.Capacitor && window.Capacitor.isNative) {
                 document.body.classList.add('is-native-app');
-                
+
                 // Keyboard stabilization
                 if (window.Capacitor.Plugins && window.Capacitor.Plugins.Keyboard) {
                     window.Capacitor.Plugins.Keyboard.setScroll({ isDisabled: true }).catch(err => {
@@ -125,11 +125,15 @@
         .star-icon {
             cursor: pointer;
             transition: all 0.2s ease;
-            color: #cbd5e1; /* slate-300 */
+            color: #cbd5e1;
+            /* slate-300 */
         }
+
         .star-icon.marked {
-            color: #fbbf24; /* amber-400 */
+            color: #fbbf24;
+            /* amber-400 */
         }
+
         .star-icon:hover {
             transform: scale(1.2);
         }
@@ -478,9 +482,11 @@
                     radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
                     radial-gradient(circle at 90% 80%, rgba(239, 68, 68, 0.1) 0%, transparent 40%);
                 color: #f1f5f9;
-                overflow: hidden !important; /* Prevent iOS scroll/shift */
+                overflow: hidden !important;
+                /* Prevent iOS scroll/shift */
                 height: 100dvh !important;
-                height: 100svh !important; /* Fallback */
+                height: 100svh !important;
+                /* Fallback */
                 position: fixed;
                 width: 100%;
             }
@@ -690,8 +696,8 @@
                 color: #ffffff !important;
             }
 
-            .top-nav-container > button,
-            .top-nav-container > #dropdownMenu {
+            .top-nav-container>button,
+            .top-nav-container>#dropdownMenu {
                 pointer-events: auto;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -1006,9 +1012,11 @@
                 /* Push everything below the notch - Balanced for iOS stability */
                 #mainAppContent {
                     padding-top: calc(env(safe-area-inset-top, 20px) + 60px) !important;
-                    gap: 10px !important; /* 10px gap for all components per user request */
+                    gap: 10px !important;
+                    /* 10px gap for all components per user request */
                     height: 100dvh !important;
-                    height: 100vh !important; /* Fallback */
+                    height: 100vh !important;
+                    /* Fallback */
                     overflow: hidden !important;
                     width: 100% !important;
                 }
@@ -1018,16 +1026,18 @@
                     margin-bottom: 0px !important;
                     padding-bottom: 0px !important;
                 }
-                
+
                 header .flex.justify-center.items-center {
-                    margin-top: 5px !important; /* Gentle margin for generic mobile web */
+                    margin-top: 5px !important;
+                    /* Gentle margin for generic mobile web */
                     margin-bottom: 0px !important;
                     padding-bottom: 0px !important;
                 }
-                
+
                 /* EXCLUSIVE NATIVE APP SPACING OVERRIDES */
                 .is-native-app header .flex.justify-center.items-center {
-                    margin-top: 7px !important; /* Exactly 7px per user request */
+                    margin-top: 7px !important;
+                    /* Exactly 7px per user request */
                 }
 
                 header h1 {
@@ -1062,8 +1072,8 @@
                     transition: none !important;
                 }
 
-                .top-nav-container > button,
-                .top-nav-container > #dropdownMenu {
+                .top-nav-container>button,
+                .top-nav-container>#dropdownMenu {
                     pointer-events: auto;
                 }
 
@@ -1080,14 +1090,18 @@
                     color: #ffffff !important;
                     border-color: rgba(255, 255, 255, 0.1) !important;
                 }
+
                 #dropdownMenu button:hover {
                     background-color: #1e293b !important;
                 }
 
-                #openFilterModalBtn, #infoIconBtn, #menuBtn {
+                #openFilterModalBtn,
+                #infoIconBtn,
+                #menuBtn {
                     display: flex !important;
                     margin: 0 !important;
                 }
+
                 #openFilterModalBtn {
                     background: rgba(59, 130, 246, 0.2) !important;
                     border: 1px solid rgba(59, 130, 246, 0.4) !important;
@@ -1192,17 +1206,17 @@
                     border-radius: 1.5rem !important;
                 }
             }
-            }
+        }
 
-            @media (min-width: 768px) {
-                #openAdminDashboardBtn:not(.hidden) {
-                    display: block !important;
-                }
+        @media (min-width: 768px) {
+            #openAdminDashboardBtn:not(.hidden) {
+                display: block !important;
             }
+        }
 
         /* Final Force Rules for Hamburger Menu */
         #dropdownMenu,
-        #mainAppContent #dropdownMenu, 
+        #mainAppContent #dropdownMenu,
         .top-nav-container #dropdownMenu {
             top: 100% !important;
             bottom: auto !important;
@@ -1361,23 +1375,42 @@
     <!-- Left Navigation: Language Switcher & User Display -->
     <div id="userDisplay"
         class="hidden absolute top-[calc(env(safe-area-inset-top,0px)+8px)] left-2 md:top-4 md:left-4 z-[1000] flex items-center gap-1">
-        
+
         <!-- Compact Language Buttons -->
         <div class="flex items-center gap-[2px]" id="langSwitcher">
-            <button id="langItBtn" 
-                class="p-0 bg-white rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 focus:outline-none transition-all flex items-center justify-center w-[38px] h-[38px] overflow-hidden active:scale-95" 
+            <button id="langItBtn"
+                class="p-0 bg-white rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 focus:outline-none transition-all flex items-center justify-center w-[38px] h-[38px] overflow-hidden active:scale-95"
                 title="Italienisch">
-                <svg class="w-7 h-7 rounded shadow-sm" viewBox="0 0 3 2"><rect width="3" height="2" fill="#ed2939"/><rect width="2" height="2" fill="#fff"/><rect width="1" height="2" fill="#009246"/></svg>
+                <svg class="w-7 h-7 rounded shadow-sm" viewBox="0 0 3 2">
+                    <rect width="3" height="2" fill="#ed2939" />
+                    <rect width="2" height="2" fill="#fff" />
+                    <rect width="1" height="2" fill="#009246" />
+                </svg>
             </button>
-            <button id="langEnBtn" 
-                class="p-0 bg-white rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 focus:outline-none transition-all flex items-center justify-center w-[38px] h-[38px] overflow-hidden active:scale-95" 
+            <button id="langEnBtn"
+                class="p-0 bg-white rounded-xl shadow-sm border border-slate-200 hover:bg-slate-50 focus:outline-none transition-all flex items-center justify-center w-[38px] h-[38px] overflow-hidden active:scale-95"
                 title="English">
-                <svg class="w-7 h-7 rounded shadow-sm" viewBox="0 0 60 30"><clipPath id="s_sw_sm"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t_sw_sm"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#s_sw_sm)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#t_sw_sm)"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+                <svg class="w-7 h-7 rounded shadow-sm" viewBox="0 0 60 30">
+                    <clipPath id="s_sw_sm">
+                        <path d="M0,0 v30 h60 v-30 z" />
+                    </clipPath>
+                    <clipPath id="t_sw_sm">
+                        <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z" />
+                    </clipPath>
+                    <g clip-path="url(#s_sw_sm)">
+                        <path d="M0,0 v30 h60 v-30 z" fill="#012169" />
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6" />
+                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="4" clip-path="url(#t_sw_sm)" />
+                        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10" />
+                        <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6" />
+                    </g>
+                </svg>
             </button>
         </div>
 
         <!-- User Name (hidden on small screens if needed, or compact) -->
-        <div class="hidden sm:flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-xl shadow-sm border border-slate-200 ml-1">
+        <div
+            class="hidden sm:flex items-center gap-1.5 bg-white/90 backdrop-blur-sm px-3 py-2 rounded-xl shadow-sm border border-slate-200 ml-1">
             <span id="welcomePrefix" class="text-green-600 font-bold text-sm md:text-base">Ciao,</span>
             <span id="userName" class="font-bold text-slate-800 text-sm md:text-base">Gast</span>
         </div>
@@ -1457,12 +1490,17 @@
         <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full shadow-2xl transform transition-all">
             <div class="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4 mx-auto">
                 <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
                 </svg>
             </div>
             <h3 id="promptTitle" class="text-xl font-bold text-slate-800 mb-2 text-center">E-Mail Adresse</h3>
-            <p id="promptMessage" class="text-sm text-slate-600 mb-4 text-center leading-relaxed">Wohin soll der Code gesendet werden?</p>
-            <input type="text" id="promptInput" class="w-full border border-slate-200 rounded-xl px-4 py-3 mb-6 outline-none focus:border-blue-400 transition-all text-sm" placeholder="name@beispiel.de">
+            <p id="promptMessage" class="text-sm text-slate-600 mb-4 text-center leading-relaxed">Wohin soll der Code
+                gesendet werden?</p>
+            <input type="text" id="promptInput"
+                class="w-full border border-slate-200 rounded-xl px-4 py-3 mb-6 outline-none focus:border-blue-400 transition-all text-sm"
+                placeholder="name@beispiel.de">
             <div class="flex gap-3">
                 <button id="promptCancelBtn"
                     class="flex-1 px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold rounded-xl transition-all">Abbrechen</button>
@@ -1544,20 +1582,31 @@
     </div>
 
     <!-- Version Update Modal -->
-    <div id="versionUpdateModal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[20000] flex items-center justify-center p-4 text-center">
-        <div class="bg-white rounded-[2.5rem] shadow-2xl max-w-sm w-full p-8 border border-slate-100 transform transition-all animate-in zoom-in duration-300">
+    <div id="versionUpdateModal"
+        class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[20000] flex items-center justify-center p-4 text-center">
+        <div
+            class="bg-white rounded-[2.5rem] shadow-2xl max-w-sm w-full p-8 border border-slate-100 transform transition-all animate-in zoom-in duration-300">
             <div class="w-20 h-20 bg-blue-100 rounded-3xl flex items-center justify-center mx-auto mb-6">
-                <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
             </div>
-            <h3 class="text-3xl font-black text-slate-800 mb-4">Version 2.0.3 ist da! <svg class="w-8 h-8 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></h3>
+            <h3 class="text-3xl font-black text-slate-800 mb-4">Version 2.0.3 ist da! <svg class="w-8 h-8 inline-block"
+                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg></h3>
             <div class="text-left space-y-4 mb-8">
                 <div class="flex items-start gap-3">
                     <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
-                    <p class="text-slate-600 font-medium leading-tight text-sm">Update: <b>Kleine Fehlerverbesserungen und Optimierungen</b></p>
+                    <p class="text-slate-600 font-medium leading-tight text-sm">Update: <b>Kleine Fehlerverbesserungen
+                            und Optimierungen</b></p>
                 </div>
                 <div class="flex items-start gap-3">
                     <div class="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
-                    <p class="text-slate-600 font-medium leading-tight text-sm">Neu: <b>Grammatikübungen und Infoteil im Englischen Modul</b></p>
+                    <p class="text-slate-600 font-medium leading-tight text-sm">Neu: <b>Grammatikübungen und Infoteil im
+                            Englischen Modul</b></p>
                 </div>
                 <p class="text-slate-500 text-[10px] italic text-center mt-4 px-4 leading-normal">
                     Viel Spaß beim Lernen! Melde Fehler bitte direkt an uns.
@@ -1598,8 +1647,11 @@
 
     <!-- Burgermenü & Filter -->
     <div id="mainAppContent" class="hidden flex flex-col items-center w-full">
-        <div class="top-nav-container absolute top-[calc(env(safe-area-inset-top,0px)+8px)] right-2 md:top-4 md:right-4 z-[1000] flex items-center gap-[2px]">
-            <button id="infoIconBtn" class="mobile-filter-btn hidden p-2 bg-blue-600 text-white rounded-xl shadow-sm active:scale-95 flex items-center justify-center w-[38px] h-[38px] border border-blue-600" title="Zusatzinfos">
+        <div
+            class="top-nav-container absolute top-[calc(env(safe-area-inset-top,0px)+8px)] right-2 md:top-4 md:right-4 z-[1000] flex items-center gap-[2px]">
+            <button id="infoIconBtn"
+                class="mobile-filter-btn hidden p-2 bg-blue-600 text-white rounded-xl shadow-sm active:scale-95 flex items-center justify-center w-[38px] h-[38px] border border-blue-600"
+                title="Zusatzinfos">
                 <span class="font-bold">i</span>
             </button>
             <button id="openFilterModalBtn"
@@ -1637,7 +1689,8 @@
                 <button id="openGuideModalBtn"
                     class="block w-full text-left px-4 py-3 text-sm font-medium text-blue-600 hover:bg-blue-50 border-b border-slate-100">Kurzanleitung</button>
                 <button id="openImpressumMenuBtn"
-                    class="block w-full text-left px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 border-b border-slate-100">Impressum & Lizenzen</button>
+                    class="block w-full text-left px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 border-b border-slate-100">Impressum
+                    & Lizenzen</button>
                 <button id="logoutBtn"
                     class="block w-full text-left px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 cursor-pointer border-b border-slate-100">Abmelden</button>
                 <div id="syncStatus"
@@ -1646,7 +1699,8 @@
                     <span>Letzter Sync:</span>
                     <span id="lastSyncTime" class="font-mono">Nie</span>
                 </div>
-                <div class="px-4 py-1.5 text-[10px] text-slate-400 bg-slate-50/50 flex items-center justify-between border-t border-slate-100/50">
+                <div
+                    class="px-4 py-1.5 text-[10px] text-slate-400 bg-slate-50/50 flex items-center justify-between border-t border-slate-100/50">
                     <span>App-Version:</span>
                     <span class="font-mono font-medium text-slate-500">2.0.3 Stable</span>
                 </div>
@@ -1655,12 +1709,14 @@
         </div>
 
         <!-- Header Bereich -->
-        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto">
-            <h1
-                class="text-2xl md:text-4xl font-bold text-slate-800 mb-0 flex items-center justify-center gap-2">
-                <span id="appHeaderIcon"></span> 
-                <span id="appHeaderTitle">Lernen</span> 
-                <span class="text-[10px] font-normal text-slate-400 align-top mt-1 ml-1" id="appVersionMain">2.0.3 Stable</span>
+        <header class="text-center mb-1 md:mb-4 w-full max-w-7xl flex-shrink-0 mx-auto relative">
+            <!-- Demo Badge -->
+            <div class="absolute top-0 right-1 md:right-32 bg-orange-500 text-white text-xs md:text-sm uppercase font-bold px-4 py-1.5 rounded-full shadow-md z-10">Demo Modus</div>
+            <h1 class="text-2xl md:text-4xl font-bold text-slate-800 mb-0 flex items-center justify-center gap-2">
+                <span id="appHeaderIcon"></span>
+                <span id="appHeaderTitle">Lernen</span>
+                <span class="text-[10px] font-normal text-slate-400 align-top mt-1 ml-1" id="appVersionMain">2.0.3
+                    Stable</span>
             </h1>
 
             <div class="flex justify-center items-center gap-1 mt-1 mb-1">
@@ -1704,8 +1760,10 @@
                                 </svg>
                             </button>
                             <div class="cs-list" id="directionFilterList">
-                                <div class="cs-opt selected" data-value="de-it" id="directionFilterDeItOpt">Deutsch &rarr; ...</div>
-                                <div class="cs-opt" data-value="it-de" id="directionFilterItDeOpt">... &rarr; Deutsch</div>
+                                <div class="cs-opt selected" data-value="de-it" id="directionFilterDeItOpt">Deutsch
+                                    &rarr; ...</div>
+                                <div class="cs-opt" data-value="it-de" id="directionFilterItDeOpt">... &rarr; Deutsch
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1738,7 +1796,8 @@
                                 <div class="cs-opt" data-value="Verb">Verbformen</div>
                                 <div class="cs-opt" data-value="Adjektiv">Adjektive</div>
                                 <div class="cs-opt" data-value="Sonstiges">Sonstiges</div>
-                                <div class="cs-opt" data-value="Favoriten" title="Nur markierte Favoriten üben">Favoriten</div>
+                                <div class="cs-opt" data-value="Favoriten" title="Nur markierte Favoriten üben">
+                                    Favoriten</div>
                             </div>
                         </div>
                     </div>
@@ -1842,14 +1901,16 @@
                 <h2 id="dragColHeader"
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     Deutsch (Ziehen)</h2>
-                <div id="draggables-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
+                <div id="draggables-container"
+                    class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
                 </div>
             </section>
             <section class="flex flex-col min-h-0 order-1">
                 <h2 id="dropColHeader"
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     Italienisch (Ablegen)</h2>
-                <div id="dropzones-container" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
+                <div id="dropzones-container"
+                    class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 mt-[5px] ios-smooth-scroll">
                 </div>
             </section>
             <section id="infoSection" class="flex flex-col transition-all min-h-0 order-3">
@@ -1857,7 +1918,8 @@
                     class="text-base md:text-lg font-semibold text-slate-700 mb-1 md:mb-2 flex items-center gap-2 border-b-2 border-slate-200 pb-1 flex-shrink-0">
                     <span id="infoBulbIcon"></span> Zusatzinfo
                 </h2>
-                <div id="info-container-main" class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 ios-smooth-scroll">
+                <div id="info-container-main"
+                    class="flex flex-col gap-2 flex-1 min-h-0 overflow-y-auto px-1 pb-2 ios-smooth-scroll">
                     <div id="info-placeholder"
                         class="text-slate-400 italic text-sm text-center mt-2 bg-slate-50 p-4 rounded-xl border border-dashed border-slate-200">
                         Hier erscheinen Zusatzinformationen oder Bilder.</div>
@@ -1869,22 +1931,26 @@
         <!-- === KARTEIKARTEN BEREICH === -->
         <main id="cardsContainer"
             class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-3 md:gap-4 overflow-y-auto pb-4 mx-auto ios-smooth-scroll">
-            <div
-                class="bg-white p-6 md:p-12 rounded-3xl shadow-sm border border-slate-200 w-full text-center flex flex-col items-center justify-center flex-shrink-0 cursor-pointer hover:bg-slate-50 transition-colors relative"
+            <div class="bg-white p-6 md:p-12 rounded-3xl shadow-sm border border-slate-200 w-full text-center flex flex-col items-center justify-center flex-shrink-0 cursor-pointer hover:bg-slate-50 transition-colors relative"
                 id="cardsFlashcard">
                 <div class="absolute top-2 right-2 md:top-4 md:right-4 flex items-center gap-3">
-                    <svg id="cardsStarIcon" class="star-icon w-6 h-6 md:w-8 md:h-8" 
-                         onclick="event.stopPropagation(); toggleMark(currentFlashcardTarget.id, this)" 
-                         fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+                    <svg id="cardsStarIcon" class="star-icon w-6 h-6 md:w-8 md:h-8"
+                        onclick="event.stopPropagation(); toggleMark(currentFlashcardTarget.id, this)"
+                        fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                     </svg>
                     <label class="relative inline-flex items-center cursor-pointer" onclick="event.stopPropagation()">
                         <input type="checkbox" id="cardsWordToggle" class="sr-only peer" checked>
-                        <div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600 shadow-inner"></div>
+                        <div
+                            class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600 shadow-inner">
+                        </div>
                     </label>
                 </div>
-                <div id="cardsQuestionDisplay" class="mb-2 transition-all w-full text-2xl md:text-5xl font-bold text-slate-800"></div>
-                <div id="cardsSubtext" class="text-slate-500 font-medium text-xs md:text-sm mt-4">Klicken zum Wenden</div>
+                <div id="cardsQuestionDisplay"
+                    class="mb-2 transition-all w-full text-2xl md:text-5xl font-bold text-slate-800"></div>
+                <div id="cardsSubtext" class="text-slate-500 font-medium text-xs md:text-sm mt-4">Klicken zum Wenden
+                </div>
             </div>
             <div id="cardsFeedback"
                 class="flex flex-col items-center gap-4 w-full mt-2 p-3 bg-white rounded-xl shadow-sm border border-slate-100 flex-shrink-0">
@@ -1921,7 +1987,8 @@
             class="w-full max-w-4xl flex-1 min-h-0 hidden flex-col items-center justify-start gap-2 md:gap-4 overflow-y-auto pb-4 mx-auto">
             <div id="writeTopBox"
                 class="bg-white p-3 md:p-8 rounded-3xl shadow-sm border border-slate-200 w-full text-center flex flex-col items-center justify-center flex-shrink-0 min-h-[120px] md:min-h-[220px] relative">
-                <div id="writeControls" class="absolute top-2 right-2 md:top-4 md:right-4 flex items-center gap-3"></div>
+                <div id="writeControls" class="absolute top-2 right-2 md:top-4 md:right-4 flex items-center gap-3">
+                </div>
                 <!-- State 1: Question -->
                 <div id="writeQuestionArea" class="w-full">
                     <div id="writeQuestionDisplay" class="mb-2 transition-all w-full overflow-hidden"></div>
@@ -1943,8 +2010,12 @@
                 <button id="writeSubmitBtn" title="Prüfen"
                     class="write-inline-btn border-none outline-none absolute right-2 top-2 bottom-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm transition-all active:transform active:scale-95 flex items-center justify-center px-4 md:px-5">
                     <span class="btn-text hidden md:inline-block mr-2">Prüfen</span>
-                    <svg class="w-6 h-6 btn-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                    <svg class="w-6 h-6 btn-icon-next hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <svg class="w-6 h-6 btn-icon-check" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <svg class="w-6 h-6 btn-icon-next hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </button>
             </div>
         </main>
@@ -1982,664 +2053,708 @@
                 <h2 class="text-3xl font-black mb-3 flex items-center justify-center gap-3">
                     <span id="grammarHeaderIcon"></span> <span id="infoTitleText">Grammatica Italiana</span>
                 </h2>
-                <p id="infoDescText" class="text-slate-600 text-lg font-medium">Index der wichtigsten Regeln und Konjugationstabellen.</p>
+                <p id="infoDescText" class="text-slate-600 text-lg font-medium">Index der wichtigsten Regeln und
+                    Konjugationstabellen.</p>
             </div>
 
             <!-- Language Specific Content Containers -->
             <div id="infoContentIt" class="w-full flex flex-col gap-6">
 
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
-                <h3 class="text-2xl font-bold mb-2 text-blue-600">1. Presente Indicativo (Regelmäßig)</h3>
-                <p class="text-sm text-slate-500 mb-6 italic">Das Präsens wird für regelmäßige Handlungen oder
-                    Ereignisse verwendet, die jetzt geschehen.</p>
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-blue-600">1. Presente Indicativo (Regelmäßig)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Das Präsens wird für regelmäßige Handlungen oder
+                        Ereignisse verwendet, die jetzt geschehen.</p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- -ARE -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-blue-400 mb-4 text-center border-b border-white/10 pb-2">-are
-                            (lavorare)</h4>
-                        <table class="w-full text-sm">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">o</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">i</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">a</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">iamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">ate</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">ano</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- -ERE -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-green-400 mb-4 text-center border-b border-white/10 pb-2">-ere
-                            (prendere)</h4>
-                        <table class="w-full text-sm">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">o</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">i</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">e</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">iamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">ete</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">ono</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- -IRE -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-orange-400 mb-4 text-center border-b border-white/10 pb-2">-ire
-                            (dormire)</h4>
-                        <table class="w-full text-sm">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">o</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">i</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">e</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">iamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ite</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ono</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Presente Indicativo (Irregolare) -->
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
-                <h3 class="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-800">
-                    <span id="grammarFireIcon"></span> Top 10 unregelmäßige Verben (Presente)
-                </h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs md:text-sm border-collapse">
-                        <thead>
-                            <tr class="border-b border-white/20 text-slate-400">
-                                <th class="p-3">Verbo</th>
-                                <th class="p-3">io</th>
-                                <th class="p-3">tu</th>
-                                <th class="p-3">lui/lei</th>
-                                <th class="p-3">noi</th>
-                                <th class="p-3">voi</th>
-                                <th class="p-3">loro</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">essere</td>
-                                <td>sono</td>
-                                <td>sei</td>
-                                <td>è</td>
-                                <td>siamo</td>
-                                <td>siete</td>
-                                <td>sono</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">avere</td>
-                                <td>ho</td>
-                                <td>hai</td>
-                                <td>ha</td>
-                                <td>abbiamo</td>
-                                <td>avete</td>
-                                <td>hanno</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">fare</td>
-                                <td>faccio</td>
-                                <td>fai</td>
-                                <td>fa</td>
-                                <td>facciamo</td>
-                                <td>fate</td>
-                                <td>fanno</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">stare</td>
-                                <td>sto</td>
-                                <td>stai</td>
-                                <td>sta</td>
-                                <td>stiamo</td>
-                                <td>state</td>
-                                <td>stanno</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">andare</td>
-                                <td>vado</td>
-                                <td>vai</td>
-                                <td>va</td>
-                                <td>andiamo</td>
-                                <td>andate</td>
-                                <td>vanno</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">venire</td>
-                                <td>vengo</td>
-                                <td>vieni</td>
-                                <td>viene</td>
-                                <td>veniamo</td>
-                                <td>venite</td>
-                                <td>vengono</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">potere</td>
-                                <td>posso</td>
-                                <td>puoi</td>
-                                <td>può</td>
-                                <td>possiamo</td>
-                                <td>potete</td>
-                                <td>possono</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">volere</td>
-                                <td>voglio</td>
-                                <td>vuoi</td>
-                                <td>vuole</td>
-                                <td>vogliamo</td>
-                                <td>volete</td>
-                                <td>vogliono</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">dovere</td>
-                                <td>devo</td>
-                                <td>devi</td>
-                                <td>deve</td>
-                                <td>dobbiamo</td>
-                                <td>dovete</td>
-                                <td>devono</td>
-                            </tr>
-                            <tr class="hover:bg-slate-50 transition-colors">
-                                <td class="p-3 font-bold">dire</td>
-                                <td>dico</td>
-                                <td>dici</td>
-                                <td>dice</td>
-                                <td>diciamo</td>
-                                <td>dite</td>
-                                <td>dicono</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Passato Prossimo (Indicativo) -->
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
-                <h3 class="text-2xl font-bold mb-2 text-red-600">2. Passato Prossimo (Vollendete Gegenwart)</h3>
-                <p class="text-sm text-slate-500 mb-6 italic">Wird für abgeschlossene Handlungen in der Vergangenheit
-                    verwendet. Bildung: <b>Hilfsverb</b> (essere oder avere) + <b>Participio Passato</b>.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- -ARE/ATO -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
-                        <h4 class="font-bold text-blue-400 mb-2 border-b border-white/10 pb-2">-are ➔ -ato</h4>
-                        <p class="text-xs text-slate-400 mb-2">Esempio:</p>
-                        <p class="text-sm">ho lavor<span class="text-blue-400 font-bold">ato</span></p>
-                    </div>
-                    <!-- -ERE/UTO -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
-                        <h4 class="font-bold text-green-400 mb-2 border-b border-white/10 pb-2">-ere ➔ -uto</h4>
-                        <p class="text-xs text-slate-400 mb-2">Esempio:</p>
-                        <p class="text-sm">ho ricev<span class="text-green-400 font-bold">uto</span></p>
-                    </div>
-                    <!-- -IRE/ITO -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
-                        <h4 class="font-bold text-orange-400 mb-2 border-b border-white/10 pb-2">-ire ➔ -ito</h4>
-                        <p class="text-xs text-slate-400 mb-2">Esempio:</p>
-                        <p class="text-sm">ho dorm<span class="text-orange-400 font-bold">ito</span></p>
-                    </div>
-                </div>
-
-                <div class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
-                    <h4 class="font-bold text-red-600 mb-4 flex items-center gap-2">
-                        <span id="grammarWarningIcon"></span> Häufige unregelmäßige Partizipien (Participi Passati)
-                    </h4>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs md:text-sm">
-                        <div class="p-2 border border-slate-200 bg-white rounded">fare ➔ <b>fatto</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">dire ➔ <b>detto</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">scrivere ➔ <b>scritto</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">leggere ➔ <b>letto</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">prendere ➔ <b>preso</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">vedere ➔ <b>visto</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">stare ➔ <b>stato</b></div>
-                        <div class="p-2 border border-slate-200 bg-white rounded">venire ➔ <b>venuto</b></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Imperfetto (Indicativo) -->
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
-                <h3 class="text-2xl font-bold mb-2 text-amber-600">3. Imperfetto (Vergangenheit)</h3>
-                <p class="text-sm text-slate-500 mb-6 italic">Wird für Beschreibungen, Zustände oder gewohnheitsmäßige
-                    Handlungen in der Vergangenheit verwendet.</p>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- -ARE (lavorare) -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-blue-400 mb-4 text-center border-b border-white/10 pb-2">-avo
-                            (lavorare)</h4>
-                        <table class="w-full text-xs">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">avo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">avi</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">ava</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">avamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">avate</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">lavor<span class="text-blue-400 font-bold">avano</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- -ERE (prendere) -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-green-400 mb-4 text-center border-b border-white/10 pb-2">-evo
-                            (prendere)</h4>
-                        <table class="w-full text-xs">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">evo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">evi</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">eva</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">evamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">evate</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">prend<span class="text-green-400 font-bold">evano</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- -IRE (dormire) -->
-                    <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
-                        <h4 class="font-bold text-orange-400 mb-4 text-center border-b border-white/10 pb-2">-ivo
-                            (dormire)</h4>
-                        <table class="w-full text-xs">
-                            <tbody class="divide-y divide-white/5">
-                                <tr>
-                                    <td class="py-1"><b>io</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ivo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>tu</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ivi</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>lui/lei</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">iva</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>noi</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ivamo</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>voi</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ivate</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="py-1"><b>loro</b></td>
-                                    <td class="text-right">dorm<span class="text-orange-400 font-bold">ivano</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Articoli (Determinativi e Indeterminativi) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg transition-all hover:shadow-xl">
-                    <h3 class="text-2xl font-bold mb-4 text-slate-800 flex items-center gap-2">
-                        <span>📚</span> Bestimmte Artikel <span
-                            class="text-slate-400 font-normal text-sm md:text-base">(Articoli Determinativi)</span>
-                    </h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs md:text-sm">
-                        <!-- Masculine Section -->
-                        <div
-                            class="overflow-hidden bg-blue-50/30 rounded-2xl border-2 border-blue-100 shadow-sm flex flex-col">
-                            <div
-                                class="bg-blue-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
-                                <span>👨</span> Maschile (Männlich)
-                            </div>
-                            <div class="p-4 space-y-4">
-                                <div
-                                    class="grid grid-cols-3 gap-2 items-center text-center font-bold text-blue-900 border-b border-blue-100 pb-2">
-                                    <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel</div>
-                                    <div>Singular</div>
-                                    <div>Plural</div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Standard</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">il</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">i</div>
-                                </div>
-                                <hr class="border-blue-100/50">
-                                <div class="grid grid-cols-3 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium leading-tight">s+Kons.,
-                                        z, ps, gn...</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">lo</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">gli</div>
-                                </div>
-                                <hr class="border-blue-100/50">
-                                <div class="grid grid-cols-3 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">l'</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">gli</div>
-                                </div>
-                            </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- -ARE -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-blue-400 mb-4 text-center border-b border-white/10 pb-2">-are
+                                (lavorare)</h4>
+                            <table class="w-full text-sm">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">o</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">i</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">a</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">iamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">ate</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">ano</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- Feminine Section -->
-                        <div
-                            class="overflow-hidden bg-rose-50/30 rounded-2xl border-2 border-rose-100 shadow-sm flex flex-col">
-                            <div
-                                class="bg-rose-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
-                                <span>👩</span> Femminile (Weiblich)
-                            </div>
-                            <div class="p-4 space-y-4">
-                                <div
-                                    class="grid grid-cols-3 gap-2 items-center text-center font-bold text-rose-900 border-b border-rose-100 pb-2">
-                                    <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel</div>
-                                    <div>Singular</div>
-                                    <div>Plural</div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Standard</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">la</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">le</div>
-                                </div>
-                                <hr class="border-rose-100/50">
-                                <div class="grid grid-cols-3 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">l'</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">le</div>
-                                </div>
-                            </div>
+                        <!-- -ERE -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-green-400 mb-4 text-center border-b border-white/10 pb-2">-ere
+                                (prendere)</h4>
+                            <table class="w-full text-sm">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">o</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">i</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">e</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">iamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">ete</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">ono</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- -IRE -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-orange-400 mb-4 text-center border-b border-white/10 pb-2">-ire
+                                (dormire)</h4>
+                            <table class="w-full text-sm">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">o</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">i</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">e</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">iamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ite</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ono</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xl">
-                    <h3 class="text-2xl font-bold mb-4 text-slate-800 flex items-center gap-2">
-                        <span>📚</span> Unbestimmte Artikel <span class="text-slate-400 font-medium text-sm">(Articoli
-                            Indeterminativi)</span>
+
+                <!-- Presente Indicativo (Irregolare) -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-800">
+                        <span id="grammarFireIcon"></span> Top 10 unregelmäßige Verben (Presente)
                     </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                        <!-- Maschile Section -->
-                        <div
-                            class="overflow-hidden bg-blue-50/30 rounded-2xl border-2 border-blue-100 shadow-sm flex flex-col">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs md:text-sm border-collapse">
+                            <thead>
+                                <tr class="border-b border-white/20 text-slate-400">
+                                    <th class="p-3">Verbo</th>
+                                    <th class="p-3">io</th>
+                                    <th class="p-3">tu</th>
+                                    <th class="p-3">lui/lei</th>
+                                    <th class="p-3">noi</th>
+                                    <th class="p-3">voi</th>
+                                    <th class="p-3">loro</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">essere</td>
+                                    <td>sono</td>
+                                    <td>sei</td>
+                                    <td>è</td>
+                                    <td>siamo</td>
+                                    <td>siete</td>
+                                    <td>sono</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">avere</td>
+                                    <td>ho</td>
+                                    <td>hai</td>
+                                    <td>ha</td>
+                                    <td>abbiamo</td>
+                                    <td>avete</td>
+                                    <td>hanno</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">fare</td>
+                                    <td>faccio</td>
+                                    <td>fai</td>
+                                    <td>fa</td>
+                                    <td>facciamo</td>
+                                    <td>fate</td>
+                                    <td>fanno</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">stare</td>
+                                    <td>sto</td>
+                                    <td>stai</td>
+                                    <td>sta</td>
+                                    <td>stiamo</td>
+                                    <td>state</td>
+                                    <td>stanno</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">andare</td>
+                                    <td>vado</td>
+                                    <td>vai</td>
+                                    <td>va</td>
+                                    <td>andiamo</td>
+                                    <td>andate</td>
+                                    <td>vanno</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">venire</td>
+                                    <td>vengo</td>
+                                    <td>vieni</td>
+                                    <td>viene</td>
+                                    <td>veniamo</td>
+                                    <td>venite</td>
+                                    <td>vengono</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">potere</td>
+                                    <td>posso</td>
+                                    <td>puoi</td>
+                                    <td>può</td>
+                                    <td>possiamo</td>
+                                    <td>potete</td>
+                                    <td>possono</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">volere</td>
+                                    <td>voglio</td>
+                                    <td>vuoi</td>
+                                    <td>vuole</td>
+                                    <td>vogliamo</td>
+                                    <td>volete</td>
+                                    <td>vogliono</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">dovere</td>
+                                    <td>devo</td>
+                                    <td>devi</td>
+                                    <td>deve</td>
+                                    <td>dobbiamo</td>
+                                    <td>dovete</td>
+                                    <td>devono</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50 transition-colors">
+                                    <td class="p-3 font-bold">dire</td>
+                                    <td>dico</td>
+                                    <td>dici</td>
+                                    <td>dice</td>
+                                    <td>diciamo</td>
+                                    <td>dite</td>
+                                    <td>dicono</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Passato Prossimo (Indicativo) -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-red-600">2. Passato Prossimo (Vollendete Gegenwart)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Wird für abgeschlossene Handlungen in der
+                        Vergangenheit
+                        verwendet. Bildung: <b>Hilfsverb</b> (essere oder avere) + <b>Participio Passato</b>.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- -ARE/ATO -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
+                            <h4 class="font-bold text-blue-400 mb-2 border-b border-white/10 pb-2">-are ➔ -ato</h4>
+                            <p class="text-xs text-slate-400 mb-2">Esempio:</p>
+                            <p class="text-sm">ho lavor<span class="text-blue-400 font-bold">ato</span></p>
+                        </div>
+                        <!-- -ERE/UTO -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
+                            <h4 class="font-bold text-green-400 mb-2 border-b border-white/10 pb-2">-ere ➔ -uto</h4>
+                            <p class="text-xs text-slate-400 mb-2">Esempio:</p>
+                            <p class="text-sm">ho ricev<span class="text-green-400 font-bold">uto</span></p>
+                        </div>
+                        <!-- -IRE/ITO -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10 text-center">
+                            <h4 class="font-bold text-orange-400 mb-2 border-b border-white/10 pb-2">-ire ➔ -ito</h4>
+                            <p class="text-xs text-slate-400 mb-2">Esempio:</p>
+                            <p class="text-sm">ho dorm<span class="text-orange-400 font-bold">ito</span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                        <h4 class="font-bold text-red-600 mb-4 flex items-center gap-2">
+                            <span id="grammarWarningIcon"></span> Häufige unregelmäßige Partizipien (Participi Passati)
+                        </h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs md:text-sm">
+                            <div class="p-2 border border-slate-200 bg-white rounded">fare ➔ <b>fatto</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">dire ➔ <b>detto</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">scrivere ➔ <b>scritto</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">leggere ➔ <b>letto</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">prendere ➔ <b>preso</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">vedere ➔ <b>visto</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">stare ➔ <b>stato</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded">venire ➔ <b>venuto</b></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imperfetto (Indicativo) -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-2 text-amber-600">3. Imperfetto (Vergangenheit)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Wird für Beschreibungen, Zustände oder
+                        gewohnheitsmäßige
+                        Handlungen in der Vergangenheit verwendet.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- -ARE (lavorare) -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-blue-400 mb-4 text-center border-b border-white/10 pb-2">-avo
+                                (lavorare)</h4>
+                            <table class="w-full text-xs">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">avo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">avi</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">ava</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">avamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">avate</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">lavor<span class="text-blue-400 font-bold">avano</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- -ERE (prendere) -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-green-400 mb-4 text-center border-b border-white/10 pb-2">-evo
+                                (prendere)</h4>
+                            <table class="w-full text-xs">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">evo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">evi</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">eva</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">evamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">evate</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">prend<span class="text-green-400 font-bold">evano</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- -IRE (dormire) -->
+                        <div class="bg-white/5 p-5 rounded-2xl border border-white/10">
+                            <h4 class="font-bold text-orange-400 mb-4 text-center border-b border-white/10 pb-2">-ivo
+                                (dormire)</h4>
+                            <table class="w-full text-xs">
+                                <tbody class="divide-y divide-white/5">
+                                    <tr>
+                                        <td class="py-1"><b>io</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ivo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>tu</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ivi</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>lui/lei</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">iva</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>noi</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ivamo</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>voi</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ivate</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-1"><b>loro</b></td>
+                                        <td class="text-right">dorm<span class="text-orange-400 font-bold">ivano</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articoli (Determinativi e Indeterminativi) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                    <div
+                        class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg transition-all hover:shadow-xl">
+                        <h3 class="text-2xl font-bold mb-4 text-slate-800 flex items-center gap-2">
+                            <span>📚</span> Bestimmte Artikel <span
+                                class="text-slate-400 font-normal text-sm md:text-base">(Articoli Determinativi)</span>
+                        </h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <!-- Masculine Section -->
                             <div
-                                class="bg-blue-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
-                                <span>👦</span> Maschile (Männlich)
-                            </div>
-                            <div class="p-4 space-y-4">
+                                class="overflow-hidden bg-blue-50/30 rounded-2xl border-2 border-blue-100 shadow-sm flex flex-col">
                                 <div
-                                    class="grid grid-cols-2 gap-2 items-center text-center font-bold text-blue-900 border-b border-blue-100 pb-2">
-                                    <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel</div>
-                                    <div>Singular</div>
+                                    class="bg-blue-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
+                                    <span>👨</span> Maschile (Männlich)
                                 </div>
-                                <div class="grid grid-cols-2 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Standard / Vokal</div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">un</div>
-                                </div>
-                                <hr class="border-blue-100/50">
-                                <div class="grid grid-cols-2 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">s + Kons., z, ps...
+                                <div class="p-4 space-y-4">
+                                    <div
+                                        class="grid grid-cols-3 gap-2 items-center text-center font-bold text-blue-900 border-b border-blue-100 pb-2">
+                                        <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel
+                                        </div>
+                                        <div>Singular</div>
+                                        <div>Plural</div>
                                     </div>
-                                    <div class="text-lg md:text-xl font-black text-blue-600">uno</div>
+                                    <div class="grid grid-cols-3 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Standard</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">il</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">i</div>
+                                    </div>
+                                    <hr class="border-blue-100/50">
+                                    <div class="grid grid-cols-3 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium leading-tight">
+                                            s+Kons.,
+                                            z, ps, gn...</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">lo</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">gli</div>
+                                    </div>
+                                    <hr class="border-blue-100/50">
+                                    <div class="grid grid-cols-3 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">l'</div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">gli</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Feminine Section -->
+                            <div
+                                class="overflow-hidden bg-rose-50/30 rounded-2xl border-2 border-rose-100 shadow-sm flex flex-col">
+                                <div
+                                    class="bg-rose-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
+                                    <span>👩</span> Femminile (Weiblich)
+                                </div>
+                                <div class="p-4 space-y-4">
+                                    <div
+                                        class="grid grid-cols-3 gap-2 items-center text-center font-bold text-rose-900 border-b border-rose-100 pb-2">
+                                        <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel
+                                        </div>
+                                        <div>Singular</div>
+                                        <div>Plural</div>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Standard</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">la</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">le</div>
+                                    </div>
+                                    <hr class="border-rose-100/50">
+                                    <div class="grid grid-cols-3 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">l'</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">le</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Feminine Section -->
-                        <div
-                            class="overflow-hidden bg-rose-50/30 rounded-2xl border-2 border-rose-100 shadow-sm flex flex-col">
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xl">
+                        <h3 class="text-2xl font-bold mb-4 text-slate-800 flex items-center gap-2">
+                            <span>📚</span> Unbestimmte Artikel <span
+                                class="text-slate-400 font-medium text-sm">(Articoli
+                                Indeterminativi)</span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                            <!-- Maschile Section -->
                             <div
-                                class="bg-rose-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
-                                <span>👩</span> Femminile (Weiblich)
-                            </div>
-                            <div class="p-4 space-y-4">
+                                class="overflow-hidden bg-blue-50/30 rounded-2xl border-2 border-blue-100 shadow-sm flex flex-col">
                                 <div
-                                    class="grid grid-cols-2 gap-2 items-center text-center font-bold text-rose-900 border-b border-rose-100 pb-2">
-                                    <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel</div>
-                                    <div>Singular</div>
+                                    class="bg-blue-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
+                                    <span>👦</span> Maschile (Männlich)
                                 </div>
-                                <div class="grid grid-cols-2 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Konsonant</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">una</div>
+                                <div class="p-4 space-y-4">
+                                    <div
+                                        class="grid grid-cols-2 gap-2 items-center text-center font-bold text-blue-900 border-b border-blue-100 pb-2">
+                                        <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel
+                                        </div>
+                                        <div>Singular</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Standard / Vokal
+                                        </div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">un</div>
+                                    </div>
+                                    <hr class="border-blue-100/50">
+                                    <div class="grid grid-cols-2 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">s + Kons., z,
+                                            ps...
+                                        </div>
+                                        <div class="text-lg md:text-xl font-black text-blue-600">uno</div>
+                                    </div>
                                 </div>
-                                <hr class="border-rose-100/50">
-                                <div class="grid grid-cols-2 gap-2 items-center text-center">
-                                    <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
-                                    <div class="text-lg md:text-xl font-black text-rose-600">un'</div>
+                            </div>
+
+                            <!-- Feminine Section -->
+                            <div
+                                class="overflow-hidden bg-rose-50/30 rounded-2xl border-2 border-rose-100 shadow-sm flex flex-col">
+                                <div
+                                    class="bg-rose-600 text-white py-2 px-4 font-bold flex items-center gap-2 uppercase tracking-wide text-[10px] md:text-xs">
+                                    <span>👩</span> Femminile (Weiblich)
+                                </div>
+                                <div class="p-4 space-y-4">
+                                    <div
+                                        class="grid grid-cols-2 gap-2 items-center text-center font-bold text-rose-900 border-b border-rose-100 pb-2">
+                                        <div class="text-left opacity-40 text-[9px] uppercase tracking-tighter">Regel
+                                        </div>
+                                        <div>Singular</div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Konsonant</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">una</div>
+                                    </div>
+                                    <hr class="border-rose-100/50">
+                                    <div class="grid grid-cols-2 gap-2 items-center text-center">
+                                        <div class="text-left text-[10px] text-slate-500 font-medium">Vokal</div>
+                                        <div class="text-lg md:text-xl font-black text-rose-600">un'</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Preposizioni Articolate -->
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
-                <h3 class="text-2xl font-bold mb-4 text-orange-600">🔗 Zusammengesetzte Präpositionen (Preposizioni
-                    Articolate)</h3>
-                <p class="text-sm text-slate-500 mb-6 italic">Verschmelzung einer einfachen Präposition (di, a, da, in,
-                    su) mit einem bestimmten Artikel.</p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-[10px] md:text-sm border-collapse text-center">
-                        <thead>
-                            <tr class="border-b border-white/20 text-slate-400">
-                                <th class="p-2 text-left bg-white/5">Prep.</th>
-                                <th class="p-2">il</th>
-                                <th class="p-2">lo</th>
-                                <th class="p-2">l'</th>
-                                <th class="p-2">la</th>
-                                <th class="p-2">i</th>
-                                <th class="p-2">gli</th>
-                                <th class="p-2">le</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-2 text-left font-bold bg-white/5">di</td>
-                                <td>del</td>
-                                <td>dello</td>
-                                <td>dell'</td>
-                                <td>della</td>
-                                <td>dei</td>
-                                <td>degli</td>
-                                <td>delle</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-2 text-left font-bold bg-white/5">a</td>
-                                <td>al</td>
-                                <td>allo</td>
-                                <td>all'</td>
-                                <td>alla</td>
-                                <td>ai</td>
-                                <td>agli</td>
-                                <td>alle</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-2 text-left font-bold bg-white/5">da</td>
-                                <td>dal</td>
-                                <td>dallo</td>
-                                <td>dall'</td>
-                                <td>dalla</td>
-                                <td>dai</td>
-                                <td>dagli</td>
-                                <td>dalle</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-2 text-left font-bold bg-white/5">in</td>
-                                <td>nel</td>
-                                <td>nello</td>
-                                <td>nell'</td>
-                                <td>nella</td>
-                                <td>nei</td>
-                                <td>negli</td>
-                                <td>nelle</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-2 text-left font-bold bg-white/5">su</td>
-                                <td>sul</td>
-                                <td>sullo</td>
-                                <td>sull'</td>
-                                <td>sulla</td>
-                                <td>sui</td>
-                                <td>sugli</td>
-                                <td>sulle</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <!-- Preposizioni Articolate -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4 text-orange-600">🔗 Zusammengesetzte Präpositionen (Preposizioni
+                        Articolate)</h3>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verschmelzung einer einfachen Präposition (di, a, da,
+                        in,
+                        su) mit einem bestimmten Artikel.</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-[10px] md:text-sm border-collapse text-center">
+                            <thead>
+                                <tr class="border-b border-white/20 text-slate-400">
+                                    <th class="p-2 text-left bg-white/5">Prep.</th>
+                                    <th class="p-2">il</th>
+                                    <th class="p-2">lo</th>
+                                    <th class="p-2">l'</th>
+                                    <th class="p-2">la</th>
+                                    <th class="p-2">i</th>
+                                    <th class="p-2">gli</th>
+                                    <th class="p-2">le</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-2 text-left font-bold bg-white/5">di</td>
+                                    <td>del</td>
+                                    <td>dello</td>
+                                    <td>dell'</td>
+                                    <td>della</td>
+                                    <td>dei</td>
+                                    <td>degli</td>
+                                    <td>delle</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-2 text-left font-bold bg-white/5">a</td>
+                                    <td>al</td>
+                                    <td>allo</td>
+                                    <td>all'</td>
+                                    <td>alla</td>
+                                    <td>ai</td>
+                                    <td>agli</td>
+                                    <td>alle</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-2 text-left font-bold bg-white/5">da</td>
+                                    <td>dal</td>
+                                    <td>dallo</td>
+                                    <td>dall'</td>
+                                    <td>dalla</td>
+                                    <td>dai</td>
+                                    <td>dagli</td>
+                                    <td>dalle</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-2 text-left font-bold bg-white/5">in</td>
+                                    <td>nel</td>
+                                    <td>nello</td>
+                                    <td>nell'</td>
+                                    <td>nella</td>
+                                    <td>nei</td>
+                                    <td>negli</td>
+                                    <td>nelle</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-2 text-left font-bold bg-white/5">su</td>
+                                    <td>sul</td>
+                                    <td>sullo</td>
+                                    <td>sull'</td>
+                                    <td>sulla</td>
+                                    <td>sui</td>
+                                    <td>sugli</td>
+                                    <td>sulle</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Pronomi (Diretti, Indiretti, Riflessivi) -->
-            <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg mb-10">
-                <h3 class="text-2xl font-bold mb-4 text-purple-600 text-center">👤 Personalpronomen (Pronomi Personali)
-                </h3>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-xs md:text-sm border-collapse text-left">
-                        <thead>
-                            <tr class="border-b border-slate-200 text-slate-500">
-                                <th class="p-3">Person</th>
-                                <th class="p-3 text-blue-600">Direkt (Akkusativ)</th>
-                                <th class="p-3 text-green-600">Indirekt (Dativ)</th>
-                                <th class="p-3 text-orange-600">Reflexiv</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-white/5">
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">io (1s)</td>
-                                <td>mi</td>
-                                <td>mi</td>
-                                <td>mi</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">tu (2s)</td>
-                                <td>ti</td>
-                                <td>ti</td>
-                                <td>ti</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">lui/lei (3s)</td>
-                                <td>lo / la</td>
-                                <td>gli / le</td>
-                                <td>si</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">noi (1p)</td>
-                                <td>ci</td>
-                                <td>ci</td>
-                                <td>ci</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">voi (2p)</td>
-                                <td>vi</td>
-                                <td>vi</td>
-                                <td>vi</td>
-                            </tr>
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="p-3 font-bold">loro (3p)</td>
-                                <td>li / le</td>
-                                <td>gli (loro)</td>
-                                <td>si</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 italic">
-                    💡 Hinweis: Pronomen stehen normalerweise <b>vor</b> dem konjugierten Verb (z.B. "Lo leggo"), außer
-                    beim Imperativ und Infinitiv, wo sie angehängt werden.
-                </div>
-            </div><!-- #Pronomi Box -->
-        </div><!-- #infoContentIt -->
+                <!-- Pronomi (Diretti, Indiretti, Riflessivi) -->
+                <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg mb-10">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-600 text-center">👤 Personalpronomen (Pronomi
+                        Personali)
+                    </h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs md:text-sm border-collapse text-left">
+                            <thead>
+                                <tr class="border-b border-slate-200 text-slate-500">
+                                    <th class="p-3">Person</th>
+                                    <th class="p-3 text-blue-600">Direkt (Akkusativ)</th>
+                                    <th class="p-3 text-green-600">Indirekt (Dativ)</th>
+                                    <th class="p-3 text-orange-600">Reflexiv</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">io (1s)</td>
+                                    <td>mi</td>
+                                    <td>mi</td>
+                                    <td>mi</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">tu (2s)</td>
+                                    <td>ti</td>
+                                    <td>ti</td>
+                                    <td>ti</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">lui/lei (3s)</td>
+                                    <td>lo / la</td>
+                                    <td>gli / le</td>
+                                    <td>si</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">noi (1p)</td>
+                                    <td>ci</td>
+                                    <td>ci</td>
+                                    <td>ci</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">voi (2p)</td>
+                                    <td>vi</td>
+                                    <td>vi</td>
+                                    <td>vi</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="p-3 font-bold">loro (3p)</td>
+                                    <td>li / le</td>
+                                    <td>gli (loro)</td>
+                                    <td>si</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 italic">
+                        💡 Hinweis: Pronomen stehen normalerweise <b>vor</b> dem konjugierten Verb (z.B. "Lo leggo"),
+                        außer
+                        beim Imperativ und Infinitiv, wo sie angehängt werden.
+                    </div>
+                </div><!-- #Pronomi Box -->
+            </div><!-- #infoContentIt -->
 
             <div id="infoContentEn" class="w-full hidden flex-col gap-6">
                 <!-- 1. Simple Present -->
                 <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
                     <h3 class="text-2xl font-bold mb-2 text-blue-600">1. Simple Present (Gegenwart)</h3>
-                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Fakten, Gewohnheiten und regelmäßige Abläufe.</p>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Fakten, Gewohnheiten und regelmäßige
+                        Abläufe.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
-                            <p class="text-sm">Infinitiv (Grundform). <br><b>Achtung:</b> Bei <i>he/she/it</i> ein <b>-s</b> anhängen!</p>
+                            <p class="text-sm">Infinitiv (Grundform). <br><b>Achtung:</b> Bei <i>he/she/it</i> ein
+                                <b>-s</b> anhängen!</p>
                             <p class="text-sm text-blue-600 mt-2 font-mono">I eat, you eat, he eat<b>s</b></p>
                         </div>
                         <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
@@ -2653,7 +2768,8 @@
                 <!-- 2. Present Continuous -->
                 <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
                     <h3 class="text-2xl font-bold mb-2 text-indigo-600">2. Present Continuous (Verlaufsform)</h3>
-                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Handlungen, die gerade in diesem Moment geschehen.</p>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für Handlungen, die gerade in diesem
+                        Moment geschehen.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
@@ -2669,19 +2785,26 @@
                     <div class="mt-4 bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100">
                         <h4 class="font-bold text-indigo-700 mb-2">Hilfsverb "to be" (sein)</h4>
                         <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-sm">
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>I</span> <b>am</b></div>
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span> <b>are</b></div>
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>he/she/it</span> <b>is</b></div>
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>we</span> <b>are</b></div>
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span> <b>are</b></div>
-                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>they</span> <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>I</span> <b>am</b>
+                            </div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span>
+                                <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>he/she/it</span>
+                                <b>is</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>we</span> <b>are</b>
+                            </div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>you</span>
+                                <b>are</b></div>
+                            <div class="flex justify-between border-b border-indigo-100 pb-1"><span>they</span>
+                                <b>are</b></div>
                         </div>
                     </div>
 
                     <!-- New: Continuous conjugation list -->
                     <div class="mt-4 bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100">
                         <h4 class="font-bold text-indigo-700 mb-2">Konjugations-Beispiel (working)</h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-xs md:text-sm font-medium">
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 text-xs md:text-sm font-medium">
                             <div class="p-1 bg-white rounded border border-indigo-50">I <b>am</b> working</div>
                             <div class="p-1 bg-white rounded border border-indigo-50">you <b>are</b> working</div>
                             <div class="p-1 bg-white rounded border border-indigo-50">he/she/it <b>is</b> working</div>
@@ -2695,11 +2818,13 @@
                 <!-- 3. Simple Past -->
                 <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
                     <h3 class="text-2xl font-bold mb-2 text-red-600">3. Simple Past (Vergangenheit)</h3>
-                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für abgeschlossene Handlungen in der Vergangenheit.</p>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Für abgeschlossene Handlungen in der
+                        Vergangenheit.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
-                            <p class="text-sm">Regelmäßig: Infinitiv + <b>-ed</b><br>Unregelmäßig: 2. Verbform (siehe Liste)</p>
+                            <p class="text-sm">Regelmäßig: Infinitiv + <b>-ed</b><br>Unregelmäßig: 2. Verbform (siehe
+                                Liste)</p>
                         </div>
                         <div class="bg-red-50/50 p-5 rounded-2xl border border-red-100">
                             <h4 class="font-bold text-red-600 mb-2">Beispiel</h4>
@@ -2713,21 +2838,36 @@
                             <span>⭐</span> Wichtige unregelmäßige Verben
                         </h4>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-[11px] md:text-xs">
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">be ➔ was/were ➔ <b>been</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">go ➔ went ➔ <b>gone</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">do ➔ did ➔ <b>done</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">say ➔ said ➔ <b>said</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">see ➔ saw ➔ <b>seen</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">get ➔ got ➔ <b>got/gotten</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">buy ➔ bought ➔ <b>bought</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">come ➔ came ➔ <b>come</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">eat ➔ ate ➔ <b>eaten</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">know ➔ knew ➔ <b>known</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">think ➔ thought ➔ <b>thought</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">give ➔ gave ➔ <b>given</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">make ➔ made ➔ <b>made</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">take ➔ took ➔ <b>taken</b></div>
-                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">write ➔ wrote ➔ <b>written</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">be ➔ was/were ➔
+                                <b>been</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">go ➔ went ➔ <b>gone</b>
+                            </div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">do ➔ did ➔ <b>done</b>
+                            </div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">say ➔ said ➔ <b>said</b>
+                            </div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">see ➔ saw ➔ <b>seen</b>
+                            </div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">get ➔ got ➔
+                                <b>got/gotten</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">buy ➔ bought ➔
+                                <b>bought</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">come ➔ came ➔
+                                <b>come</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">eat ➔ ate ➔ <b>eaten</b>
+                            </div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">know ➔ knew ➔
+                                <b>known</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">think ➔ thought ➔
+                                <b>thought</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">give ➔ gave ➔
+                                <b>given</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">make ➔ made ➔
+                                <b>made</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">take ➔ took ➔
+                                <b>taken</b></div>
+                            <div class="p-2 border border-slate-200 bg-white rounded shadow-sm">write ➔ wrote ➔
+                                <b>written</b></div>
                         </div>
                     </div>
                 </div>
@@ -2736,7 +2876,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
                         <h3 class="text-2xl font-bold mb-2 text-emerald-600">4. Future (will)</h3>
-                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Vorhersagen, Versprechen oder spontane Entschlüsse.</p>
+                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Vorhersagen, Versprechen oder spontane
+                            Entschlüsse.</p>
                         <div class="bg-slate-50 p-4 rounded-2xl mb-3">
                             <p class="text-sm"><b>will</b> + Infinitiv</p>
                         </div>
@@ -2744,7 +2885,8 @@
                     </div>
                     <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-lg">
                         <h3 class="text-2xl font-bold mb-2 text-teal-600">5. Future (be going to)</h3>
-                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Feste Pläne und Absichten für die Zukunft.</p>
+                        <p class="text-sm text-slate-500 mb-4 italic">Verwendung: Feste Pläne und Absichten für die
+                            Zukunft.</p>
                         <div class="bg-slate-50 p-4 rounded-2xl mb-3">
                             <p class="text-sm"><b>am/is/are going to</b> + Infinitiv</p>
                         </div>
@@ -2755,7 +2897,8 @@
                 <!-- 6. Present Perfect -->
                 <div class="bg-white p-6 rounded-3xl w-full border border-slate-200 shadow-lg">
                     <h3 class="text-2xl font-bold mb-2 text-orange-600">6. Present Perfect</h3>
-                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Handlungen, die in der Vergangenheit begannen und bis zur Gegenwart andauern oder deren Ergebnis wichtig ist.</p>
+                    <p class="text-sm text-slate-500 mb-6 italic">Verwendung: Handlungen, die in der Vergangenheit
+                        begannen und bis zur Gegenwart andauern oder deren Ergebnis wichtig ist.</p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-800 mb-2">Bildung</h4>
@@ -2784,31 +2927,41 @@
                         <div class="space-y-4">
                             <!-- Short adjectives -->
                             <div class="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                                <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-1">Ein- & zweisilbig (Kurz)</h4>
+                                <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-1">Ein- &
+                                    zweisilbig (Kurz)</h4>
                                 <p class="text-[11px] text-slate-500 mb-2">Regel: <b>-er</b> / <b>-est</b></p>
                                 <div class="text-sm font-medium space-y-1">
-                                    <div class="flex justify-between"><span>fast (schnell)</span> <span>➔ fast<b>er</b> ➔ fast<b>est</b></span></div>
-                                    <div class="flex justify-between"><span>happ<b>y</b> (glücklich)</span> <span>➔ happ<b>ier</b> ➔ happ<b>iest</b></span></div>
+                                    <div class="flex justify-between"><span>fast (schnell)</span> <span>➔ fast<b>er</b>
+                                            ➔ fast<b>est</b></span></div>
+                                    <div class="flex justify-between"><span>happ<b>y</b> (glücklich)</span> <span>➔
+                                            happ<b>ier</b> ➔ happ<b>iest</b></span></div>
                                 </div>
                             </div>
 
                             <!-- Long adjectives -->
                             <div class="p-3 bg-blue-50/30 rounded-2xl border border-blue-100">
-                                <h4 class="font-bold text-blue-700 text-xs uppercase tracking-wider mb-1">Mehrsilbig (Lang)</h4>
+                                <h4 class="font-bold text-blue-700 text-xs uppercase tracking-wider mb-1">Mehrsilbig
+                                    (Lang)</h4>
                                 <p class="text-[11px] text-blue-500 mb-2">Regel: <b>more</b> / <b>most</b></p>
                                 <div class="text-sm font-medium space-y-1">
-                                    <div class="flex justify-between"><span>expensive</span> <span>➔ <b>more</b> expensive</span></div>
-                                    <div class="flex justify-between"><span></span> <span>➔ <b>most</b> expensive</span></div>
-                                    <div class="italic text-[11px] text-slate-400 mt-1">(fast alle Wörter mit 3+ Silben)</div>
+                                    <div class="flex justify-between"><span>expensive</span> <span>➔ <b>more</b>
+                                            expensive</span></div>
+                                    <div class="flex justify-between"><span></span> <span>➔ <b>most</b> expensive</span>
+                                    </div>
+                                    <div class="italic text-[11px] text-slate-400 mt-1">(fast alle Wörter mit 3+ Silben)
+                                    </div>
                                 </div>
                             </div>
 
                             <!-- Irregular adjectives -->
                             <div class="p-3 bg-amber-50/30 rounded-2xl border border-amber-100">
-                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-wider mb-1">Wichtige Ausnahmen</h4>
+                                <h4 class="font-bold text-amber-700 text-xs uppercase tracking-wider mb-1">Wichtige
+                                    Ausnahmen</h4>
                                 <div class="text-sm font-medium space-y-1">
-                                    <div class="flex justify-between"><span>good (gut)</span> <span>➔ <b>better</b> ➔ <b>best</b></span></div>
-                                    <div class="flex justify-between"><span>bad (schlecht)</span> <span>➔ <b>worse</b> ➔ <b>worst</b></span></div>
+                                    <div class="flex justify-between"><span>good (gut)</span> <span>➔ <b>better</b> ➔
+                                            <b>best</b></span></div>
+                                    <div class="flex justify-between"><span>bad (schlecht)</span> <span>➔ <b>worse</b> ➔
+                                            <b>worst</b></span></div>
                                 </div>
                             </div>
 
@@ -2833,15 +2986,18 @@
                         </div>
                         <div class="border-l-4 border-amber-400 pl-4">
                             <h4 class="font-bold text-lg">Conditional 2 (Unlikely)</h4>
-                            <p class="text-xs text-slate-500 mb-2">Hypothetische Situationen (Träume/Unwahrscheinliches).</p>
+                            <p class="text-xs text-slate-500 mb-2">Hypothetische Situationen
+                                (Träume/Unwahrscheinliches).</p>
                             <p class="text-sm"><b>If</b> + Simple Past ➔ <b>would</b> + Infinitiv</p>
-                            <p class="text-sm font-medium mt-1">"If I <b>won</b> the lottery, I <b>would buy</b> a car."</p>
+                            <p class="text-sm font-medium mt-1">"If I <b>won</b> the lottery, I <b>would buy</b> a car."
+                            </p>
                         </div>
                         <div class="border-l-4 border-red-400 pl-4">
                             <h4 class="font-bold text-lg">Conditional 3 (Impossible)</h4>
                             <p class="text-xs text-slate-500 mb-2">Unmögliche Bedingungen (Vergangenheit).</p>
                             <p class="text-sm"><b>If</b> + Past Perfect ➔ <b>would have</b> + Partizip</p>
-                            <p class="text-sm font-medium mt-1">"If I <b>had studied</b>, I <b>would have passed</b>."</p>
+                            <p class="text-sm font-medium mt-1">"If I <b>had studied</b>, I <b>would have passed</b>."
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -2971,10 +3127,14 @@
                     <span id="excelBulbFormat"></span> Erforderliches Excel-Format:
                 </p>
                 <ul class="text-[10px] text-amber-700 space-y-1">
-                    <li>• <strong id="excelCol1Header">Spalte 1:</strong> <span id="excelCol1Desc">Italienische Wörter</span></li>
-                    <li>• <strong id="excelCol2Header">Spalte 2:</strong> <span id="excelCol2Desc">Deutsche Übersetzung</span></li>
-                    <li>• <strong id="excelCol3Header">Spalte 3:</strong> <span id="excelCol3Desc">Wortart (z.B. Substantiv, Verb)</span></li>
-                    <li>• <strong id="excelCol4Header">Spalte 4:</strong> <span id="excelCol4Desc">Emoji (optional)</span></li>
+                    <li>• <strong id="excelCol1Header">Spalte 1:</strong> <span id="excelCol1Desc">Italienische
+                            Wörter</span></li>
+                    <li>• <strong id="excelCol2Header">Spalte 2:</strong> <span id="excelCol2Desc">Deutsche
+                            Übersetzung</span></li>
+                    <li>• <strong id="excelCol3Header">Spalte 3:</strong> <span id="excelCol3Desc">Wortart (z.B.
+                            Substantiv, Verb)</span></li>
+                    <li>• <strong id="excelCol4Header">Spalte 4:</strong> <span id="excelCol4Desc">Emoji
+                            (optional)</span></li>
                 </ul>
             </div>
 
@@ -3199,16 +3359,20 @@
         <div class="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full shadow-2xl flex flex-col max-h-[90vh]">
             <div class="flex justify-between items-center mb-5 shrink-0">
                 <h2 class="text-xl font-bold text-slate-800 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-amber-500 mr-2">
-                        <path d="M22.5 18a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 18v-1.5h21V18Zm-3.863-4.5H5.362l-1.636-7.362a.75.75 0 0 1 1.171-.77l3.963 2.642 2.618-5.236a.75.75 0 0 1 1.344 0l2.618 5.236 3.963-2.642a.75.75 0 0 1 1.171.77L18.637 13.5Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 text-amber-500 mr-2">
+                        <path
+                            d="M22.5 18a1.5 1.5 0 0 1-1.5 1.5H3A1.5 1.5 0 0 1 1.5 18v-1.5h21V18Zm-3.863-4.5H5.362l-1.636-7.362a.75.75 0 0 1 1.171-.77l3.963 2.642 2.618-5.236a.75.75 0 0 1 1.344 0l2.618 5.236 3.963-2.642a.75.75 0 0 1 1.171.77L18.637 13.5Z" />
                     </svg>
                     Admin Dashboard
                 </h2>
                 <div class="flex gap-2">
                     <button onclick="exportAdminCSV()"
                         class="text-xs px-3 py-1.5 bg-green-100 text-green-700 hover:bg-green-200 rounded-lg transition-colors font-semibold flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 mr-1">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-4 h-4 mr-1">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
                         </svg> CSV-Export
                     </button>
                     <button id="closeAdminModalBtn"
@@ -3239,7 +3403,7 @@
                         <p id="kpiOpenInviteCodes" class="text-lg font-black text-purple-800">-</p>
                     </div>
                 </div>
-                
+
                 <div class="grid grid-cols-2 gap-2 mb-4 shrink-0">
                     <div class="bg-emerald-50 rounded-xl p-3 text-center border border-emerald-100">
                         <p class="text-[10px] text-emerald-600 font-bold uppercase tracking-wide">Gelernt (IT)</p>
@@ -3263,7 +3427,7 @@
                     <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center justify-between">
                         <span>📚 Basis-Vokabeln verwalten</span>
                     </h3>
-                    
+
                     <div class="space-y-4">
                         <!-- Italienisch -->
                         <div class="p-3 bg-white rounded-xl border border-slate-200">
@@ -3272,7 +3436,8 @@
                                 <span id="adminBaseVocabCountIt" class="text-[10px] text-slate-400">- Vokabeln</span>
                             </div>
                             <div class="flex gap-2">
-                                <input type="file" id="adminBaseVocabUploadIt" class="hidden" accept=".xlsx" onchange="uploadBaseVocab('it')">
+                                <input type="file" id="adminBaseVocabUploadIt" class="hidden" accept=".xlsx"
+                                    onchange="uploadBaseVocab('it')">
                                 <button onclick="document.getElementById('adminBaseVocabUploadIt').click()"
                                     class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-lg text-xs transition-all shadow-sm">
                                     📥 Italienisch laden
@@ -3297,7 +3462,8 @@
                                 <span id="adminBaseVocabCountEn" class="text-[10px] text-slate-400">- Vokabeln</span>
                             </div>
                             <div class="flex gap-2">
-                                <input type="file" id="adminBaseVocabUploadEn" class="hidden" accept=".xlsx" onchange="uploadBaseVocab('en')">
+                                <input type="file" id="adminBaseVocabUploadEn" class="hidden" accept=".xlsx"
+                                    onchange="uploadBaseVocab('en')">
                                 <button onclick="document.getElementById('adminBaseVocabUploadEn').click()"
                                     class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-xs transition-all shadow-sm">
                                     📥 Englisch laden
@@ -3330,7 +3496,8 @@
                                 <span id="adminGrammarCountIt" class="text-[10px] text-slate-400">- Sätze</span>
                             </div>
                             <div class="flex gap-2">
-                                <input type="file" id="adminGrammarUploadIt" class="hidden" accept=".xlsx" onchange="uploadGrammar('it')">
+                                <input type="file" id="adminGrammarUploadIt" class="hidden" accept=".xlsx"
+                                    onchange="uploadGrammar('it')">
                                 <button onclick="document.getElementById('adminGrammarUploadIt').click()"
                                     class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg text-xs transition-all shadow-sm">
                                     📥 Laden (IT)
@@ -3347,7 +3514,7 @@
                                 </button>
                             </div>
                         </div>
-                        
+
                         <!-- Englisch (Grammar) -->
                         <div class="p-3 bg-white rounded-xl border border-slate-200">
                             <div class="flex justify-between items-center mb-2">
@@ -3355,7 +3522,8 @@
                                 <span id="adminGrammarCountEn" class="text-[10px] text-slate-400">- Sätze</span>
                             </div>
                             <div class="flex gap-2">
-                                <input type="file" id="adminGrammarUploadEn" class="hidden" accept=".xlsx" onchange="uploadGrammar('en')">
+                                <input type="file" id="adminGrammarUploadEn" class="hidden" accept=".xlsx"
+                                    onchange="uploadGrammar('en')">
                                 <button onclick="document.getElementById('adminGrammarUploadEn').click()"
                                     class="flex-1 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg text-xs transition-all shadow-sm">
                                     📥 Laden (EN)
@@ -3379,7 +3547,8 @@
             <!-- Tab Content: Invites -->
             <div id="adminInviteTabContent" class="hidden flex flex-col flex-1 min-h-0 overflow-y-auto pr-2">
                 <div class="mb-4 flex gap-2">
-                    <button onclick="generateInviteCode()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-md active:scale-95">
+                    <button onclick="generateInviteCode()"
+                        class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl text-sm transition-all shadow-md active:scale-95">
                         🎟️ Einladungscode generieren
                     </button>
                 </div>
@@ -3479,7 +3648,9 @@
                     <h3 class="text-lg font-bold text-slate-800 mb-2 flex items-center">
                         Karteikarten (Neu)</h3>
                     <p class="text-sm md:text-base ml-2">
-                        Der Klassiker. Lerne Vokabeln wie mit echten Karten. Klicke zum Umdrehen einer Karte, um die Übersetzung zu sehen. Mit dem Stern-Symbol kannst du schwierige Wörter als <strong>Favoriten</strong> markieren.
+                        Der Klassiker. Lerne Vokabeln wie mit echten Karten. Klicke zum Umdrehen einer Karte, um die
+                        Übersetzung zu sehen. Mit dem Stern-Symbol kannst du schwierige Wörter als
+                        <strong>Favoriten</strong> markieren.
                     </p>
                 </section>
 
@@ -3494,7 +3665,8 @@
                         </div>
                         <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
                             <h4 class="font-bold text-amber-500 text-sm mb-1">Karteikarten</h4>
-                            <p class="text-xs text-slate-600">Der Klassiker. Lerne Vokabeln wie mit echten Karten. Klicke zum Umdrehen und markiere Favoriten.</p>
+                            <p class="text-xs text-slate-600">Der Klassiker. Lerne Vokabeln wie mit echten Karten.
+                                Klicke zum Umdrehen und markiere Favoriten.</p>
                         </div>
                         <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
                             <h4 class="font-bold text-orange-700 text-sm mb-1">Quiz Modus</h4>
@@ -3865,11 +4037,11 @@
 
         // --- 2. Backend API Integration ---
         const isProdDomain = !window.location.hostname.includes('localhost') && !window.location.hostname.match(/^\d+\.\d+\.\d+\.\d+$/);
-        
+
         const API_BASE_URL = (isCapacitor || isProdDomain)
             ? 'https://vokabeln.bernauer24.com'
             : '';
-        
+
         console.log("App Info:", {
             protocol: window.location.protocol,
             hostname: window.location.hostname,
@@ -4179,7 +4351,7 @@
             if (vInputLabel && vTransLabel) {
                 const targetName = CURRENT_LANG === 'en' ? 'Englisches' : 'Italienisches';
                 const transName = CURRENT_LANG === 'en' ? 'Englische' : 'Italienische';
-                
+
                 if (vocabInputLang === CURRENT_LANG) {
                     vInputLabel.textContent = `${targetName} Wort`;
                     vTransLabel.textContent = "Deutsche Übersetzung";
@@ -4232,7 +4404,7 @@
 
             const gHeader = document.querySelector('#grammarSection h2');
             if (gHeader) gHeader.innerHTML = `${currentFlag} ${t.grammar}`;
-            
+
             const wPrefix = document.getElementById('welcomePrefix');
             if (wPrefix) wPrefix.innerText = t.welcomePrefix;
 
@@ -4265,7 +4437,7 @@
             const iIcon = document.getElementById('infoIconBtn');
 
             if (CURRENT_LANG === 'en') {
-                if (gBtn) { gBtn.classList.remove('hidden'); gBtn.style.removeProperty('display'); } 
+                if (gBtn) { gBtn.classList.remove('hidden'); gBtn.style.removeProperty('display'); }
             } else {
                 if (gBtn) { gBtn.classList.remove('hidden'); gBtn.style.removeProperty('display'); }
             }
@@ -4274,14 +4446,14 @@
 
             // Switch out of info if it shouldn't be visible (e.g. mobile grammar)
             // But actually we want it to work on mobile too if they click the 'i'
-            
+
             // Show/Hide language specific info content handled below in dynamic section
 
 
             // Sync Flag Switcher Opacity
             const itBtn = document.getElementById('langItBtn');
             const enBtn = document.getElementById('langEnBtn');
-            
+
             const updateFlags = (it, en, lang) => {
                 if (!it || !en) return;
                 if (lang === 'it') {
@@ -4337,7 +4509,7 @@
             const tabInfoBtn = document.getElementById('tabInfoBtn');
 
             if (CURRENT_LANG === 'en') {
-                if (infoSection) { 
+                if (infoSection) {
                     infoSection.style.removeProperty('display');
                     if (currentMode === 'dragdrop' || currentMode === 'info') {
                         infoSection.classList.remove('hidden');
@@ -4346,9 +4518,9 @@
                         infoSection.classList.add('hidden');
                     }
                 }
-                if (infoModeToggle) { 
-                    infoModeToggle.classList.remove('hidden'); 
-                    infoModeToggle.style.removeProperty('display'); 
+                if (infoModeToggle) {
+                    infoModeToggle.classList.remove('hidden');
+                    infoModeToggle.style.removeProperty('display');
                 }
                 if (infoIt) { infoIt.classList.add('hidden'); infoIt.classList.remove('flex'); }
                 if (infoEn) { infoEn.classList.remove('hidden'); infoEn.classList.add('flex'); }
@@ -4382,12 +4554,12 @@
             CURRENT_LANG = lang;
             localStorage.setItem('ita-lang', lang);
             renderAllLabels();
-            
+
             // Reload data
             showToast(translations[lang].welcome, 'info');
             await loadDataFromServer();
             await updateAdminGrammarCount(); // Now load for both IT and EN
-            
+
             // Refresh administration/modal stats if needed
             if (typeof updateAdminBaseVocabCount === 'function') updateAdminBaseVocabCount();
 
@@ -4398,7 +4570,7 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             renderAllLabels();
-            
+
             document.getElementById('langItBtn')?.addEventListener('click', () => switchLanguage('it'));
             document.getElementById('langEnBtn')?.addEventListener('click', () => switchLanguage('en'));
         });
@@ -4597,7 +4769,7 @@
                         fullDictionary = JSON.parse(cachedVocab);
                         const cachedStats = localStorage.getItem(`ita-word-stats-${CURRENT_LANG}`);
                         if (cachedStats) wordStats = JSON.parse(cachedStats);
-                        
+
                         // Load Grammar Sentences from cache
                         const cachedGrammar = localStorage.getItem(`ita-grammar-sentences-${CURRENT_LANG}`);
                         if (cachedGrammar) {
@@ -4609,30 +4781,11 @@
                     } catch (e) { console.warn("Cache parse failed", e); }
                 }
             }
-            
-            // FALLBACK: If still empty, load from Offline Dictionary
-            if (fullDictionary.length === 0) {
-                // Check if offlineDictionary (it) or window.offlineDictionaryEn exist
-                const itDict = (typeof offlineDictionary !== 'undefined') ? offlineDictionary : [];
-                const enDict = (typeof offlineDictionaryEn !== 'undefined') ? offlineDictionaryEn : (window.offlineDictionaryEn || []);
-                
-                const dictToUse = CURRENT_LANG === 'en' ? enDict : itDict;
-                
-                if (dictToUse && dictToUse.length > 0) {
-                    fullDictionary = JSON.parse(JSON.stringify(dictToUse));
-                    console.log(`Demo Mode: Loaded ${fullDictionary.length} items from offline fallback (${CURRENT_LANG})`);
-                }
-            }
-            
-            if (fullDictionary.length > 0 && !isSilent) {
-                renderApp();
-            }
 
             if (window._isSyncing) return;
             window._isSyncing = true;
-            
-            // EXIT EARLY: We are in Demo Mode (Homepage), avoid any server API calls
-            return;
+
+            return; // EXIT EARLY - NO SERVER SYNC IN DEMO MODE
 
             try {
                 if (isCapacitor) console.log("Fetching vocab...");
@@ -4651,25 +4804,25 @@
                         if (userNameEl) userNameEl.textContent = profile.name;
                         if (userNameMobileEl) userNameMobileEl.textContent = profile.name;
                     }
-                } catch (pe) { 
-                    if (!isSilent) console.warn("Profile sync failed", pe); 
+                } catch (pe) {
+                    if (!isSilent) console.warn("Profile sync failed", pe);
                 }
 
                 // Check for remote reset
-                    if (serverLastReset) {
-                        const localLastReset = localStorage.getItem('ita-local-last-reset');
-                        const serverResetTime = new Date(serverLastReset).getTime();
-                        const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
+                if (serverLastReset) {
+                    const localLastReset = localStorage.getItem('ita-local-last-reset');
+                    const serverResetTime = new Date(serverLastReset).getTime();
+                    const localResetTime = localLastReset ? parseInt(localLastReset) : 0;
 
-                        if (serverResetTime > localResetTime || !localLastReset) {
-                            console.log("Remote statistics reset (or new account) detected. Clearing local data...");
-                            wordStats = {};
-                            dailyActivity = {};
-                            grammarActivityCount = 0;
-                            localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
-                            saveAllDataLocally();
-                        }
+                    if (serverResetTime > localResetTime || !localLastReset) {
+                        console.log("Remote statistics reset (or new account) detected. Clearing local data...");
+                        wordStats = {};
+                        dailyActivity = {};
+                        grammarActivityCount = 0;
+                        localStorage.setItem('ita-local-last-reset', serverResetTime.toString());
+                        saveAllDataLocally();
                     }
+                }
 
                 fullDictionary = vocab.map(v => ({
                     id: v.id,
@@ -4784,7 +4937,7 @@
                 // Double check: if sync indicator is still showing "starting", reset it
                 const lastSyncStatus = localStorage.getItem('ita-last-sync');
                 if (!lastSyncStatus) {
-                     if (lastSyncTimeEl) lastSyncTimeEl.textContent = "--:--";
+                    if (lastSyncTimeEl) lastSyncTimeEl.textContent = "--:--";
                 }
             }
         }
@@ -4807,33 +4960,33 @@
                     })
                 });
             } catch (err) {
-                addToSyncOutbox('stats', { 
-                    wordId, 
-                    data: s, 
+                addToSyncOutbox('stats', {
+                    wordId,
+                    data: s,
                     isActive: w ? w.isActive : true,
                     isMarked: w ? w.isMarked : false
                 });
             }
         }
 
-        window.toggleMark = function(wordId, element) {
+        window.toggleMark = function (wordId, element) {
             const vocab = fullDictionary.find(v => v.id == wordId);
             if (!vocab) return;
             vocab.isMarked = !vocab.isMarked;
-            
+
             // UI Update: Update the element itself if passed
             if (element && element.classList) {
                 if (vocab.isMarked) element.classList.add('marked');
                 else element.classList.remove('marked');
             }
-            
+
             // Update all visible stars for this word in the entire document
             const stars = document.querySelectorAll(`[data-mark-id="${wordId}"]`);
             stars.forEach(s => {
                 if (vocab.isMarked) s.classList.add('marked');
                 else s.classList.remove('marked');
             });
-            
+
             saveAllDataLocally();
             saveStatToServer(wordId);
         }
@@ -5031,7 +5184,7 @@
             authToggleText.textContent = isLoginMode ? 'Noch kein Konto?' : 'Bereits ein Konto?';
             authToggleBtn.textContent = isLoginMode ? 'Registrieren' : 'Anmelden';
             authError.classList.add('hidden');
-            
+
             // Show/Hide Invite Code field
             const inviteContainer = document.getElementById('authInviteCodeContainer');
             if (isLoginMode) {
@@ -5251,7 +5404,7 @@
                 if (IS_ADMIN) {
                     adminBtn.classList.remove('hidden');
                     adminBtn.style.setProperty('display', 'block', 'important');
-                    if (openContactBtn) openContactBtn.classList.add('hidden'); 
+                    if (openContactBtn) openContactBtn.classList.add('hidden');
                     // Re-run admin trigger setup whenever we show the app to ensure listeners are fresh
                     if (typeof setupAdminTrigger === 'function') setupAdminTrigger();
                 } else {
@@ -5261,7 +5414,7 @@
                 }
             }
 
-            loadDataFromServer();
+            // loadDataFromServer(); // Disabled for initial call to prevent any background sync attempts
         }
 
         onboardingSubmitBtn.addEventListener('click', async () => {
@@ -5279,7 +5432,7 @@
                 // Reset directions based on current language
                 vocabInputLang = CURRENT_LANG === 'it' ? 'it' : 'en';
                 vocabOutputLang = 'de';
-                
+
                 // Update direction buttons UI if they exist
                 const btnDe = document.getElementById('vocabLangDeBtn');
                 const btnTarget = document.getElementById('vocabLangItBtn');
@@ -5471,7 +5624,7 @@
             if (isNoun && pair.grammatica && CURRENT_LANG === 'it') {
                 return (getArticle(pair.it, pair.grammatica) + pair.it);
             }
-            
+
             // Apply "to " prefix for English verbs
             if (isVerb && CURRENT_LANG === 'en') {
                 const word = pair.it.trim();
@@ -5494,7 +5647,7 @@
             writeSubmitBtn.querySelector('.btn-icon-next').classList.add('hidden');
             writeSubmitBtn.classList.remove('btn-next', 'bg-slate-700', 'hover:bg-slate-800');
             writeSubmitBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-            
+
             let availableWords = getAvailableWords();
             if (availableWords.length === 0) return;
             const { due, future } = getDueWords(availableWords);
@@ -5593,7 +5746,7 @@
             writeSubmitBtn.querySelector('.btn-icon-check').classList.add('hidden');
             writeSubmitBtn.querySelector('.btn-icon-next').classList.remove('hidden');
             writeSubmitBtn.disabled = false;
-            
+
             writeSubmitBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
             writeSubmitBtn.classList.add('btn-next', 'bg-slate-700', 'hover:bg-slate-800');
             writeSubmitBtn.focus();
@@ -5769,7 +5922,7 @@
             // Ensure layout and info section visibility based on language
             dragDropContainer.classList.add('lg:grid-cols-3', 'max-w-7xl');
             dragDropContainer.classList.remove('lg:grid-cols-2', 'max-w-5xl');
-            
+
             if (CURRENT_LANG === 'en' || isCapacitor) {
                 infoSection.classList.add('hidden');
                 infoSection.classList.remove('flex');
@@ -6288,13 +6441,13 @@
 
 
         function updateTabStyles(activeMode) {
-            const tabs = { 
-                'dragdrop': modeDragDropBtn, 
-                'quiz': modeQuizBtn, 
-                'cards': modeCardsBtn, 
-                'write': modeWriteBtn, 
+            const tabs = {
+                'dragdrop': modeDragDropBtn,
+                'quiz': modeQuizBtn,
+                'cards': modeCardsBtn,
+                'write': modeWriteBtn,
                 'grammar': modeGrammarBtn,
-                'info': modeInfoBtn 
+                'info': modeInfoBtn
             };
             Object.keys(tabs).forEach(m => {
                 if (tabs[m]) {
@@ -6349,7 +6502,7 @@
             if (!sel || !list || !label || !btn) return;
 
             let categories = [...new Set(grammarSentences.map(s => s.category).filter(Boolean))];
-            
+
             // Add default English tenses if they are not already in the categories 
             if (CURRENT_LANG === 'en') {
                 const enTenses = ['Simple Present', 'Present Continuous', 'Simple Past', 'Future', 'Present Perfect', 'Imperativ', 'Conditional'];
@@ -6359,7 +6512,7 @@
                     }
                 });
             }
-            
+
             categories.sort();
 
             const currentVal = sel.value;
@@ -6458,7 +6611,7 @@
             const clean = word.toLowerCase().trim();
             if (clean === 'will') return 'Future';
             if (GRAMMAR_RULES_EN.modals.has(clean)) return clean;
-            
+
             // Basic irregulars
             const irregulars = {
                 'am': 'be', 'is': 'be', 'are': 'be', 'was': 'be', 'were': 'be', 'been': 'be', 'being': 'be',
@@ -6498,7 +6651,7 @@
                 'sat': 'sit', 'sitting': 'sit', 'sits': 'sit',
                 'got': 'get', 'getting': 'get', 'gets': 'get', 'gotten': 'get'
             };
-            
+
             if (irregulars[clean]) return irregulars[clean];
 
             // Regular endings
@@ -6510,13 +6663,13 @@
                 }
                 // e-drop (making -> make) - tricky, guess 'e' if simple root
                 if (root.match(/[aeiou][^aeiou]$/)) {
-                     return root + 'e';
+                    return root + 'e';
                 }
                 return root;
             }
             if (clean.endsWith('ed')) {
                 const root = clean.slice(0, -2);
-                 if (root.match(/([^aeiou])\1$/)) {
+                if (root.match(/([^aeiou])\1$/)) {
                     return root.slice(0, -1);
                 }
                 // tried -> try
@@ -6603,7 +6756,7 @@
 
             // Split into tokens including punctuation and spaces
             const tokens = sentenceObj.it.split(/(\s+|[,.!?;:()])/);
-            
+
             // --- Merge "be going to" for English ---
             if (CURRENT_LANG === 'en') {
                 for (let i = 0; i < tokens.length - 2; i++) {
@@ -6612,7 +6765,7 @@
                     if (['am', 'is', 'are', 'was', 'were', 'be', "'m", "'s", "'re"].includes(t1)) {
                         let nextGoeIdx = -1;
                         let nextToIdx = -1;
-                        
+
                         // Look for "going"
                         for (let j = i + 1; j < tokens.length; j++) {
                             if (!tokens[j].trim()) continue;
@@ -6620,9 +6773,9 @@
                                 nextGoeIdx = j;
                                 break;
                             }
-                            break; 
+                            break;
                         }
-                        
+
                         if (nextGoeIdx !== -1) {
                             // Look for "to"
                             for (let k = nextGoeIdx + 1; k < tokens.length; k++) {
@@ -6634,7 +6787,7 @@
                                 break;
                             }
                         }
-                        
+
                         if (nextToIdx !== -1) {
                             const mergedValue = tokens.slice(i, nextToIdx + 1).join('');
                             tokens.splice(i, nextToIdx - i + 1, mergedValue);
@@ -6673,10 +6826,10 @@
                     }
                 } else if (CURRENT_LANG === 'en') {
                     // Start of English Rules
-                    
+
                     // Ignore common known non-verbs to prevent weird gaps
                     if (GRAMMAR_RULES_EN.nonVerbs.has(cleanNoPunct)) return;
-                    
+
                     // Check if known noun
                     let singular = cleanNoPunct;
                     if (cleanNoPunct.endsWith('ies')) singular = cleanNoPunct.slice(0, -3) + 'y';
@@ -6684,9 +6837,9 @@
                     else if (cleanNoPunct.endsWith('s') && cleanNoPunct.length > 3 && !cleanNoPunct.endsWith('ss')) singular = cleanNoPunct.slice(0, -1);
 
                     const isKnownNoun = fullDictionary.some(item =>
-                        ((item.en && (item.en.toLowerCase() === cleanNoPunct || item.en.toLowerCase() === singular)) || 
-                         (item.it && (item.it.toLowerCase() === cleanNoPunct || item.it.toLowerCase() === singular)) ||
-                         (CURRENT_LANG === 'en' && item.de && (item.de.toLowerCase() === cleanNoPunct || item.de.toLowerCase() === singular))) && 
+                        ((item.en && (item.en.toLowerCase() === cleanNoPunct || item.en.toLowerCase() === singular)) ||
+                            (item.it && (item.it.toLowerCase() === cleanNoPunct || item.it.toLowerCase() === singular)) ||
+                            (CURRENT_LANG === 'en' && item.de && (item.de.toLowerCase() === cleanNoPunct || item.de.toLowerCase() === singular))) &&
                         item.typ === 'Substantiv'
                     );
                     const isNounSuffix = /((tion|sion|ment|ness|ity|ance|ence|ship|hood|er|or)s?)$/.test(cleanNoPunct);
@@ -6694,38 +6847,38 @@
 
                     // 2. Check Modals and strong Verb clues first
                     if (GRAMMAR_RULES_EN.modals.has(cleanNoPunct)) {
-                         eligibleTokens.push({ idx, type: 'verb', weight: 1.2 });
+                        eligibleTokens.push({ idx, type: 'verb', weight: 1.2 });
                     } else if (GRAMMAR_RULES_EN.prepositions.has(cleanNoPunct)) {
-                         eligibleTokens.push({ idx, type: 'preposition', weight: 1.0 });
+                        eligibleTokens.push({ idx, type: 'preposition', weight: 1.0 });
                     } else if (GRAMMAR_RULES_EN.possessives.has(cleanNoPunct)) {
-                         eligibleTokens.push({ idx, type: 'possessive', weight: 1.0 });
+                        eligibleTokens.push({ idx, type: 'possessive', weight: 1.0 });
                     } else {
-                         const isKnownVerb = fullDictionary.some(item =>
-                             ((item.en && item.en.toLowerCase() === cleanNoPunct) || (item.it && item.it.toLowerCase() === cleanNoPunct)) && item.typ === 'Verb'
-                         );
-                         const inf = deriveInfinitiveEn(cleanNoPunct);
-                         let isValidVerbGap = isKnownVerb || cleanNoPunct.endsWith('ing') || cleanNoPunct.endsWith('ed') || /^(am|is|are|was|were|'m|'s|'re|be)\s+going\s+to$/i.test(cleanNoPunct);
-                         
-                         if (!isValidVerbGap && inf !== cleanNoPunct) {
-                              const isJustStripped = cleanNoPunct.endsWith('s') && (inf === cleanNoPunct.slice(0, -1) || inf === cleanNoPunct.slice(0, -2) || inf === cleanNoPunct.slice(0, -3) + 'y');
-                              if (isJustStripped) {
-                                  isValidVerbGap = fullDictionary.some(item => ((item.en && item.en.toLowerCase() === inf) || (item.it && item.it.toLowerCase() === inf)) && item.typ === 'Verb');
-                              } else { isValidVerbGap = true; }
-                         }
+                        const isKnownVerb = fullDictionary.some(item =>
+                            ((item.en && item.en.toLowerCase() === cleanNoPunct) || (item.it && item.it.toLowerCase() === cleanNoPunct)) && item.typ === 'Verb'
+                        );
+                        const inf = deriveInfinitiveEn(cleanNoPunct);
+                        let isValidVerbGap = isKnownVerb || cleanNoPunct.endsWith('ing') || cleanNoPunct.endsWith('ed') || /^(am|is|are|was|were|'m|'s|'re|be)\s+going\s+to$/i.test(cleanNoPunct);
 
-                         if (isValidVerbGap) {
-                              eligibleTokens.push({ idx, type: 'verb', weight: 1.0 });
-                         } else {
-                              // 3. Morphological guesses (Comparative/Superlative)
-                              // Only if length > 3 and not already identified as noun/verb
-                              if (cleanNoPunct.length > 3) {
-                                  if (cleanNoPunct.endsWith('est') || cleanNoPunct === 'most' || cleanNoPunct === 'best' || cleanNoPunct === 'worst') {
-                                       eligibleTokens.push({ idx, type: 'superlative', weight: 0.8 }); // Lower weight to prioritize verbs
-                                  } else if (cleanNoPunct.endsWith('er') || cleanNoPunct === 'more' || cleanNoPunct === 'better' || cleanNoPunct === 'worse') {
-                                       eligibleTokens.push({ idx, type: 'comparative', weight: 0.8 }); // Lower weight
-                                  }
-                              }
-                         }
+                        if (!isValidVerbGap && inf !== cleanNoPunct) {
+                            const isJustStripped = cleanNoPunct.endsWith('s') && (inf === cleanNoPunct.slice(0, -1) || inf === cleanNoPunct.slice(0, -2) || inf === cleanNoPunct.slice(0, -3) + 'y');
+                            if (isJustStripped) {
+                                isValidVerbGap = fullDictionary.some(item => ((item.en && item.en.toLowerCase() === inf) || (item.it && item.it.toLowerCase() === inf)) && item.typ === 'Verb');
+                            } else { isValidVerbGap = true; }
+                        }
+
+                        if (isValidVerbGap) {
+                            eligibleTokens.push({ idx, type: 'verb', weight: 1.0 });
+                        } else {
+                            // 3. Morphological guesses (Comparative/Superlative)
+                            // Only if length > 3 and not already identified as noun/verb
+                            if (cleanNoPunct.length > 3) {
+                                if (cleanNoPunct.endsWith('est') || cleanNoPunct === 'most' || cleanNoPunct === 'best' || cleanNoPunct === 'worst') {
+                                    eligibleTokens.push({ idx, type: 'superlative', weight: 0.8 }); // Lower weight to prioritize verbs
+                                } else if (cleanNoPunct.endsWith('er') || cleanNoPunct === 'more' || cleanNoPunct === 'better' || cleanNoPunct === 'worse') {
+                                    eligibleTokens.push({ idx, type: 'comparative', weight: 0.8 }); // Lower weight
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -6737,7 +6890,7 @@
                 eligibleTokens.forEach(t => {
                     if (t.type === 'verb') {
                         const tokenStr = tokens[t.idx].toLowerCase().replace(/[.,!?()[\]{}"']/g, '').trim();
-                        
+
                         // Force the first verb after "if" to be a gap
                         if (!foundIfVerb && ifIdx !== -1 && t.idx > ifIdx) {
                             t.weight += 100.0; // Mandatory boost
@@ -6786,7 +6939,7 @@
                     if (gap.type === 'verb') {
                         const cleanPunct = token.replace(/[.,:;?!()]/g, '');
                         let inf = CURRENT_LANG === 'it' ? deriveInfinitive(cleanPunct) : deriveInfinitiveEn(cleanPunct);
-                        
+
                         // Handle "be going to" Future Hint
                         if (CURRENT_LANG === 'en') {
                             const w = cleanPunct.toLowerCase();
@@ -6887,23 +7040,23 @@
 
         function switchMode(mode) {
             currentMode = mode; successText.classList.add('hidden');
-            
+
             if (mode === 'add-vocab') {
                 isPaused = true;
                 vocabModal.classList.remove('hidden');
                 vocabModal.classList.add('flex');
-                
+
                 // FORCE: Initialize directions based on language
                 vocabInputLang = CURRENT_LANG === 'it' ? 'it' : 'en';
                 vocabOutputLang = 'de';
                 vocabInput.placeholder = CURRENT_LANG === 'it' ? 'z.B. mangiare' : 'e.g. eat';
-                
+
                 // Reset directions based on current language
                 vocabInputLang = CURRENT_LANG === 'it' ? 'it' : 'en';
                 vocabOutputLang = 'de';
                 vocabInput.placeholder = CURRENT_LANG === 'it' ? 'z.B. mangiare' : 'e.g. eat';
                 vocabTranslation.value = '';
-                
+
                 // Update direction buttons UI if they exist
                 const btnDe = document.getElementById('vocabLangDeBtn');
                 const btnTarget = document.getElementById('vocabLangItBtn');
@@ -7052,9 +7205,9 @@
         dropdownMenu = document.getElementById('dropdownMenu');
         if (menuBtn && dropdownMenu) {
             menuBtn.addEventListener('click', () => dropdownMenu.classList.toggle('hidden'));
-            document.addEventListener('click', (e) => { 
-                if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target)) 
-                    dropdownMenu.classList.add('hidden'); 
+            document.addEventListener('click', (e) => {
+                if (!menuBtn.contains(e.target) && !dropdownMenu.contains(e.target))
+                    dropdownMenu.classList.add('hidden');
             });
         }
 
@@ -7084,7 +7237,7 @@
 
                 // Clear modal and move content in
                 mobileFilterContent.innerHTML = '';
-                
+
                 if (currentMode === 'grammar') {
                     const focusWrap = document.getElementById('grammarFocusFilterWrapper');
                     const levelWrap = document.getElementById('grammarLevelFilterWrapper');
@@ -7119,10 +7272,10 @@
 
             while (mobileFilterContent.firstChild) {
                 const child = mobileFilterContent.firstChild;
-                
+
                 // Route children back based on their content/ID
-                if (child.id === 'grammarFocusFilterLabelParent' || 
-                    child.id === 'grammarFocusFilter' || 
+                if (child.id === 'grammarFocusFilterLabelParent' ||
+                    child.id === 'grammarFocusFilter' ||
                     (child.querySelector && child.querySelector('#grammarFocusFilterBtn'))) {
                     focusPlaceholder.appendChild(child);
                 } else if (child.innerHTML && (child.innerHTML.includes('grammarLevelFilter') || child.innerHTML.includes('Sprachniveau'))) {
@@ -7506,7 +7659,7 @@
                     if (!fallbackConfirmed) return;
 
                     const dictToUse = CURRENT_LANG === 'en' ? (window.offlineDictionaryEn || []) : offlineDictionary;
-                    
+
                     if (dictToUse.length === 0) {
                         return showToast(`Keine Offline-Liste für ${CURRENT_LANG.toUpperCase()} verfügbar.`, "warning");
                     }
@@ -7828,7 +7981,7 @@
                 // If it's empty, it falls back to online.
                 offlineResult = vocabInputLang === 'en' ? (window.enToDeMap ? enToDeMap[q] : null) : (window.deToEnMap ? deToEnMap[q] : null);
             }
-            
+
             if (offlineResult) {
                 vocabTranslation.value = (vocabInputLang === 'it' || vocabInputLang === 'en') ? offlineResult.de : (offlineResult.it || offlineResult.en);
                 const detectedTyp = offlineResult.typ || 'Substantiv';
@@ -8267,7 +8420,7 @@
             try {
                 const res = await fetch(`${API_BASE_URL}/api/admin/invite-codes`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Authorization': `Bearer ${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
@@ -8290,7 +8443,7 @@
                 showToast("E-Mail wird gesendet...", "info");
                 const res = await fetch(`${API_BASE_URL}/api/admin/invite-codes/send`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Authorization': `Bearer ${API_TOKEN}`,
                         'Content-Type': 'application/json'
                     },
@@ -8546,14 +8699,14 @@
         }
 
         // --- Admin Excel/Grammar Logic ---
-        window.uploadBaseVocab = async function(lang) {
+        window.uploadBaseVocab = async function (lang) {
             const inputId = `adminBaseVocabUpload${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
             const input = document.getElementById(inputId);
             if (!input) return;
 
             const file = input.files[0]; if (!file) return;
             console.log(`[ADMIN] Starting upload for ${lang.toUpperCase()}...`);
-            
+
             const reader = new FileReader();
             reader.onload = async (event) => {
                 try {
@@ -8584,13 +8737,13 @@
                     if (await showConfirm(confirmMsg, "Import bestätigen")) {
                         const res = await fetch(`${API_BASE_URL}/api/admin/base-vocab/bulk`, {
                             method: 'POST',
-                            headers: { 
+                            headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${API_TOKEN}`
                             },
                             body: JSON.stringify({ words: wordsToUpload, language: lang })
                         });
-                        
+
                         if (res.ok) {
                             showToast(`${wordsToUpload.length} ${lang.toUpperCase()}-Basis-Vokabeln erfolgreich importiert.`, "success");
                             updateAdminBaseVocabCount();
@@ -8608,7 +8761,7 @@
             reader.readAsArrayBuffer(file);
         };
 
-        window.downloadBaseVocab = async function(lang) {
+        window.downloadBaseVocab = async function (lang) {
             try {
                 console.log(`[ADMIN] Starting download for ${lang.toUpperCase()}...`);
                 const res = await fetch(`${API_BASE_URL}/api/base-vocab?language=${lang}`, {
@@ -8633,12 +8786,12 @@
             }
         };
 
-        window.deleteAdminBaseVocab = async function(lang) {
+        window.deleteAdminBaseVocab = async function (lang) {
             if (!(await showConfirm(`Möchtest du wirklich die gesamte globale BASIS-LISTE (${lang.toUpperCase()}) vom Server löschen?`, "Liste leeren?"))) return;
             try {
                 const res = await fetch(`${API_BASE_URL}/api/admin/base-vocab/bulk`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${API_TOKEN}`
                     },
@@ -8651,7 +8804,7 @@
             } catch (err) { showToast("Fehler beim Leeren.", "error"); }
         };
 
-        window.uploadGrammar = async function(lang) {
+        window.uploadGrammar = async function (lang) {
             const inputId = `adminGrammarUpload${lang.charAt(0).toUpperCase() + lang.slice(1)}`;
             const input = document.getElementById(inputId);
             if (!input) return;
@@ -8665,7 +8818,7 @@
                     const sheet = workbook.Sheets[workbook.SheetNames[0]];
                     // Extrahiere als 2D-Array (ignoriert kaputte Header-Namen)
                     let rows = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                    
+
                     // Leere Zeilen rausfiltern
                     rows = rows.filter(row => row.length > 0 && row.some(cell => cell !== undefined && cell !== null && String(cell).trim() !== ''));
 
@@ -8674,27 +8827,27 @@
                     // Prüfen ob die erste Zeile ein Header ist (enthält Schlüsselworte)
                     const firstRowStr = String(rows[0].join(' ')).toLowerCase();
                     const hasHeader = firstRowStr.includes('italienisch') || firstRowStr.includes('deutsch') || firstRowStr.includes('englisch') || firstRowStr.includes('sätze') || firstRowStr.includes('sentence') || firstRowStr.includes('kategorie') || firstRowStr.includes('fokus') || firstRowStr.includes('type');
-                    
+
                     if (hasHeader) {
                         rows.shift(); // Header entfernen
                     }
 
                     const sentencesToUpload = rows.map(row => {
                         // Spalte A = Fremdsprache, Spalte B = Muttersprache, Spalte C = Kategorie
-                        const it = row[0] || ''; 
+                        const it = row[0] || '';
                         const de = row[1] || '';
                         let cat = row[2] || "Allgemein";
-                        
+
                         // Standardize categories for English based on keyword matches
                         if (lang === 'en') {
-                             const lowerCat = String(cat).toLowerCase();
-                             if (lowerCat.includes('present simple') || lowerCat.includes('simple present')) cat = 'Simple Present';
-                             else if (lowerCat.includes('present continuous') || lowerCat.includes('present progressive')) cat = 'Present Continuous';
-                             else if (lowerCat.includes('past simple') || lowerCat.includes('simple past')) cat = 'Simple Past';
-                             else if (lowerCat.includes('present perfect')) cat = 'Present Perfect';
-                             else if (lowerCat.includes('future')) cat = 'Future';
-                             else if (lowerCat.includes('imperative') || lowerCat.includes('imperativ')) cat = 'Imperativ';
-                             else if (lowerCat.includes('conditional')) cat = 'Conditional';
+                            const lowerCat = String(cat).toLowerCase();
+                            if (lowerCat.includes('present simple') || lowerCat.includes('simple present')) cat = 'Simple Present';
+                            else if (lowerCat.includes('present continuous') || lowerCat.includes('present progressive')) cat = 'Present Continuous';
+                            else if (lowerCat.includes('past simple') || lowerCat.includes('simple past')) cat = 'Simple Past';
+                            else if (lowerCat.includes('present perfect')) cat = 'Present Perfect';
+                            else if (lowerCat.includes('future')) cat = 'Future';
+                            else if (lowerCat.includes('imperative') || lowerCat.includes('imperativ')) cat = 'Imperativ';
+                            else if (lowerCat.includes('conditional')) cat = 'Conditional';
                         }
 
                         return {
@@ -8714,7 +8867,7 @@
                     if (await showConfirm(`Die ${lang.toUpperCase()}-Grammatikliste mit ${sentencesToUpload.length} Sätzen ÜBERSCHREIBEN?`, "Import bestätigen")) {
                         const res = await fetch(`${API_BASE_URL}/api/admin/grammar-sentences/bulk`, {
                             method: 'POST',
-                            headers: { 
+                            headers: {
                                 'Content-Type': 'application/json',
                                 'Authorization': `Bearer ${API_TOKEN}`
                             },
@@ -8739,14 +8892,14 @@
             reader.readAsArrayBuffer(file);
         };
 
-        window.downloadGrammar = async function(lang) {
+        window.downloadGrammar = async function (lang) {
             try {
                 const res = await fetch(`${API_BASE_URL}/api/grammar-sentences?language=${lang}`, {
                     headers: { 'Authorization': `Bearer ${API_TOKEN}` }
                 });
                 if (!res.ok) throw new Error("Serverfehler");
                 const sentences = await res.json();
-                
+
                 if (!sentences || sentences.length === 0) return showToast(`Die ${lang.toUpperCase()}-Grammatikliste ist leer.`, "info");
 
                 const wsData = [
@@ -8763,7 +8916,7 @@
             }
         };
 
-        window.deleteAdminGrammar = async function(lang) {
+        window.deleteAdminGrammar = async function (lang) {
             if (!(await showConfirm(`Möchtest du wirklich die gesamte globale GRAMMATIK-LISTE (${lang.toUpperCase()}) vom Server löschen?`, "Liste leeren?"))) return;
             try {
                 const res = await fetch(`${API_BASE_URL}/api/admin/grammar-sentences?language=${lang}`, {
@@ -8852,37 +9005,37 @@
             { it: 'red', de: 'rot', typ: 'Adjektiv', emoji: '🔴' }, { it: 'blue', de: 'blau', typ: 'Adjektiv', emoji: '🔵' }, { it: 'green', de: 'grün', typ: 'Adjektiv', emoji: '🟢' }, { it: 'yellow', de: 'gelb', typ: 'Adjektiv', emoji: '🟡' }, { it: 'black', de: 'schwarz', typ: 'Adjektiv', emoji: '⚫' }
         ];
 
-            // Re-bind info toggle listener for mobile
-            const infoModeBtn = document.getElementById('infoModeToggle');
-            const infoIconBtn = document.getElementById('infoIconBtn');
+        // Re-bind info toggle listener for mobile
+        const infoModeBtn = document.getElementById('infoModeToggle');
+        const infoIconBtn = document.getElementById('infoIconBtn');
 
-            function handleInfoToggle(e, btn) {
-                if (e) e.stopPropagation();
-                if (window.innerWidth <= 640) {
-                    switchMode('info');
-                    return;
-                }
-                isInfoModeActive = !isInfoModeActive;
-                if (infoModeBtn) infoModeBtn.classList.toggle('active', isInfoModeActive);
-                if (infoIconBtn) infoIconBtn.classList.toggle('active', isInfoModeActive);
-                if (infoIconBtn) {
-                   infoIconBtn.classList.toggle('bg-blue-600', !isInfoModeActive);
-                   infoIconBtn.classList.toggle('bg-green-600', isInfoModeActive); // Green when active hint mode
-                }
-                showToast(isInfoModeActive ? "Zusatzinfos AN (Tippe auf Wörter)" : "Zusatzinfos AUS (Wörter zum Zuordnen)", isInfoModeActive ? "info" : "warning", 2000);
+        function handleInfoToggle(e, btn) {
+            if (e) e.stopPropagation();
+            if (window.innerWidth <= 640) {
+                switchMode('info');
+                return;
             }
-
-            if (infoModeBtn) {
-                const newInfoBtn = infoModeBtn.cloneNode(true);
-                infoModeBtn.parentNode.replaceChild(newInfoBtn, infoModeBtn);
-                newInfoBtn.addEventListener('click', (e) => handleInfoToggle(e, newInfoBtn));
-            }
-
+            isInfoModeActive = !isInfoModeActive;
+            if (infoModeBtn) infoModeBtn.classList.toggle('active', isInfoModeActive);
+            if (infoIconBtn) infoIconBtn.classList.toggle('active', isInfoModeActive);
             if (infoIconBtn) {
-                const newIconBtn = infoIconBtn.cloneNode(true);
-                infoIconBtn.parentNode.replaceChild(newIconBtn, infoIconBtn);
-                newIconBtn.addEventListener('click', (e) => handleInfoToggle(e, newIconBtn));
+                infoIconBtn.classList.toggle('bg-blue-600', !isInfoModeActive);
+                infoIconBtn.classList.toggle('bg-green-600', isInfoModeActive); // Green when active hint mode
             }
+            showToast(isInfoModeActive ? "Zusatzinfos AN (Tippe auf Wörter)" : "Zusatzinfos AUS (Wörter zum Zuordnen)", isInfoModeActive ? "info" : "warning", 2000);
+        }
+
+        if (infoModeBtn) {
+            const newInfoBtn = infoModeBtn.cloneNode(true);
+            infoModeBtn.parentNode.replaceChild(newInfoBtn, infoModeBtn);
+            newInfoBtn.addEventListener('click', (e) => handleInfoToggle(e, newInfoBtn));
+        }
+
+        if (infoIconBtn) {
+            const newIconBtn = infoIconBtn.cloneNode(true);
+            infoIconBtn.parentNode.replaceChild(newIconBtn, infoIconBtn);
+            newIconBtn.addEventListener('click', (e) => handleInfoToggle(e, newIconBtn));
+        }
 
         // --- Karteikarten Logic ---
 
@@ -8960,7 +9113,7 @@
         // Initialize DOM Elements and Triggers
         userNameEl = document.getElementById('userName');
         userNameMobileEl = document.getElementById('userNameMobile');
-        
+
         showApp();
     </script>
 </body>
